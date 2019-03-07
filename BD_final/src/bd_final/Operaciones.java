@@ -221,4 +221,37 @@ public class Operaciones
         
         return resultado;
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Servidor> ServidoresIglesia(int id)
+    {
+        ArrayList<Servidor> resultado=new ArrayList<Servidor>();
+        Servidor p;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT  Rut , Nombre , Apellido1  FROM persona  WHERE iglesia = ?");
+            pstmt.setInt(1, id);
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                p=new Servidor();
+                p.setApellido(rs.getString("apellido1"));
+                p.setNombre(rs.getString("nombre"));
+                p.setRut(rs.getInt("rut"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
 }
