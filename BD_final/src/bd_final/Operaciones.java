@@ -16,10 +16,10 @@ public class Operaciones
     private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
-    private String bd = "";
-    private String url = "";
-    private String user = "";
-    private String pass = "";
+    private String bd = "postgres";
+    private String url = "jdbc:postgresql://localhost:5432/";
+    private String user = "postgres";
+    private String pass = "113012";
     
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -31,7 +31,7 @@ public class Operaciones
         try 
         {
             Class.forName("org.postgresql.Driver");
-            cn=DriverManager.getConnection(this.url+this.bd, this.user, this.pass);
+            cn=DriverManager.getConnection(this.url+this.bd+"?currentSchema=bd_prueba", this.user, this.pass);
         } 
         catch (ClassNotFoundException | SQLException ex) 
         {
@@ -113,12 +113,12 @@ public class Operaciones
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT * FROM iglesia"); 
             rs=pstmt.executeQuery();
-            pstmt.close();
             while(rs.next())
             {
                 resultado.add(new Iglesia(rs.getInt("id"),rs.getString("region"),rs.getString("calle"),rs.getInt("numero")));
             }
             rs.close();
+            pstmt.close();
         }
         catch(Exception e)
         {
