@@ -37,5 +37,10 @@ public class Junta {
     public void setIglesia(int iglesia) {
         this.iglesia = iglesia;
     }
+
+    @Override
+    public String toString() {
+        return "Reunion= " + Reunion +"Fecha= "+fecha;
+    }
     
 }

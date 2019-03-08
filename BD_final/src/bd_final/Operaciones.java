@@ -137,7 +137,7 @@ public class Operaciones
      */
     public ArrayList<Servidor> servidoresSemanales(java.util.Date desde,java.util.Date hasta)
     {
-        ArrayList<Servidor> resultado=new ArrayList<Servidor>();
+        ArrayList<Servidor> resultado=new ArrayList<>();
         Servidor p;
         try
         {
@@ -400,5 +400,7 @@ public class Operaciones
         
         return resultado;
     }
+    
+    
     
 }

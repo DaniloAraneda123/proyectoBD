@@ -60,6 +60,9 @@ public class Pastor
         return especialidad;
     }
     
-    
+    @Override
+    public String toString() {
+        return  "rut=" + rut + ", nombre=" + nombre + ", apellido=" + apellido ;
+    }
     
 }

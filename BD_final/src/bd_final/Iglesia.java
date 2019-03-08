@@ -7,12 +7,19 @@ public class Iglesia {
     private String calle;
     private String region;
 
-    public Iglesia(int aInt, String string, String string0, int aInt0) 
+    public Iglesia( String string, String string0, int aInt0) 
     {
-        id=aInt;
         region=string;
         calle=string0;
         numero=aInt0;
+    }
+    
+    public Iglesia(int aint, String string, String string0, int aInt0) 
+    {
+        region=string;
+        calle=string0;
+        numero=aInt0;
+        id=aint;
     }
 
     public int getNumero() {
@@ -31,4 +38,9 @@ public class Iglesia {
         return region;
     }
     
+    @Override
+    public String toString()
+    {
+        return id+" "+region+" "+calle+"  N "+numero;
+    }
 }

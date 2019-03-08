@@ -83,5 +83,10 @@ public class Servidor
     public void setIglesia(int iglesia) {
         this.iglesia = iglesia;
     }
+
+    @Override
+    public String toString() {
+        return "rut=" + rut + ", nombre=" + nombre + ", apellido=" + apellido;
+    }
     
 }
