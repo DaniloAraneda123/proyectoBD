@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import bd_final.Iglesia;
 import javax.swing.ListSelectionModel;
 
-public class VistaInicio extends javax.swing.JFrame {
 
-    //CONSTRUCTORES 
-    
+public class VistaInicio extends javax.swing.JFrame {
+///////////////////////////////////////////////////////////////////////////////////////////
+                          //PESTAÑA SELECCIONAR//
+    //CONSTRUCTORES    
     public VistaInicio( Operaciones ope) 
     {
         initComponents();
@@ -35,15 +36,14 @@ public class VistaInicio extends javax.swing.JFrame {
          arrayIglesias = arrayI;
     }
              
-        public void iniciar_ArrayIglesias() {
-        arrayIglesias  = getOperacionesBD().obtenerIglesias();
+    public void iniciar_ArrayIglesias() {
+      arrayIglesias  = getOperacionesBD().obtenerIglesias();
     }
         
      public void iniciar_ListaIglesiaSelec() {
         listaIglesiasSelec.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaIglesiasSelec.setVisibleRowCount(7);
     }    
-     
      
     public void actualizar_ListaIglesiaSelec() {
        listaIglesiasSelec.setListData(arrayIglesias.toArray()); 
@@ -229,7 +229,13 @@ public class VistaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
-        
+       int indice = listaIglesiasSelec.getSelectedIndex();
+       if (indice >= 0)
+       {
+           Iglesia iglesiaSeleccionada = arrayIglesias.get(indice);
+           VistaPlanSemananal vista= new VistaPlanSemanal( getOperacionesBD() , iglesiaSeleccionada);
+       }
+       
     }//GEN-LAST:event_botonSeleccionarActionPerformed
 
     public static void main(String args[]) 
@@ -245,7 +251,67 @@ public class VistaInicio extends javax.swing.JFrame {
         });
     }
     
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+                              //PESTAÑA AGREGAR/ELIMINAR.//
+    
+     public boolean comprobarRegion() {
+        //definirlo
+      
+        
+     } 
+     
+     public boolean comprobarComuna() {
+     
+     }
+     
+     public boolean comprobarNumero () {
 
+     }
+     
+     public boolean comprobarCalle () {
+        
+     } 
+     //GETTEXT MANDA EXCEPCION OJO XD.
+     public String getRegion () {
+        String texto = campoRegion.getText();
+        return texto;
+     }
+     
+     public String getComuna() {
+         String texto = campoComuna.getText();
+         return texto;
+     }
+      
+     public String getNumero ()  {
+         String texto = campoNum.getText();
+         return texto; 
+     }
+
+     public String getCalle () {
+         String texto = campoCalle.getText();
+         return texto;
+     }
+     
+     public int obtenerUltimoId () {
+         return 0;
+     }
+     //necesito el ultimo id 
+      public void actualizarArrayIglesia (Iglesia iglesia) {
+         arrayIglesias.add(iglesia);
+      }
+
+       
+      public void actualizarListaAgre () 
+      {
+         listaIglesiasAgre.setListData(arrayIglesias.toArray()); 
+      }
+
+      
+      public void actualizarIglesiasBD () {
+      
+      }
+      //hacemos conexion con la BD con el objetivo de actualizar la cantidad de iglesias.
+    
     
     //ATRIBUTOS
     private Operaciones operacionesBD;
