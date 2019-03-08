@@ -1,6 +1,6 @@
 package bd_final;
 
-class Iglesia {
+public class Iglesia {
     
     private int numero;
     private int id;

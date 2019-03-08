@@ -1,34 +1,40 @@
 package vista;
 import bd_final.Operaciones;
 import java.util.ArrayList;
+import bd_final.Iglesia;
 
 public class VistaInicio extends javax.swing.JFrame {
 
     //CONSTRUCTORES 
+    
     public VistaInicio( Operaciones ope) 
     {
         initComponents();
         setOperacionesBD (ope);
-        setArrayIglesia();
-        iniciar_listaIglesiaSelec();
-        
-        
-        //VACIAR LA LISTA.
-        listaIglesiasSelec = new JList<Iglesia>();
-        
-        vaciarLista();
-        Operaciones op = new Operaciones();
-        arrayIglesias= op.obtenerIglesias(); //SI OP TIENE ERROR NO HAY QUE COLOCAR ESTO.
-        
-        
-        //AL MOMENTO DE OBTENER LAS IGLESIAS COLOCARLAS EN EL JLIST
-        listaIglesiasSelec.setModel(arrayIglesias);
-        
-        
-        //EL MINIMO QUE SE PODRÁ VER ES DE 7
+        iniciar_ArrayIglesias();
+        iniciar_ListaIglesiaSelec();
+        actualizar_ListaIglesiaSelec();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
+    
+    //MÉTODOS.
+    public void setOperacionesBD (Operaciones ope)  {
+          operacionesBD = ope;
+    }
+    public Operaciones getOperacionesBD () {
+          return operacionesBD;
+    } 
+    
+    public ArrayList<Iglesia> getArrayIglesias () {
+         return arrayIglesias;
+    }
+    
+    public void setArrayIglesias ( ArrayList<Iglesia> arrayI )
+    {
+         arrayIglesias = arrayI;
+    }
+             
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -224,23 +230,30 @@ public class VistaInicio extends javax.swing.JFrame {
         });
     }
     
-    public void setOperacionesBD (Operaciones ope)  {
-          operacionesBD = ope;
-    }
-    public Operaciones getOperacionesBD () {
-          return operacionesBD;
-    } 
-    public void iniciar_listaIglesiaSelec() {
-        //inicia el JList
-        listaIglesiasSelec.
+    
+ 
+       iniciar_ListaIglesiaSelec() : 
+       *que solo permita seleccionar 1 elemento.
+       *deben verse 7 elementos.
+
+       actualizar_ListaIglesiaSelec ()
+       * actualizamos la listaIglesiasSelec según el arrayIglesia.
+
+       iniciar_ArrayIglesia() 
+       * con ayuda del campo operacionesBD ( "getOperacionesBD () ") llamamos a obtenerIglesias() que regresa la lista de iglesias de la BD
+       * que almacenamos en el campo arrayIglesias.  
+    
+
+    public void iniciar_ListaIglesiaSelec() {
+        //DEBE SELEECIONAR 1 SOLO ELEMENTO
         listaIglesiasSelec.setVisibleRowCount(7);
     }
-    public void actualizarListaSelec() {
+    public void actualizar_ListaIglesiaSelec() {
          //Actualizamos el JListSelect
     }
-    public void setArrayIglesia() 
+    public void iniciar_ArrayIglesias() 
     {
-        arrayIglesias = getOperacionesBD.obtenerIglesias();
+        arrayIglesias  = getOperacionesBD().obtenerIglesias();
     }
     
     //ATRIBUTOS

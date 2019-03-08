@@ -35,14 +35,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="etiquetaFecha" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="etiquetaTipoReu" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="campoFecha" min="-2" pref="71" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="etiquetaHoraTer" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="etiquetaHoraTer" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -69,27 +65,22 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etiquetaHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etiquetaTipoReu" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoTipoReu" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="campoFecha" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etiquetaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etiquetaHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etiquetaHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etiquetaTipoReu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoTipoReu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -171,7 +162,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="com.toedter.calendar.JDateChooser" name="campoFecha">
-    </Component>
   </SubComponents>
 </Form>
