@@ -24,7 +24,7 @@ public class Operaciones
     //////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
+     * Constructor , conecta a la base de datos de manera inmediata al llamarlo
      */
     public Operaciones()
     {
@@ -42,23 +42,23 @@ public class Operaciones
     //////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
-     * @param s
-     * @return 
+     * metodo para insertar persona 
+     * @param persona objeto persona a retornar
+     * @return retorna un true si la operacion se ejecuto sin problemas
      */
-    public boolean insertarPersona(Servidor s)
+    public boolean insertarPersona(Servidor persona)
     {
         boolean resultado=true;
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("INSERT INTO persona (rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia) VALUES(?,?,?,?,?,?,?);");   
-            pstmt.setInt(1, s.getRut());
-            pstmt.setString(2, s.getNombre());
-            pstmt.setString(3, s.getApellido());
-            pstmt.setString(4,String.valueOf(s.getGenero()));
-            pstmt.setString(5,s.getEspecialidad());
-            pstmt.setDate(6,new java.sql.Date(s.getFechaNacimiento().getTimeInMillis()));
-            pstmt.setInt(7,s.getIglesia());
+            pstmt.setInt(1, persona.getRut());
+            pstmt.setString(2, persona.getNombre());
+            pstmt.setString(3, persona.getApellido());
+            pstmt.setString(4,String.valueOf(persona.getGenero()));
+            pstmt.setString(5,persona.getEspecialidad());
+            pstmt.setDate(6,new java.sql.Date(persona.getFechaNacimiento().getTimeInMillis()));
+            pstmt.setInt(7,persona.getIglesia());
             pstmt.execute();
             pstmt.close();
             
@@ -74,9 +74,8 @@ public class Operaciones
     //////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
-     * @param rut
-     * @return 
+     * @param rut PK de la persona que se desea buscar
+     * @return  retorna el objeto persona con sus datos
      */
     public Servidor buscarPersona(int rut)
     {
@@ -104,8 +103,8 @@ public class Operaciones
     //////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
-     * @return 
+     *  
+     * @return lista de las iglesias reggistradas en la BD
      */
     public ArrayList<Iglesia> obtenerIglesias()
     {
@@ -132,6 +131,8 @@ public class Operaciones
     
     /**
      * 
+     * @param desde
+     * @param hasta
      * @return 
      */
     public ArrayList<Servidor> servidoresSemanales(java.util.Date desde,java.util.Date hasta)
@@ -169,6 +170,7 @@ public class Operaciones
     
     /**
      * 
+     * @param anio
      * @return 
      */
     public ResultSet cantidadReuniones(int anio)
@@ -226,6 +228,7 @@ public class Operaciones
     
     /**
      * 
+     * @param id
      * @return 
      */
     public ArrayList<Servidor> ServidoresIglesia(int id)
@@ -254,4 +257,148 @@ public class Operaciones
         
         return resultado;
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public ArrayList<Pastor> PastoresIglesia(int idIglesia)
+    {
+        ArrayList<Pastor> resultado=new ArrayList<>();
+        Pastor p;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT  Rut , Nombre , Apellido1  FROM Trabaja_Para , Pastor WHERE idIglesia = ? AND RutPastor = Rut;");
+            pstmt.setInt(1, idIglesia);
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                p=new Pastor();
+                p.setApellido(rs.getString("apellido1"));
+                p.setNombre(rs.getString("nombre"));
+                p.setRut(rs.getInt("rut"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * Sin terminar*********
+     * @param desde
+     * @param hasta
+     * @param idIglesia
+     * @return 
+     */
+    public ArrayList<Junta> juntasSemanales(java.util.Date desde,java.util.Date hasta,int idIglesia)
+    {
+        ArrayList<Junta> resultado=new ArrayList<>();
+        Junta p;
+        Date fechaHora=null;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT Fecha ,Hora ,Nombre_Reunion FROM Junta "
+                    + "WHERE Fecha >= ? and Fecha <= ? and Id_iglesia = ?"); 
+            java.sql.Date date1 = new java.sql.Date(desde.getTime());
+            java.sql.Date date2 = new java.sql.Date(hasta.getTime());
+            pstmt.setDate(1, date1);
+            pstmt.setDate(2, date2);
+            pstmt.setInt(3, idIglesia);
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+               ////
+                /*
+                agregar la fecha en l avariable fechaHora
+                */
+                p=new Junta(fechaHora,rs.getString("Nombre_Reunion"),idIglesia);
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    /**
+     * @return 
+     */
+    public ArrayList<TipoReunion> tipoReuniones()
+    {
+        ArrayList<TipoReunion> resultado=new ArrayList<>();
+        TipoReunion p;
+        char c;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT Nombre ,EdadMin ,EdadMax,Genero FROM Tipo_Reunion"); 
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                if(rs.getInt("Genero")==1)
+                {
+                    c='M';
+                }
+                else
+                {
+                    c='F';
+                }
+                p=new TipoReunion(c,rs.getInt("EdadMax"),rs.getInt("EdadMin"),rs.getString("Nombre"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * @param idIglesia
+     * @return 
+     */
+    public ArrayList<Servidor> servidoresIglesia(int idIglesia)
+    {
+        ArrayList<Servidor> resultado=new ArrayList<>();
+        Servidor p;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia FROM persona WHERE iglesia=?");
+            pstmt.setInt(1, idIglesia);
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                Calendar fecha=Calendar.getInstance();
+                fecha.setTime(rs.getDate("fechaNacimiento"));
+                p=new Servidor(rs.getInt("rut"),rs.getString("nombre"),rs.getString("apellido1"),rs.getInt("genero"),fecha,rs.getString("especialidad"),rs.getInt("iglesia"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
 }
