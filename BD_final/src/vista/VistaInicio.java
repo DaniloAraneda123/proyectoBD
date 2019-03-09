@@ -249,7 +249,7 @@ public class VistaInicio extends javax.swing.JFrame {
          actualizar_ArrayIglesia(nuevaIglesia);
          actualizar_ListaIglesiaAgre();
          actualizar_ListaIglesiaSelec();
-         actualizar_IglesiasBD();
+         actualizar_IglesiasBD(nuevaIglesia);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     public static void main(String args[]) 
@@ -275,15 +275,15 @@ public class VistaInicio extends javax.swing.JFrame {
      } 
      
      public boolean comprobarComuna() {
-     
+        //definirlo
      }
      
      public boolean comprobarNumero () {
-
+        //tiene que ser un numero entero positivo
      }
      
      public boolean comprobarCalle () {
-        
+        //definirlo
      } 
      //GETTEXT MANDA EXCEPCION OJO XD.
      public String getRegion () {
@@ -321,10 +321,10 @@ public class VistaInicio extends javax.swing.JFrame {
          listaIglesiasAgre.setListData(arrayIglesias.toArray()); 
       }
 
-      public void actualizar_IglesiasBD () {
-        
+      public void actualizar_IglesiasBD (Iglesia iglesia) {
+          operacionesBD.insertarIglesia(iglesia.getId() , iglesia.getRegion() , iglesia.getComuna() , iglesia.getCalle() , iglesia.getNumero());
       }
-      //hacemos conexion con la BD con el objetivo de actualizar la cantidad de iglesias.
+    
     
     
     //ATRIBUTOS

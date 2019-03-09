@@ -406,7 +406,7 @@ public class Operaciones
      *
      * @return 
      */
-    public boolean insertarIglesia(int id,int numero,String comuna,String calle, String region)
+    public boolean insertarIglesia(int id , String region , String comuna , String calle , int numero)
     {
         boolean resultado=true;
         try{
