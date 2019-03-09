@@ -1,12 +1,19 @@
 
 package vista;
+import bd_final.Operaciones;
+import bd_final.TipoActividad;
+import java.util.ArrayList;        
 
+        
 public class MenuTiposActividades extends javax.swing.JDialog {
 
  
-    public MenuTiposActividades(java.awt.Frame parent, boolean modal) {
+    public MenuTiposActividades(java.awt.Frame parent, boolean modal , Operaciones ope ) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD (ope);
+        iniciar_ArrayTiposActividades();
+        actualizar_ListaTiposActividades();
     }
 
     @SuppressWarnings("unchecked")
@@ -110,9 +117,16 @@ public class MenuTiposActividades extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+  
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+        //LLAMAMOS A LOS METODOS COMPROBAR
+        TipoActividad tipoAct = new TipoActividad( getCampoTipo() , getCampoEspecialidad());
+        actualizar_ArrayTiposActividades(tipoAct);
+        actualizar_ListaTiposActividades();
+        actualizarBD(tipoAct);
+        //colocarla al lado
+        
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
@@ -123,8 +137,57 @@ public class MenuTiposActividades extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTipoActionPerformed
 
+    
+      public boolean comprobarCampoTipo() {
+          //DEIFINIR
+          return 0;
+      }
+          
+      public String getCampoTipo() {
+         return campoTipo.getText();
+      }   
+              
+      public boolean comporbarCampoEspecialidad() {
+         //DEFINIR.
+          return 0;
+      }
+     
+      public String getCampoEspecialidad() {
+          return campoEspecialidad.getText();
+      }
   
+      
+      public void iniciar_ArrayTiposActividades () {
+            arrayTipoAct  = operacionesBD.obtenerTiposActividades();
+            //ESTE METODO DEVUELVE UN ARRAYLIST
+            actualizar_ListaTiposActividades();
+      }     
 
+       public void setOperacionesBD (Operaciones ope)  {
+          operacionesBD = ope;
+       }
+
+       public Operaciones getOperacionesBD() {
+         return operacionesBD;
+      }
+   
+      
+      public void actualizar_ArrayTiposActividades ( TipoActividad tipoAct) {
+           arrayTipoAct.add(tipoAct);
+      }
+    
+      public void actualizar_ListaTiposActividades() {
+        listaActividades.setListData(arrayTipoAct.toArray()); 
+      }
+      
+   
+      public void actualizarBD (TipoActividad tipoAct) {
+        //NECESITO UN METODO PARA AGREGAR A LA BD EL TIPO ACTIVIDAD
+      }
+  
+  
+    private Operaciones operacionesBD;
+    private ArrayList<TipoActividad> arrayTipoAct;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
