@@ -1,12 +1,18 @@
-
-
+import bd_final.Operaciones;
+import bd_final.Iglesia;
 package vista;
 
 public class VistaPlanSemanal extends javax.swing.JFrame {
 
-
-    public VistaPlanSemanal() {
+         VistaPlanSemanal (obj. Operaciones , obj. iglesia) :
+       *llamar setOperacionesBD (obj. Operaciones)
+       *llamar setIglesia (obj. Iglesia)
+       *iniciar_componentes ()
+       *iniciar_ArrayReuniones()
+       *actualizar_TablaReuniones()
+    public VistaPlanSemanal( Operaciones operaciones , Iglesia iglesia) {
         initComponents();
+         
     }
 
     @SuppressWarnings("unchecked")
