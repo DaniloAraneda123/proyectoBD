@@ -1,6 +1,10 @@
+package vista;
 import bd_final.Operaciones;
 import bd_final.Iglesia;
-package vista;
+import bd_final.Junta;
+import javax.swing.JFrame;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class VistaPlanSemanal extends javax.swing.JFrame {
 
@@ -10,10 +14,51 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
        *iniciar_componentes ()
        *iniciar_ArrayReuniones()
        *actualizar_TablaReuniones()
+         
+         
     public VistaPlanSemanal( Operaciones operaciones , Iglesia iglesia) {
         initComponents();
-         
+        setOperacionesBD (operaciones);
+        setIglesia(iglesia);
+        iniciar_Componentes ();
+        iniciar_ArrayReuniones();
+        actualizar_TablaReuniones();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        setVisible(true);
     }
+    
+      public void setIglesias (Iglesia unaIglesia) {
+          iglesia = unaIglesia;
+      }        
+              
+      public void setOperacionesBD (Operaciones ope)  {
+         operacionesBD = ope;
+      }
+
+      public Operaciones getOperacionesBD () {
+        return operacionesBD;
+      } 
+   
+     public void  iniciar_ArrayReuniones() {
+          arrayReuniones = operacionesBD.juntasSemanales();
+     }
+     
+     public void actualizar_ArrayReuniones (Junta reunion ) {
+         arrayReuniones.add(reunion);
+     } 
+              
+      public void actualizar_TablaReuniones() {
+          
+          String matriz [][] = new String [arrayReuniones.size()][4];
+          for (int i=0 ; i<arrayReuniones.size() ; i++) {
+             matriz[i][0]  = arrayReuniones.get(i).getFecha().toString();
+             matriz[i][1]  = arrayReuniones.get(i).getReunion();
+             matriz[i][2]  = arrayReuniones.get(i).getHoraInicio();
+             matriz[i][3]  = arrayReuniones.get(i).getHoraTermino();
+          }
+          listaReuniones.setModel( new DefaultTableModel (matriz , new String [] {"Reunión" , "Fecha" , "Hora Inicio" , "Hora Termino"}));
+          
+      }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -148,6 +193,10 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSectoresActionPerformed
 
 
+    //ATRIBUTOS
+    Iglesia iglesia;
+    Operaciones operacionesBD;
+    ArrayList<Junta> arrayReuniones;  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
     private javax.swing.JMenuItem MenuConsultas;
