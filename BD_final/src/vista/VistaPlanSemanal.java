@@ -39,6 +39,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         return operacionesBD;
       } 
    
+     //falta definir la forma para 
      public void  iniciar_ArrayReuniones() {
           arrayReuniones = operacionesBD.juntasSemanales();
      }

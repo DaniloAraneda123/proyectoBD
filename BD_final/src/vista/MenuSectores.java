@@ -1,12 +1,24 @@
 
 package vista;
+import bd_final.Operaciones;
+import bd_final.Iglesia;
+import bd_final.Sectores;
+import java.util.ArrayList;
 
 public class MenuSectores extends javax.swing.JDialog {
+  
+  
 
-
-    public MenuSectores(java.awt.Frame parent, boolean modal) {
+    public MenuSectores(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia iglesia) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD (ope);
+        setIglesia(iglesia);
+        iniciar_Componentes();
+        iniciar_ArraySectores();
+        actualizar_ListaSectores();
+        //DARLE UNA POSICION AL CUADRO DE DIALOGO
+         
     }
 
     @SuppressWarnings("unchecked")
@@ -121,27 +133,76 @@ public class MenuSectores extends javax.swing.JDialog {
     }//GEN-LAST:event_campoCapacidadActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+       //LLAMAR A LOS METODO COMRPOBAR.
+        Sectores nuevoSector = new Sectores ( iglesia.getId() , getCampoTipo() , Integer.parseInt(getCampoCapacidad())  );
+        actualizar_ArraySectores(nuevoSector);
+        actualizar_ListaSectores();
+        actualizarBD(nuevoSector);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+    
+
+    
       public boolean comprobar_CampoTipo () {
- 
+          //definir
+          return 0;
       }
       
       public String getCampoTipo () {
-         return campoTipo.getText();
+         return campoTipo.getText(); // gettext da excepcion , cuidado
       }
 
-      public boolean comprobar_CampoCapacidad {
-        
+      public boolean comprobar_CampoCapacidad() {
+        // debe ser un entero.
+         return 0;
      }
       
       public String getCampoCapacidad () {
          return campoCapacidad.getText();
       }
-     
+         
+      public void setOperacionesBD (Operaciones ope) {
+          operacionesBD = ope;
+      }
    
+     public Operaciones getOperacionesBD() {
+        return operacionesBD;
+     }
+   
+     public void iniciar_ArraySectores() {
+       arraySectores = operacionesBD.obtenerSectores( iglesia.getId());
+     } 
+
+     public void actualizar_ArraySectores (Sectores sector) {
+        arraySectores.add(sector);
+     }
     
+     public void actualizar_ListaSectores () {
+         listaSectores.setListData(arraySectores.toArray());
+     }
+   
+     public void iniciar_Componentes () {
+         listaSectores.setVisibleRowCount(7);      
+     }
+   
+     public void setIglesia (Iglesia igle) {
+       iglesia = igle;
+     }
+     
+     public Iglesia getIglesia () {
+         return iglesia;
+     }
+     
+    public void actualizarBD (Sectores nuevoSector) 
+    {
+       //necesito una pregunta para añadir a la BD uns sector
+    }
+
+   
+    //Atributos
+    private Operaciones operacionesBD;
+    private ArrayList<Sectores> arraySectores;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;

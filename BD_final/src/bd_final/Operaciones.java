@@ -428,6 +428,12 @@ public class Operaciones
         return resultado;
         
     }
+     //NECESITO UN METODO QUE ME DEVUELVA EL ARRAY DE SECTORES PARA UNA 
+     //DETERMINADA IGLESIA
+    // obtenerSectores (int idIglesia)
     
+    
+    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN SECTOR PARA UNA IGLESIA
+    //insertarSector (int idIglesia)
     
 }
