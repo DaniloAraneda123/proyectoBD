@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
 public class Operaciones 
 {
     
-    private Connection cn;
+    Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private String bd = "postgres";
     private String url = "jdbc:postgresql://localhost:5432/";
     private String user = "postgres";
-    private String pass = "113012";
+    private String pass = "";
     
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -401,6 +401,33 @@ public class Operaciones
         return resultado;
     }
     
+    /**
+     * 
+     *
+     * @return 
+     */
+    public boolean insertarIglesia(int id,int numero,String comuna,String calle, String region)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO iglesia (id,calle,region,numero,comuna) VALUES(?,?,?,?,?)");
+            pstmt.setInt(1, id);
+            pstmt.setString(2, calle);
+            pstmt.setString(3, region);
+            pstmt.setInt(4, numero);
+            pstmt.setString(5, comuna);
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=false;
+        }
+        
+        return resultado;
+        
+    }
     
     
 }
