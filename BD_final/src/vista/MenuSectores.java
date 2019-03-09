@@ -124,7 +124,24 @@ public class MenuSectores extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+      public boolean comprobar_CampoTipo () {
+ 
+      }
+      
+      public String getCampoTipo () {
+         return campoTipo.getText();
+      }
 
+      public boolean comprobar_CampoCapacidad {
+        
+     }
+      
+      public String getCampoCapacidad () {
+         return campoCapacidad.getText();
+      }
+     
+   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
