@@ -140,6 +140,11 @@ public class VistaInicio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaIglesiasAgre);
 
         botonAgregar.setText("AGREGAR");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setText("ELIMINAR");
 
@@ -238,6 +243,15 @@ public class VistaInicio extends javax.swing.JFrame {
        
     }//GEN-LAST:event_botonSeleccionarActionPerformed
 
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        //comprobar que todos lo campos esten correctos
+         Iglesia nuevaIglesia = new Iglesia ( obtener_UltimoId(), getRegion() , getComuna() ,getCalle() , Integer.parseInt(getNumero()) ) ;
+         actualizar_ArrayIglesia(nuevaIglesia);
+         actualizar_ListaIglesiaAgre();
+         actualizar_ListaIglesiaSelec();
+         actualizar_IglesiasBD();
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
     public static void main(String args[]) 
     {      
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -292,23 +306,23 @@ public class VistaInicio extends javax.swing.JFrame {
          return texto;
      }
      
-     public int obtenerUltimoId () {
-         return 0;
+     public int obtener_UltimoId () {
+         int id = arrayIglesias.size() - 1;
+         Iglesia ultima = arrayIglesias.get(id); 
+         int ultimoId = ultima.getId() + 1 ;
+         return ultimoId;
      }
-     //necesito el ultimo id 
-      public void actualizarArrayIglesia (Iglesia iglesia) {
+         
+      public void actualizar_ArrayIglesia (Iglesia iglesia) {
          arrayIglesias.add(iglesia);
       }
-
        
-      public void actualizarListaAgre () 
-      {
+      public void actualizar_ListaIglesiaAgre () {
          listaIglesiasAgre.setListData(arrayIglesias.toArray()); 
       }
 
-      
-      public void actualizarIglesiasBD () {
-      
+      public void actualizar_IglesiasBD () {
+        
       }
       //hacemos conexion con la BD con el objetivo de actualizar la cantidad de iglesias.
     
