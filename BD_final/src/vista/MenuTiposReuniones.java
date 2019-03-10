@@ -160,7 +160,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         //LLAMAMOS A LOS METODOS COMPROBAR.
-        TipoReunion tipoReunion = new TipoReunion( getCampoGenero().charAt(0) , Integer.parseInt(getCampoEdadMax()) , Integer.parseInt(getCampoEdadMin()) , getCampoNombre());
+        TipoReunion tipoReunion = new TipoReunion( Integer.parseInt(getCampoGenero()) , Integer.parseInt(getCampoEdadMax()) , Integer.parseInt(getCampoEdadMin()) , getCampoNombre());
         actualizar_ArrayTiposReuniones(tipoReunion);
         actualizar_ListaTiposReuniones(); 
         actualizarBD(tipoReunion);

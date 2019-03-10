@@ -3,19 +3,19 @@ package bd_final;
 public class TipoReunion 
 {
     
-    private char genero;
+    private int genero;
     private int edadMax;
     private int edadMin;
     private String nombre;
 
-    public TipoReunion(char genero, int edadMax, int edadMin, String nombre) {
+    public TipoReunion(int genero, int edadMax, int edadMin, String nombre) {
         this.genero = genero;
         this.edadMax = edadMax;
         this.edadMin = edadMin;
         this.nombre = nombre;
     }
 
-    public char getGenero() {
+    public int getGenero() {
         return genero;
     }
 

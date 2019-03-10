@@ -1,7 +1,7 @@
 package bd_final;
 
 import java.util.Calendar;
-
+import java.util.ArrayList;
 public class Pastor 
 {
     
@@ -11,6 +11,9 @@ public class Pastor
     private int genero;
     private Calendar fechaNacimiento;
     private String especialidad;
+    private int jerarquia;
+    private ArrayList<String> telefonos;
+    private ArrayList<String> mails;
 
     public void setRut(int rut) {
         this.rut = rut;

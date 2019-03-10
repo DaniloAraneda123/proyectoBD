@@ -1,12 +1,22 @@
 
 package vista;
-
+import java.util.ArrayList;
+import bd_final.Iglesia;
+import bd_final.Operaciones;
+import bd_final.Pastor;
+import bd_final.Telefono;
+import bd_final.Mail;
 
 public class MenuPastores extends javax.swing.JDialog {
 
-    public MenuPastores(java.awt.Frame parent, boolean modal) {
+
+    public MenuPastores(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia iglesia) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD(ope);
+        setIglesia(iglesia);
+        iniciar_ArrayPastores();
+        actualizar_ListaPastores();       
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +52,8 @@ public class MenuPastores extends javax.swing.JDialog {
         campoApellido = new javax.swing.JTextField();
         campoEspecialidad = new javax.swing.JTextField();
         campoGenero = new javax.swing.JTextField();
-        campoFechaNac = new com.toedter.calendar.JDateChooser();
+        campoFechaNac = new org.netbeans.modules.form.InvalidComponent();
+        botonAgregarPastor = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -87,10 +98,20 @@ public class MenuPastores extends javax.swing.JDialog {
         jScrollPane2.setViewportView(listaMails);
 
         botonAgregarTele.setText("AGREGAR");
+        botonAgregarTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarTeleActionPerformed(evt);
+            }
+        });
 
         botonEliminarTele.setText("ELIMINAR");
 
         botonAgregarMail.setText("AGREGAR");
+        botonAgregarMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarMailActionPerformed(evt);
+            }
+        });
 
         botonEliminarMail.setText("ELIMINAR");
 
@@ -102,6 +123,13 @@ public class MenuPastores extends javax.swing.JDialog {
         jScrollPane3.setViewportView(listaPastores);
 
         etiquetaTitulo.setText("Lista de pastores");
+
+        botonAgregarPastor.setText("AGREGAR");
+        botonAgregarPastor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarPastorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,33 +171,40 @@ public class MenuPastores extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(campoTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etiquetaMail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoMail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAgregarMail)
-                            .addComponent(botonEliminarMail))
-                        .addContainerGap())))
+                        .addGap(379, 379, 379))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(etiquetaJerarquia)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(botonAgregarPastor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonEliminarTele)
-                            .addComponent(botonAgregarTele))))
+                            .addComponent(botonAgregarTele))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(etiquetaMail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoMail, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregarMail)
+                                    .addComponent(botonEliminarMail))))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,9 +235,9 @@ public class MenuPastores extends javax.swing.JDialog {
                         .addComponent(etiquetaGenero)
                         .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaMail)
                             .addComponent(campoMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,25 +247,23 @@ public class MenuPastores extends javax.swing.JDialog {
                                 .addComponent(botonAgregarMail)
                                 .addGap(18, 18, 18)
                                 .addComponent(botonEliminarMail))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etiquetaTelefono)
+                            .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(etiquetaTelefono)
-                                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
                                 .addComponent(botonAgregarTele)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botonEliminarTele))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(botonAgregarPastor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,15 +273,208 @@ public class MenuPastores extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoMailActionPerformed
 
+    
+    evento de boton 1 :
+      *Al momento de presionar agregar de los campos del telefono 
+      *llamamos al metodo comprobarCampoTelefono() para saber si esta correcto el telefono.
+      *llamar actualizar_arrayTelefono ( getCampoTelefono() ). 
+      *llamar actualizar_listaTelefono().
+      
+      evento de boton 2 :
+      *Al momento de presionar agregar de los campos del mail
+      *llamamos al metodo comprobarCampoMail() para saber si esta correcto el mail.
+      *llamar actualizar_arrayMail ( getCampoMail() )
+      *llamar actualizar_listaMail() 
+     
+       evento de boton 3 :
+      *Al momento de presionar agregar pastor.
+      *llamamos a los metodos comprobar de los campos excepto del telefono y mail.Para estos ultimos usaremos comprobar_ListaMail() 
+      *y comprobar_ListaTelefono().
+      *creamos un obj. Pastor y llamamos a actualizar_ArrayPastores( obj. Pastor)
+      *llamar actualizar_listaPastores()
 
+       evento de ventana :
+      *Al cerrar el cuadro de Dialogo debe actualizarse la BD. 
+    
+    
+    private void botonAgregarPastorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPastorActionPerformed
+        //COMPROBAR CAMPOS
+     Pastor pastor = new Pastor();
+     actualizar_ArrayPastores(pastor);
+     actualizar_ListaPastores();
+     actualizarBD(pastor);
+        
+    }//GEN-LAST:event_botonAgregarPastorActionPerformed
+
+    private void botonAgregarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregarMailActionPerformed
+
+    private void botonAgregarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarTeleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregarTeleActionPerformed
+
+    
+    //Metodos
+   public boolean comprobarCampoJerarquia () {
+     //DEFINIR
+       return 0;
+   } 
+   public String getCampoJerarquia () {
+       return campoJerarquia.getText();
+   }
+   
+   public boolean comprobarCampoRut() {
+       //DEFINIR
+       return 0;
+   }
+
+   public String getCampoRut () {
+       return campoRut.getText();
+   }
+
+   public boolean comprobarCampoNombre() {
+       //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoNombre () {
+      return campoNombre.getText();
+   }
+ 
+   public boolean comprobarCampoApellido () {
+       //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoApellido() {
+       return campoApellido.getText();
+   }
+
+   public boolean comprobarCampoTelefono() {
+      //DEFINIR
+       return 0;
+   }
+
+   public String getCampoTelefono () {
+      return campoTelefono.getText();
+   }
+   
+   public boolean comprobarCampoMail() {
+      //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoMail() {
+      return campoMail.getText();
+   }
+
+   public boolean comprobarCampoFechaNac () {
+       //DEFINIR     
+       return 0;
+   }
+   
+   public String getCampoFechaNac() {
+      return campoFechaNac.getText();
+   }
+
+   public boolean comprobarCampoEspecialidad() {
+      //DEFINIR
+       return 0;
+   }
+
+   public String getCampoEspecialidad() {
+       return campoEspecialidad.getText();
+   }
+   
+   public boolean comprobarCampoGenero() {
+       //DEFINIR
+       return 0;
+   }
+
+   public String getCampoGenero () {
+       return campoGenero.getText();
+   } 
+
+   public ArrayList<Telefono> getlListaTelefonos()  {
+      return arrayTelefonos;
+   }  
+
+   public ArrayList<Mail> getListaMails() {
+       return arrayMails;
+   }
+ 
+    ///////////////////////////////////////
+   
+   public void setOperacionesBD (Operaciones ope) {
+        operacionesBD = ope;
+   }
+  
+   public Operaciones getOperacionesBD() {
+       return operacionesBD;
+   } 
+   
+   public void setIglesia(Iglesia igle) {
+       iglesia = igle; 
+   }
+   
+   public Iglesia getIglesia () {
+       return iglesia;
+   }
+   
+   public void iniciar_ArrayPastores() {
+      arrayPastores = operacionesBD.obtenerPastores(iglesia.getId());    
+   }
+  
+   public void  actualizar_ArrayPastores(Pastor pastor) {
+     arrayPastores.add(pastor);
+   }
+
+   public void actualizar_ListaPastores (){
+           listaPastores.setListData(arrayPastores.toArray()); 
+   }
+ 
+   public void actualizar_ArrayMail (Mail mail)  {
+        arrayMails.add(mail);
+   }
+
+   public void actualizar_ListaMails() {
+          listaMails.setListData(arrayMails.toArray());    
+   }
+
+   public void actualizar_ArrayTelefono (Telefono telefono ) {
+       arrayTelefonos.add(telefono);
+   } 
+   
+   public void actualizar_ListaTelefonos () {
+       listaTelefonos.setListData(arrayTelefonos.toArray()); 
+   }  
+  
+   public void iniciar_componentes () {
+        listaPastores.setVisibleRowCount(7);
+        listaTelefonos.setVisibleRowCount(7);
+        listaMails.setVisibleRowCount(7);
+   }
+   
+   public void actualizarBD(Pastor pastor) {
+      //AGREGAR LA FORMA DE AGREGAR EL PASTOR
+   }
+   
+    //Atributos
+    private ArrayList<Mail> arrayMails;
+    private ArrayList<Telefono> arrayTelefonos;
+    private ArrayList<Pastor> arrayPastores;
+    private Operaciones operacionesBD;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMail;
+    private javax.swing.JButton botonAgregarPastor;
     private javax.swing.JButton botonAgregarTele;
     private javax.swing.JButton botonEliminarMail;
     private javax.swing.JButton botonEliminarTele;
     private javax.swing.JTextField campoApellido;
     private javax.swing.JTextField campoEspecialidad;
-    private com.toedter.calendar.JDateChooser campoFechaNac;
+    private org.netbeans.modules.form.InvalidComponent campoFechaNac;
     private javax.swing.JTextField campoGenero;
     private javax.swing.JTextField campoJerarquia;
     private javax.swing.JTextField campoMail;

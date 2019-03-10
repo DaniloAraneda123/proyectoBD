@@ -443,4 +443,7 @@ public class Operaciones
     
     //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOREUNION
     
+    //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA
+    //ingresarPastor(id idIglesia)
+    
 }
