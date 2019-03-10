@@ -1,12 +1,18 @@
 
 package vista;
-
+import bd_final.Operaciones;
+import bd_final.TipoReunion;
+import java.util.ArrayList;
 
 public class MenuTiposReuniones extends javax.swing.JDialog {
 
-    public MenuTiposReuniones(java.awt.Frame parent, boolean modal) {
+    
+    public MenuTiposReuniones(java.awt.Frame parent, boolean modal , Operaciones ope) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD(ope);
+        iniciar_ArrayTiposReuniones();
+        actualizar_ListaTiposReuniones();
     }
 
 
@@ -153,15 +159,83 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
     }//GEN-LAST:event_campoEdadMaxActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+        //LLAMAMOS A LOS METODOS COMPROBAR.
+        TipoReunion tipoReunion = new TipoReunion( getCampoGenero().charAt(0) , Integer.parseInt(getCampoEdadMax()) , Integer.parseInt(getCampoEdadMin()) , getCampoNombre());
+        actualizar_ArrayTiposReuniones(tipoReunion);
+        actualizar_ListaTiposReuniones(); 
+        actualizarBD(tipoReunion);
     }//GEN-LAST:event_botonAgregarActionPerformed
-
+  
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEliminarActionPerformed
 
  
+     public boolean comprobarCampoNombre() {
+         //DEFINIR
+         return 0;
+     }
+     
+     public String getCampoNombre() {
+          return campoNombre.getText();
+     }
+     
+     public boolean comprobarCampoGenero () {
+         //deifnir
+         return 0;
+     }
+    
+     public String getCampoGenero () {
+         return campoGenero.getText();
+     }
+       
+     public boolean comprobarCampoEdadMin () {
+         //DEFINIR
+         return 0;
+     }
+     
+     public String getCampoEdadMin() {
+         return campoEdadMin.getText();
+     }
+     
+     public boolean comprobarCampoEdadMax () {
+         //DEFINIR
+         return 0;
+     }
+     
+     public String getCampoEdadMax() {
+         return campoEdadMax.getText();
+     }
+   
+      public void iniciar_ArrayTiposReuniones () {
+        arrayTiposReuniones = operacionesBD.tipoReuniones();
+        actualizar_ListaTiposReuniones();
+      } 
+    
+      public void setOperacionesBD (Operaciones ope) {
+         operacionesBD = ope;
+      }
 
+      public Operaciones getOperacionesBD () {
+         return operacionesBD;
+      }
+  
+      public void actualizar_ArrayTiposReuniones (TipoReunion tipoReu) {
+          arrayTiposReuniones.add(tipoReu);
+      }
+      
+      public void actualizar_ListaTiposReuniones() {
+             listaReuniones.setListData(arrayTiposReuniones.toArray()); 
+      }
+      
+      public void actualizarBD ( TipoReunion tipoReu) {
+            //metodo para agregar una reunion
+      }
+      
+     
+    //Atributos
+    private Operaciones operacionesBD;
+    private ArrayList<TipoReunion> arrayTiposReuniones;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
