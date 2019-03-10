@@ -1,11 +1,20 @@
 
 package vista;
+import java.util.ArrayList;
+import bd_final.Iglesia;
+import bd_final.Servidor;
+import bd_final.Operaciones;
 
+        
 public class MenuServidores extends javax.swing.JDialog {
 
-    public MenuServidores(java.awt.Frame parent, boolean modal) {
+    public MenuServidores(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia iglesia) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD(ope);
+        setIglesia(iglesia);
+        iniciar_ArrayServidores();
+        actualizar_ListaServidores();
     }
 
     @SuppressWarnings("unchecked")
@@ -39,10 +48,16 @@ public class MenuServidores extends javax.swing.JDialog {
         listaMails = new javax.swing.JList();
         botonAgregarTele = new javax.swing.JButton();
         botonEliminarTele = new javax.swing.JButton();
+        botonAgregarServidor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         botonAgregarMail.setText("AGREGAR");
+        botonAgregarMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarMailActionPerformed(evt);
+            }
+        });
 
         botonEliminarMail.setText("ELIMINAR");
 
@@ -92,45 +107,25 @@ public class MenuServidores extends javax.swing.JDialog {
         jScrollPane2.setViewportView(listaMails);
 
         botonAgregarTele.setText("AGREGAR");
+        botonAgregarTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarTeleActionPerformed(evt);
+            }
+        });
 
         botonEliminarTele.setText("ELIMINAR");
+
+        botonAgregarServidor.setText("AGREGAR");
+        botonAgregarServidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarServidorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(etiquetaTelefono)
-                .addGap(4, 4, 4)
-                .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(340, 340, 340))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminarTele)
-                            .addComponent(botonAgregarTele))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(etiquetaMail)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoMail))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonAgregarMail)
-                                    .addComponent(botonEliminarMail))))
-                        .addGap(39, 39, 39))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -161,6 +156,43 @@ public class MenuServidores extends javax.swing.JDialog {
                     .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(38, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminarTele)
+                            .addComponent(botonAgregarTele))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(etiquetaMail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoMail))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonAgregarMail)
+                                    .addComponent(botonEliminarMail))))))
+                .addGap(39, 39, 39))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(etiquetaTelefono)
+                        .addGap(4, 4, 4)
+                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(botonAgregarServidor)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,21 +245,190 @@ public class MenuServidores extends javax.swing.JDialog {
                         .addComponent(botonAgregarTele)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonEliminarTele)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(18, 18, 18)
+                .addComponent(botonAgregarServidor)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMailActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_campoMailActionPerformed
 
+    private void botonAgregarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarServidorActionPerformed
+               //COMPROBAR CAMPOS
+        Servidor servidor = new Servidor();
+        actualizar_ArrayServidores(servidor);
+        actualizar_ListaServidores();
+        actualizarBD(servidor); 
+    }//GEN-LAST:event_botonAgregarServidorActionPerformed
 
+    private void botonAgregarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMailActionPerformed
+        comprobarCampoMail();
+        String nuevoMail = getCampoMail();
+        actualizar_ArrayMail(nuevoMail);
+        actualizar_ListaMails();
+    }//GEN-LAST:event_botonAgregarMailActionPerformed
+
+    private void botonAgregarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarTeleActionPerformed
+       comprobarCampoTelefono();
+       String telefono = getCampoTelefono();
+       actualizar_ArrayTelefono(telefono);
+       actualizar_ListaTelefonos();
+    }//GEN-LAST:event_botonAgregarTeleActionPerformed
+
+    
+    //Metodos
+   public boolean comprobarCampoRut() {
+       //DEFINIR
+       return 0;
+   }
+
+   public String getCampoRut () {
+       return campoRut.getText();
+   }
+
+   public boolean comprobarCampoNombre() {
+       //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoNombre () {
+      return campoNombre.getText();
+   }
+ 
+   public boolean comprobarCampoApellido () {
+       //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoApellido() {
+       return campoApellido.getText();
+   }
+
+   public boolean comprobarCampoTelefono() {
+      //DEFINIR
+       return 0;
+   }
+
+   public String getCampoTelefono () {
+      return campoTelefono.getText();
+   }
+   
+   public boolean comprobarCampoMail() {
+      //DEFINIR
+       return 0;
+   }
+   
+   public String getCampoMail() {
+      return campoMail.getText();
+   }
+
+   public boolean comprobarCampoFechaNac () {
+       //DEFINIR     
+       return 0;
+   }
+   
+   public String getCampoFechaNac() {
+      return campoFechaNac.getText();
+   }
+
+   public boolean comprobarCampoEspecialidad() {
+      //DEFINIR
+       return 0;
+   }
+
+   public String getCampoEspecialidad() {
+       return campoEspecialidad.getText();
+   }
+   
+   public boolean comprobarCampoGenero() {
+       //DEFINIR
+       return 0;
+   }
+
+   public String getCampoGenero () {
+       return campoGenero.getText();
+   } 
+
+   public ArrayList<String> getlListaTelefonos()  {
+      return arrayTelefonos;
+   }  
+
+   public ArrayList<String> getListaMails() {
+       return arrayMails;
+   }
+ 
+    
+    //////////////////////////////////////////////////////////
+   
+   public void setOperacionesBD (Operaciones ope) {
+        operacionesBD = ope;
+   }
+  
+   public Operaciones getOperacionesBD() {
+       return operacionesBD;
+   } 
+   
+   public void setIglesia(Iglesia igle) {
+       iglesia = igle; 
+   }
+   
+   public Iglesia getIglesia () {
+       return iglesia;
+   }
+   
+   public void iniciar_ArrayServidores() {
+      arrayServidores = operacionesBD.obtenerServidores(iglesia.getId());    
+   }
+  
+   public void  actualizar_ArrayServidores(Servidor servidor) {
+     arrayServidores.add(servidor);
+   }
+
+   public void actualizar_ListaServidores (){
+           listaServidores.setListData(arrayServidores.toArray()); 
+   }
+ 
+   public void actualizar_ArrayMail (String mail)  {
+        arrayMails.add(mail);
+   }
+
+   public void actualizar_ListaMails() {
+          listaMails.setListData(arrayMails.toArray());    
+   }
+
+   public void actualizar_ArrayTelefono (String telefono ) {
+       arrayTelefonos.add(telefono);
+   } 
+   
+   public void actualizar_ListaTelefonos () {
+       listaTelefonos.setListData(arrayTelefonos.toArray()); 
+   }  
+  
+   public void iniciar_componentes () {
+        listaServidores.setVisibleRowCount(7);
+        listaTelefonos.setVisibleRowCount(7);
+        listaMails.setVisibleRowCount(7);
+   }
+   
+   public void actualizarBD(Servidor servidor) {
+      //AGREGAR LA FORMA DE AGREGAR EL PASTOR
+   }
+    
+    //Atributos
+    private ArrayList<String> arrayMails;
+    private ArrayList<String> arrayTelefonos;
+    private ArrayList<Servidor> arrayServidores;
+    private Operaciones operacionesBD;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMail;
+    private javax.swing.JButton botonAgregarServidor;
     private javax.swing.JButton botonAgregarTele;
     private javax.swing.JButton botonEliminarMail;
     private javax.swing.JButton botonEliminarTele;

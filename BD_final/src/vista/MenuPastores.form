@@ -32,57 +32,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="etiquetaRut" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiquetaNombre" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiquetaTelefono" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="etiquetaTelefono" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="campoRut" pref="88" max="32767" attributes="0"/>
-                          <Component id="campoNombre" max="32767" attributes="0"/>
-                          <Component id="campoJerarquia" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="etiquetaFechaNac" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoFechaNac" min="-2" pref="91" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="etiquetaApellido" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campoApellido" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="etiquetaEspecialidad" min="-2" max="-2" attributes="0"/>
-                          <Component id="etiquetaGenero" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="campoEspecialidad" min="-2" pref="89" max="-2" attributes="0"/>
-                          <Component id="campoGenero" min="-2" pref="87" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="campoTelefono" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="etiquetaJerarquia" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="campoTelefono" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -124,6 +77,52 @@
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="etiquetaRut" min="-2" max="-2" attributes="0"/>
+                  <Component id="etiquetaNombre" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="campoRut" max="32767" attributes="0"/>
+                  <Component id="campoNombre" min="-2" pref="88" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="etiquetaFechaNac" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="campoFechaNac" min="-2" pref="91" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="etiquetaApellido" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoApellido" min="-2" pref="90" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="etiquetaJerarquia" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="campoJerarquia" alignment="1" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="etiquetaGenero" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="campoGenero" min="-2" pref="87" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="85" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -132,16 +131,24 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="etiquetaJerarquia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoJerarquia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiquetaApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiquetaEspecialidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="campoEspecialidad" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="etiquetaJerarquia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoJerarquia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="campoFechaNac" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="etiquetaRut" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -153,14 +160,8 @@
                           <Component id="campoNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="campoFechaNac" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -226,11 +227,6 @@
     <Component class="javax.swing.JLabel" name="etiquetaFechaNac">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fecha Nac :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="etiquetaEspecialidad">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Especialidad :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaGenero">
@@ -359,8 +355,6 @@
     <Component class="javax.swing.JTextField" name="campoNombre">
     </Component>
     <Component class="javax.swing.JTextField" name="campoApellido">
-    </Component>
-    <Component class="javax.swing.JTextField" name="campoEspecialidad">
     </Component>
     <Component class="javax.swing.JTextField" name="campoGenero">
     </Component>

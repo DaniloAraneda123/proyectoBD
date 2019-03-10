@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import bd_final.Iglesia;
 import bd_final.Operaciones;
 import bd_final.Pastor;
-import bd_final.Telefono;
-import bd_final.Mail;
+
 
 public class MenuPastores extends javax.swing.JDialog {
 
 
-    public MenuPastores(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia iglesia) {
+    public MenuPastores(java.awt.Frame parent, boolean modal , Operaciones ope ) {
         super(parent, modal);
         initComponents();
         setOperacionesBD(ope);
-        setIglesia(iglesia);
+        //setIglesia(iglesia);
         iniciar_ArrayPastores();
         actualizar_ListaPastores();       
     }
@@ -29,7 +28,6 @@ public class MenuPastores extends javax.swing.JDialog {
         etiquetaNombre = new javax.swing.JLabel();
         etiquetaApellido = new javax.swing.JLabel();
         etiquetaFechaNac = new javax.swing.JLabel();
-        etiquetaEspecialidad = new javax.swing.JLabel();
         etiquetaGenero = new javax.swing.JLabel();
         etiquetaTelefono = new javax.swing.JLabel();
         etiquetaMail = new javax.swing.JLabel();
@@ -50,7 +48,6 @@ public class MenuPastores extends javax.swing.JDialog {
         campoRut = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
         campoApellido = new javax.swing.JTextField();
-        campoEspecialidad = new javax.swing.JTextField();
         campoGenero = new javax.swing.JTextField();
         campoFechaNac = new org.netbeans.modules.form.InvalidComponent();
         botonAgregarPastor = new javax.swing.JButton();
@@ -68,8 +65,6 @@ public class MenuPastores extends javax.swing.JDialog {
         etiquetaApellido.setText("Apellido :");
 
         etiquetaFechaNac.setText("Fecha Nac :");
-
-        etiquetaEspecialidad.setText("Especialidad :");
 
         etiquetaGenero.setText("Género :");
 
@@ -137,45 +132,10 @@ public class MenuPastores extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(etiquetaRut)
-                    .addComponent(etiquetaNombre)
-                    .addComponent(etiquetaTelefono))
+                .addComponent(etiquetaTelefono)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoRut, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(campoNombre)
-                            .addComponent(campoJerarquia))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(etiquetaFechaNac)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(etiquetaApellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etiquetaTitulo)
-                                    .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etiquetaEspecialidad)
-                            .addComponent(etiquetaGenero))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(campoTelefono)
-                        .addGap(379, 379, 379))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(etiquetaJerarquia)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(campoTelefono)
+                .addGap(379, 379, 379))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -206,6 +166,40 @@ public class MenuPastores extends javax.swing.JDialog {
                                     .addComponent(botonAgregarMail)
                                     .addComponent(botonEliminarMail))))))
                 .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiquetaRut)
+                    .addComponent(etiquetaNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoRut)
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaFechaNac)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaApellido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaTitulo)
+                            .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaJerarquia)
+                        .addGap(92, 92, 92))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoJerarquia, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(etiquetaGenero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 85, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,15 +207,20 @@ public class MenuPastores extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(etiquetaTitulo)
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaJerarquia)
-                    .addComponent(campoJerarquia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaApellido)
-                    .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaEspecialidad)
-                    .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etiquetaJerarquia)
+                            .addComponent(campoJerarquia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiquetaApellido)
+                            .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(etiquetaFechaNac)
+                                .addComponent(etiquetaGenero)
+                                .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaRut)
@@ -229,13 +228,8 @@ public class MenuPastores extends javax.swing.JDialog {
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiquetaNombre)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(etiquetaFechaNac)
-                        .addComponent(etiquetaGenero)
-                        .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,52 +267,34 @@ public class MenuPastores extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoMailActionPerformed
 
-    
-    evento de boton 1 :
-      *Al momento de presionar agregar de los campos del telefono 
-      *llamamos al metodo comprobarCampoTelefono() para saber si esta correcto el telefono.
-      *llamar actualizar_arrayTelefono ( getCampoTelefono() ). 
-      *llamar actualizar_listaTelefono().
-      
-      evento de boton 2 :
-      *Al momento de presionar agregar de los campos del mail
-      *llamamos al metodo comprobarCampoMail() para saber si esta correcto el mail.
-      *llamar actualizar_arrayMail ( getCampoMail() )
-      *llamar actualizar_listaMail() 
-     
-       evento de boton 3 :
-      *Al momento de presionar agregar pastor.
-      *llamamos a los metodos comprobar de los campos excepto del telefono y mail.Para estos ultimos usaremos comprobar_ListaMail() 
-      *y comprobar_ListaTelefono().
-      *creamos un obj. Pastor y llamamos a actualizar_ArrayPastores( obj. Pastor)
-      *llamar actualizar_listaPastores()
-
-       evento de ventana :
-      *Al cerrar el cuadro de Dialogo debe actualizarse la BD. 
-    
-    
     private void botonAgregarPastorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPastorActionPerformed
         //COMPROBAR CAMPOS
      Pastor pastor = new Pastor();
      actualizar_ArrayPastores(pastor);
      actualizar_ListaPastores();
-     actualizarBD(pastor);
-        
+     actualizarBD(pastor); 
     }//GEN-LAST:event_botonAgregarPastorActionPerformed
 
     private void botonAgregarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMailActionPerformed
-        // TODO add your handling code here:
+        comprobarCampoMail();
+        String nuevoMail = getCampoMail();
+        actualizar_ArrayMail(nuevoMail);
+        actualizar_ListaMails();
     }//GEN-LAST:event_botonAgregarMailActionPerformed
 
     private void botonAgregarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarTeleActionPerformed
-        // TODO add your handling code here:
+       comprobarCampoTelefono();
+       String telefono = getCampoTelefono();
+       actualizar_ArrayTelefono(telefono);
+       actualizar_ListaTelefonos();
+       
     }//GEN-LAST:event_botonAgregarTeleActionPerformed
 
     
     //Metodos
    public boolean comprobarCampoJerarquia () {
      //DEFINIR
-       return 0;
+       return true;
    } 
    public String getCampoJerarquia () {
        return campoJerarquia.getText();
@@ -326,7 +302,7 @@ public class MenuPastores extends javax.swing.JDialog {
    
    public boolean comprobarCampoRut() {
        //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoRut () {
@@ -335,7 +311,7 @@ public class MenuPastores extends javax.swing.JDialog {
 
    public boolean comprobarCampoNombre() {
        //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoNombre () {
@@ -344,7 +320,7 @@ public class MenuPastores extends javax.swing.JDialog {
  
    public boolean comprobarCampoApellido () {
        //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoApellido() {
@@ -353,7 +329,7 @@ public class MenuPastores extends javax.swing.JDialog {
 
    public boolean comprobarCampoTelefono() {
       //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoTelefono () {
@@ -362,7 +338,7 @@ public class MenuPastores extends javax.swing.JDialog {
    
    public boolean comprobarCampoMail() {
       //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoMail() {
@@ -371,7 +347,7 @@ public class MenuPastores extends javax.swing.JDialog {
 
    public boolean comprobarCampoFechaNac () {
        //DEFINIR     
-       return 0;
+       return true;
    }
    
    public String getCampoFechaNac() {
@@ -380,27 +356,24 @@ public class MenuPastores extends javax.swing.JDialog {
 
    public boolean comprobarCampoEspecialidad() {
       //DEFINIR
-       return 0;
+       return true;
    }
 
-   public String getCampoEspecialidad() {
-       return campoEspecialidad.getText();
-   }
-   
+
    public boolean comprobarCampoGenero() {
        //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoGenero () {
        return campoGenero.getText();
    } 
 
-   public ArrayList<Telefono> getlListaTelefonos()  {
+   public ArrayList<String> getlListaTelefonos()  {
       return arrayTelefonos;
    }  
 
-   public ArrayList<Mail> getListaMails() {
+   public ArrayList<String> getListaMails() {
        return arrayMails;
    }
  
@@ -414,14 +387,6 @@ public class MenuPastores extends javax.swing.JDialog {
        return operacionesBD;
    } 
    
-   public void setIglesia(Iglesia igle) {
-       iglesia = igle; 
-   }
-   
-   public Iglesia getIglesia () {
-       return iglesia;
-   }
-   
    public void iniciar_ArrayPastores() {
       arrayPastores = operacionesBD.obtenerPastores(iglesia.getId());    
    }
@@ -434,7 +399,7 @@ public class MenuPastores extends javax.swing.JDialog {
            listaPastores.setListData(arrayPastores.toArray()); 
    }
  
-   public void actualizar_ArrayMail (Mail mail)  {
+   public void actualizar_ArrayMail (String mail)  {
         arrayMails.add(mail);
    }
 
@@ -442,7 +407,7 @@ public class MenuPastores extends javax.swing.JDialog {
           listaMails.setListData(arrayMails.toArray());    
    }
 
-   public void actualizar_ArrayTelefono (Telefono telefono ) {
+   public void actualizar_ArrayTelefono (String telefono ) {
        arrayTelefonos.add(telefono);
    } 
    
@@ -461,11 +426,10 @@ public class MenuPastores extends javax.swing.JDialog {
    }
    
     //Atributos
-    private ArrayList<Mail> arrayMails;
-    private ArrayList<Telefono> arrayTelefonos;
+    private ArrayList<String> arrayMails;
+    private ArrayList<String> arrayTelefonos;
     private ArrayList<Pastor> arrayPastores;
     private Operaciones operacionesBD;
-    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMail;
     private javax.swing.JButton botonAgregarPastor;
@@ -473,7 +437,6 @@ public class MenuPastores extends javax.swing.JDialog {
     private javax.swing.JButton botonEliminarMail;
     private javax.swing.JButton botonEliminarTele;
     private javax.swing.JTextField campoApellido;
-    private javax.swing.JTextField campoEspecialidad;
     private org.netbeans.modules.form.InvalidComponent campoFechaNac;
     private javax.swing.JTextField campoGenero;
     private javax.swing.JTextField campoJerarquia;
@@ -482,7 +445,6 @@ public class MenuPastores extends javax.swing.JDialog {
     private javax.swing.JTextField campoRut;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel etiquetaApellido;
-    private javax.swing.JLabel etiquetaEspecialidad;
     private javax.swing.JLabel etiquetaFechaNac;
     private javax.swing.JLabel etiquetaGenero;
     private javax.swing.JLabel etiquetaJerarquia;
