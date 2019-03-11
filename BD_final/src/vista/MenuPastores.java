@@ -388,7 +388,7 @@ public class MenuPastores extends javax.swing.JDialog {
    } 
    
    public void iniciar_ArrayPastores() {
-      arrayPastores = operacionesBD.obtenerPastores(iglesia.getId());    
+      arrayPastores = operacionesBD.obtenerPastores();    
    }
   
    public void  actualizar_ArrayPastores(Pastor pastor) {

@@ -1,5 +1,11 @@
 
 package vista;
+import java.util.ArrayList;
+import bd_final.Iglesia;
+import bd_final.Operaciones;
+import bd_final.Junta;
+
+
 
 public class MenuReuniones extends javax.swing.JDialog {
 
@@ -7,9 +13,13 @@ public class MenuReuniones extends javax.swing.JDialog {
     
     
     
-    public MenuReuniones(java.awt.Frame parent, boolean modal) {
+    public MenuReuniones(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia igle) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD (ope);
+        setIglesia(igle);
+        iniciar_ArrayReuniones();
+        actualizar_ListaReuniones();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +38,7 @@ public class MenuReuniones extends javax.swing.JDialog {
         botonEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaReunion = new javax.swing.JList();
+        campoFecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,10 +100,15 @@ public class MenuReuniones extends javax.swing.JDialog {
                         .addComponent(botonEliminar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(etiquetaFecha)
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etiquetaTipoReu)
-                            .addComponent(etiquetaHoraTer))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(etiquetaTipoReu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(campoFecha)
+                                .addGap(18, 18, 18)
+                                .addComponent(etiquetaHoraTer)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(campoTipoReu, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
@@ -116,7 +132,8 @@ public class MenuReuniones extends javax.swing.JDialog {
                     .addComponent(etiquetaFecha)
                     .addComponent(etiquetaHoraTer)
                     .addComponent(campoHoraTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar))
+                    .addComponent(botonAgregar)
+                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaHoraIni)
@@ -135,9 +152,14 @@ public class MenuReuniones extends javax.swing.JDialog {
     private void campoHoraTerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraTerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoHoraTerActionPerformed
-
+      
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+        //COMPROBAR CAMPOS
+        Junta junta = new Junta();
+        actualizar_ArrayReuniones(junta);
+        actualizar_ListaReuniones();
+        actualizarBD(junta);
+        
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
@@ -148,11 +170,82 @@ public class MenuReuniones extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTipoReuActionPerformed
 
+    //Métodos
+      public boolean comprobarFecha() {
+         //DEFINIR
+         return true;
+      }
 
+      public String getFecha () {
+        return campoFecha.getText();
+      }
+      
 
+      public boolean comprobarHoraIni() {
+          //DEFINIR
+          return true;
+      }
+
+      public String getHoraIni() {
+         return campoHoraIni.getText();
+      }
+       
+      public boolean comprobarHoraTer() {
+          //DEFINIR
+          return true;
+      }
+
+      public String getHoraTer () {
+         return campoHoraTer.getText();
+      }
+      
+      public boolean comprobarTipoReu() {
+         //DEFINIR
+         return true;   
+      }
+
+      public String getTipoReu() {
+        return campoTipoReu.getText();
+      }
+      
+     /////////////////////////////////////////////////////////////////////
+      
+       public void setOperacionesBD (Operaciones ope) {
+          operacionesBD = ope;
+       }
+       
+       public void setIglesia (Iglesia igle) {
+         iglesia = igle;
+       }
+   
+      public Operaciones getOperacionesBD() {
+         return operacionesBD;
+      }
+   
+      public void iniciar_ArrayReuniones() {
+       arrayReuniones = operacionesBD.obtenerListaReuniones();
+      }
+      
+      public void actualizar_ArrayReuniones (Junta junta) {
+            arrayReuniones.add(junta); 
+      }  
+
+      public void actualizar_ListaReuniones() {
+       arrayReuniones.setListData(arrayReuniones.toArray()); 
+      }
+      
+      public void actualizarBD(Junta junta) {
+            //AGREGARMOS A LA BD UNA JUNTA.
+      }
+      
+    //Atributos
+    private ArrayList<Junta> arrayReuniones;
+    private Operaciones operacionesBD;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoHoraIni;
     private javax.swing.JTextField campoHoraTer;
     private javax.swing.JTextField campoTipoReu;
