@@ -1,13 +1,13 @@
 
 package modelo;
 
-public class Sectores {
+public class Sector {
 
     String tipo;
     int capacidad;
     int id;
     
-    public Sectores (int id , String tipo , int capacidad) {
+    public Sector (int id , String tipo , int capacidad) {
         this.id = id;
         this.tipo = tipo;
         this.capacidad = capacidad;

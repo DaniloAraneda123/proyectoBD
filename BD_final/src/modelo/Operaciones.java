@@ -404,16 +404,7 @@ public class Operaciones
     }
     
     //////////////////////////////////////////////////////////////////////////////////////
-    /**
-     * 
-     *
-     * @param id
-     * @param region
-     * @param comuna
-     * @param calle
-     * @param numero
-     * @return 
-     */
+    
     public boolean insertarIglesia(int id , String region , String comuna , String calle , int numero)
     {
         boolean resultado=true;
@@ -437,16 +428,100 @@ public class Operaciones
         
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////
     
-     //NECESITO UN METODO QUE ME DEVUELVA EL ARRAY DE SECTORES PARA UNA 
-     //DETERMINADA IGLESIA
+    public ArrayList<Sector> obtenerSectores(int id)
+    {
+        ArrayList<Sector> resultado=new ArrayList<>();
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("SELECT id_iglesia,id_sector,nombre,capacidad FROM sector WHERE id_iglesia=?");
+            pstmt.setInt(1, id);
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                resultado.add(new Sector(rs.getInt("id_sector"),rs.getString("nombre"),rs.getInt("capacidad")));
+            }
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=null;
+        }
+        
+        return resultado;
+    }
     
-    // obtenerSectores (int idIglesia)
+    //////////////////////////////////////////////////////////////////////////////////////
     
+    public ArrayList<Sector> agregarSector(Sector s,int idIglesia)
+    {
+        ArrayList<Sector> resultado=new ArrayList<>();
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO sector (id_iglesia,id_sector,capacidad,nombre) VALUES (?,?,?,?)");
+            pstmt.setInt(1, idIglesia);
+            pstmt.setInt(2, s.getId());
+            pstmt.setInt(3, s.getCapacidad());
+            pstmt.setString(4, s.getTipo());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=null;
+        }
+        
+        return resultado;
+    }
     
-    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN SECTOR PARA UNA IGLESIA
-    //insertarSector (int idIglesia)
+    //////////////////////////////////////////////////////////////////////////////////////
+    /*
+    public ArrayList<Sector> obtenerSectores(int id)
+    {
+        ArrayList<Sector> resultado=new ArrayList<>();
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("SELECT nombre FROM tipo_actividad");
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                resultado.add(new Sector(rs.getInt("id_sector"),rs.getString("nombre"),rs.getInt("capacidad")));
+            }
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=null;
+        }
+        
+        return resultado;
+    }
     
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    public ArrayList<Sector> agregarSector(Sector s,int idIglesia)
+    {
+        ArrayList<Sector> resultado=new ArrayList<>();
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO sector (id_iglesia,id_sector,capacidad,nombre) VALUES (?,?,?,?)");
+            pstmt.setInt(1, idIglesia);
+            pstmt.setInt(2, s.getId());
+            pstmt.setInt(3, s.getCapacidad());
+            pstmt.setString(4, s.getTipo());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=null;
+        }
+        
+        return resultado;
+    }
+    
+    */
     
     //NECESITO UN METODO QUE DEVUELVE UN ARRAY DE TIPOSACTIVIDADES 
     
