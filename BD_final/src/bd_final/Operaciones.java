@@ -265,6 +265,7 @@ public class Operaciones
      * @param id
      * @return 
      */
+    
     public ArrayList<Pastor> PastoresIglesia(int idIglesia)
     {
         ArrayList<Pastor> resultado=new ArrayList<>();
@@ -443,7 +444,10 @@ public class Operaciones
     
     //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOREUNION
     
-    //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA
-    //ingresarPastor(id idIglesia)
+    //AGREGAR UN PASTOR
+    //insertarPastor
+    
+    //AGREGAR UN SERVIDOR
+    //insertarServidor
     
 }
