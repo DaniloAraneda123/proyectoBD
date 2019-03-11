@@ -1,7 +1,7 @@
 
 package vista;
-import bd_final.Operaciones;
-import bd_final.TipoReunion;
+import modelo.Operaciones;
+import modelo.TipoReunion;
 import java.util.ArrayList;
 
 public class MenuTiposReuniones extends javax.swing.JDialog {

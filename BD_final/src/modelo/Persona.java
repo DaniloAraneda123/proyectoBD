@@ -1,11 +1,11 @@
-package bd_final;
+package modelo;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
 public class Persona {
     //Atributos    
-    protected int rut;
+    protected String rut;
     protected String nombre;
     protected String apellido;
     protected int genero;
@@ -14,7 +14,7 @@ public class Persona {
     protected ArrayList<String> mails;
 
     //Constructores
-    public Persona(int rut, String nombre, String apellido, int genero, Calendar fechaNacimiento, ArrayList<String> telefonos, ArrayList<String> mails) {
+    public Persona(String rut, String nombre, String apellido, int genero, Calendar fechaNacimiento, ArrayList<String> telefonos, ArrayList<String> mails) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -24,12 +24,16 @@ public class Persona {
         this.mails = mails;
     }
 
-
-    public int getRut() {
+    public Persona()
+    {
+        
+    }
+    
+    public String getRut() {
         return rut;
     }
 
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
 

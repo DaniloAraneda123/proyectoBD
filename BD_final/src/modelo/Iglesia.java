@@ -1,4 +1,4 @@
-package bd_final;
+package modelo;
 
 public class Iglesia {
     

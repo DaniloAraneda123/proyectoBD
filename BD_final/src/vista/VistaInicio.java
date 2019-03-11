@@ -1,7 +1,7 @@
 package vista;
-import bd_final.Operaciones;
+import modelo.Operaciones;
 import java.util.ArrayList;
-import bd_final.Iglesia;
+import modelo.Iglesia;
 import javax.swing.ListSelectionModel;
 
 

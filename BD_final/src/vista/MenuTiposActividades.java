@@ -1,7 +1,7 @@
 
 package vista;
-import bd_final.Operaciones;
-import bd_final.TipoActividad;
+import modelo.Operaciones;
+import modelo.TipoActividad;
 import java.util.ArrayList;        
 
         

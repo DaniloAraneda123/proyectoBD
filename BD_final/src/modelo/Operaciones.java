@@ -1,4 +1,4 @@
-package bd_final;
+package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -52,7 +52,7 @@ public class Operaciones
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("INSERT INTO persona (rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia) VALUES(?,?,?,?,?,?,?);");   
-            pstmt.setInt(1, persona.getRut());
+            pstmt.setString(1, persona.getRut());
             pstmt.setString(2, persona.getNombre());
             pstmt.setString(3, persona.getApellido());
             pstmt.setString(4,String.valueOf(persona.getGenero()));
@@ -60,6 +60,22 @@ public class Operaciones
             pstmt.setDate(6,new java.sql.Date(persona.getFechaNacimiento().getTimeInMillis()));
             pstmt.setInt(7,persona.getIglesia());
             pstmt.execute();
+            pstmt.close(); 
+            pstmt = cn.prepareStatement("INSERT INTO telefono (RutPersona,numero) VALUES(?,?);");
+            for(int i=0;i<persona.getTelefonos().size();i++)
+            {
+                pstmt.setString(1, persona.getRut());
+                pstmt.setString(2, persona.getTelefonos().get(i));
+                pstmt.execute();
+            }
+            pstmt.close();
+            pstmt = cn.prepareStatement("INSERT INTO correo (RutPersona,Email) VALUES(?,?);");
+            for(int i=0;i<persona.getMails().size();i++)
+            {
+                pstmt.setString(1, persona.getRut());
+                pstmt.setString(2, persona.getTelefonos().get(i));
+                pstmt.execute();
+            }
             pstmt.close();
             
         }
@@ -77,19 +93,44 @@ public class Operaciones
      * @param rut PK de la persona que se desea buscar
      * @return  retorna el objeto persona con sus datos
      */
-    public Servidor buscarPersona(int rut)
+    public Servidor buscarPersona(String rut)
     {
         Servidor persona=null;
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia FROM persona WHERE rut=?");   
-            pstmt.setInt(1, rut);
+            pstmt.setString(1, rut);
             rs=pstmt.executeQuery();
-            pstmt.close();
             Calendar fecha=Calendar.getInstance();
             fecha.setTime(rs.getDate("fechaNacimiento"));
-            persona=new Servidor(rs.getInt("rut"),rs.getString("nombre"),rs.getString("apellido1"),rs.getInt("genero"),fecha,rs.getString("especialidad"),rs.getInt("iglesia"));
+            persona=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),fecha,rs.getString("especialidad"),rs.getInt("iglesia"));
             rs.close();
+            pstmt.close();
+            
+            pstmt = cn.prepareStatement("SELECT email FROM correo WHERE rut=?");  
+            pstmt.setString(1, rut);
+            rs=pstmt.executeQuery();
+            ArrayList<String> mails=new ArrayList();
+            while(rs.next())
+            {
+                mails.add(rs.getString("email"));
+            }
+            persona.setMails(mails);
+            rs.close();
+            pstmt.close();
+            
+            pstmt = cn.prepareStatement("SELECT numero FROM telefono WHERE rut=?");  
+            pstmt.setString(1, rut);
+            rs=pstmt.executeQuery();
+            ArrayList<String> telefonos=new ArrayList();
+            while(rs.next())
+            {
+                telefonos.add(rs.getString("email"));
+            }
+            persona.setTelefonos(telefonos);
+            rs.close();
+            pstmt.close();
+            
             
         }
         catch(Exception e)
@@ -108,14 +149,14 @@ public class Operaciones
      */
     public ArrayList<Iglesia> obtenerIglesias()
     {
-        ArrayList<Iglesia> resultado=new ArrayList<Iglesia>();
+        ArrayList<Iglesia> resultado=new ArrayList<>();
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT * FROM iglesia"); 
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                resultado.add(new Iglesia(rs.getInt("id"),rs.getString("region"),rs.getString("calle"),rs.getInt("numero")));
+                resultado.add(new Iglesia(rs.getInt("id"),rs.getString("region"),rs.getString("comuna"),rs.getString("calle"),rs.getInt("numero")));
             }
             rs.close();
             pstmt.close();
@@ -154,7 +195,7 @@ public class Operaciones
                 p=new Servidor();
                 p.setApellido(rs.getString("apellido1"));
                 p.setNombre(rs.getString("nombre"));
-                p.setRut(rs.getInt("rut"));
+                p.setRut(rs.getString("rut"));
                 resultado.add(p);
             }
         }
@@ -199,7 +240,7 @@ public class Operaciones
      */
     public ArrayList<Servidor> participacionServidores()
     {
-        ArrayList<Servidor> resultado=new ArrayList<Servidor>();
+        ArrayList<Servidor> resultado=new ArrayList<>();
         Servidor p;
         try
         {
@@ -212,7 +253,7 @@ public class Operaciones
                 p=new Servidor();
                 p.setApellido(rs.getString("apellido1"));
                 p.setNombre(rs.getString("nombre"));
-                p.setRut(rs.getInt("rut"));
+                p.setRut(rs.getString("rut"));
                 resultado.add(p);
             }
         }
@@ -231,14 +272,14 @@ public class Operaciones
      * @param id
      * @return 
      */
-    public ArrayList<Servidor> ServidoresIglesia(int id)
+    public ArrayList<Servidor> ServidoresIglesia(String id)
     {
         ArrayList<Servidor> resultado=new ArrayList<Servidor>();
         Servidor p;
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT  Rut , Nombre , Apellido1  FROM persona  WHERE iglesia = ?");
-            pstmt.setInt(1, id);
+            pstmt.setString(1, id);
             rs=pstmt.executeQuery();
             pstmt.close();
             while(rs.next())
@@ -246,41 +287,7 @@ public class Operaciones
                 p=new Servidor();
                 p.setApellido(rs.getString("apellido1"));
                 p.setNombre(rs.getString("nombre"));
-                p.setRut(rs.getInt("rut"));
-                resultado.add(p);
-            }
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
-        }
-        
-        return resultado;
-    }
-    
-    //////////////////////////////////////////////////////////////////////////////////////
-    
-    /**
-     * 
-     * @param id
-     * @return 
-     */
-    public ArrayList<Pastor> PastoresIglesia(int idIglesia)
-    {
-        ArrayList<Pastor> resultado=new ArrayList<>();
-        Pastor p;
-        try
-        {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT  Rut , Nombre , Apellido1  FROM Trabaja_Para , Pastor WHERE idIglesia = ? AND RutPastor = Rut;");
-            pstmt.setInt(1, idIglesia);
-            rs=pstmt.executeQuery();
-            pstmt.close();
-            while(rs.next())
-            {
-                p=new Pastor();
-                p.setApellido(rs.getString("apellido1"));
-                p.setNombre(rs.getString("nombre"));
-                p.setRut(rs.getInt("rut"));
+                p.setRut(rs.getString("rut"));
                 resultado.add(p);
             }
         }
@@ -305,10 +312,9 @@ public class Operaciones
     {
         ArrayList<Junta> resultado=new ArrayList<>();
         Junta p;
-        Date fechaHora=null;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT Fecha ,Hora ,Nombre_Reunion FROM Junta "
+            PreparedStatement pstmt = cn.prepareStatement("SELECT fecha ,horaInicio, horaTermino, nombreReunion FROM Junta "
                     + "WHERE Fecha >= ? and Fecha <= ? and Id_iglesia = ?"); 
             java.sql.Date date1 = new java.sql.Date(desde.getTime());
             java.sql.Date date2 = new java.sql.Date(hasta.getTime());
@@ -317,13 +323,9 @@ public class Operaciones
             pstmt.setInt(3, idIglesia);
             rs=pstmt.executeQuery();
             pstmt.close();
-            while(rs.next())
+            while(rs.next()) 
             {
-               ////
-                /*
-                agregar la fecha en l avariable fechaHora
-                */
-                p=new Junta(fechaHora,rs.getString("Nombre_Reunion"),idIglesia);
+                p=new Junta(rs.getDate("fecha"),rs.getString("Nombre_Reunion"), rs.getTime("horaInicio").toString(),rs.getTime("horaTermino").toString(),idIglesia);
                 resultado.add(p);
             }
         }
@@ -375,21 +377,21 @@ public class Operaciones
      * @param idIglesia
      * @return 
      */
-    public ArrayList<Servidor> servidoresIglesia(int idIglesia)
+    public ArrayList<Servidor> servidoresIglesia(String idIglesia)
     {
         ArrayList<Servidor> resultado=new ArrayList<>();
         Servidor p;
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia FROM persona WHERE iglesia=?");
-            pstmt.setInt(1, idIglesia);
+            pstmt.setString(1, idIglesia);
             rs=pstmt.executeQuery();
             pstmt.close();
             while(rs.next())
             {
                 Calendar fecha=Calendar.getInstance();
                 fecha.setTime(rs.getDate("fechaNacimiento"));
-                p=new Servidor(rs.getInt("rut"),rs.getString("nombre"),rs.getString("apellido1"),rs.getInt("genero"),fecha,rs.getString("especialidad"),rs.getInt("iglesia"));
+                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido1"),rs.getInt("genero"),fecha,rs.getString("especialidad"),rs.getInt("iglesia"));
                 resultado.add(p);
             }
         }
@@ -401,9 +403,15 @@ public class Operaciones
         return resultado;
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////
     /**
      * 
      *
+     * @param id
+     * @param region
+     * @param comuna
+     * @param calle
+     * @param numero
      * @return 
      */
     public boolean insertarIglesia(int id , String region , String comuna , String calle , int numero)
@@ -428,8 +436,11 @@ public class Operaciones
         return resultado;
         
     }
+    
+    
      //NECESITO UN METODO QUE ME DEVUELVA EL ARRAY DE SECTORES PARA UNA 
      //DETERMINADA IGLESIA
+    
     // obtenerSectores (int idIglesia)
     
     

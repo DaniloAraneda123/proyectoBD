@@ -1,9 +1,9 @@
 
 package vista;
 import java.util.ArrayList;
-import bd_final.Iglesia;
-import bd_final.Operaciones;
-import bd_final.Pastor;
+import modelo.Iglesia;
+import modelo.Operaciones;
+import modelo.Pastor;
 
 
 public class MenuPastores extends javax.swing.JDialog {

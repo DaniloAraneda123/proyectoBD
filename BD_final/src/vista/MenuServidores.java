@@ -1,9 +1,9 @@
 
 package vista;
 import java.util.ArrayList;
-import bd_final.Iglesia;
-import bd_final.Servidor;
-import bd_final.Operaciones;
+import modelo.Iglesia;
+import modelo.Servidor;
+import modelo.Operaciones;
 
         
 public class MenuServidores extends javax.swing.JDialog {

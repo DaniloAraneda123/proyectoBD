@@ -1,7 +1,7 @@
 package vista;
-import bd_final.Operaciones;
-import bd_final.Iglesia;
-import bd_final.Junta;
+import modelo.Operaciones;
+import modelo.Iglesia;
+import modelo.Junta;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;

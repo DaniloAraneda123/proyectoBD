@@ -1,8 +1,8 @@
 
 package vista;
-import bd_final.Operaciones;
-import bd_final.Iglesia;
-import bd_final.Sectores;
+import modelo.Operaciones;
+import modelo.Iglesia;
+import modelo.Sectores;
 import java.util.ArrayList;
 
 public class MenuSectores extends javax.swing.JDialog {

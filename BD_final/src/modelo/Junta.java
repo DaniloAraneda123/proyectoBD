@@ -1,18 +1,18 @@
-package bd_final;
+package modelo;
 
 import java.util.Date;
 
 public class Junta {
     
     private Date fecha;
-    private String Reunion;
+    private String nombreReunion;
     private String horaInicio;
     private String horaTermino;       
     private int iglesia;
     
-    public Junta(Date fecha, String Reunion,String horainicio , String horaTermino ,int iglesia) {
+    public Junta(Date fecha, String reunion,String horaInicio , String horaTermino ,int iglesia) {
         this.fecha = fecha;
-//        this.Reunion = Reunion;
+        this.nombreReunion = reunion;
         this.iglesia = iglesia;
         this.horaInicio = horaInicio;
         this.horaTermino = horaTermino;
@@ -23,7 +23,7 @@ public class Junta {
     }
 
     public String getReunion() {
-        return Reunion;
+        return nombreReunion;
     }
 
     public int getIglesia() {
@@ -43,7 +43,7 @@ public class Junta {
     }
 
     public void setReunion(String Reunion) {
-        this.Reunion = Reunion;
+        this.nombreReunion = Reunion;
     }
 
     public void setIglesia(int iglesia) {
@@ -61,7 +61,7 @@ public class Junta {
 
     @Override
     public String toString() {
-        return "Reunion= " + Reunion +" Fecha= "+fecha + " " + horaInicio + " : " + horaTermino;
+        return "Reunion= " + nombreReunion +" Fecha= "+fecha + " " + horaInicio + " : " + horaTermino;
     }
     
 }
