@@ -46,10 +46,10 @@ public class conexion
             l=new ArrayList<>(10000);
             for(int i=1;i<=10000;i++)
             {
-                rut=GeneradorRuts.generadorRut();
+                rut=GeneradorDatos.generadorRut();
                 while(l.contains(rut))
                 {
-                    rut=GeneradorRuts.generadorRut();
+                    rut=GeneradorDatos.generadorRut();
                 }
                 l.add(rut);
                 pstmt.setString(1, rut);
@@ -74,10 +74,10 @@ public class conexion
             l=new ArrayList<>(10000);
             for(int i=1;i<=100;i++)
             {
-                rut=GeneradorRuts.generadorRut();
+                rut=GeneradorDatos.generadorRut();
                 while(l.contains(rut))
                 {
-                    rut=GeneradorRuts.generadorRut();
+                    rut=GeneradorDatos.generadorRut();
                 }
                 l.add(rut);
                 pstmt.setString(1, rut);
@@ -110,6 +110,63 @@ public class conexion
                     pstmt.setInt(2,j);
                     pstmt.execute();
                 }
+            }
+            rs.close();
+            pstmt.close();
+            pstm.close();
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+ex);
+        }
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    public void sectores() 
+    {
+        int numero;
+        try 
+        {
+            GeneradorDatos g=new GeneradorDatos();
+            ArrayList<Sector> l;
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO sector (id_iglesia,id_sector,nombre,capacidad) VALUES (?,?,?,?)");
+            for(int i=1;i<=3;i++)
+            {
+                l=g.generarSectores();
+                for(int j=0;j<7;j++)
+                {
+                    pstmt.setInt(1, l.get(j).getId());
+                    pstmt.setInt(2, i);
+                    pstmt.setString(3, l.get(j).getTipo());
+                    pstmt.setInt(4, l.get(j).getCapacidad());
+                    pstmt.execute();
+                }
+            }
+            pstmt.close();
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+ex);
+        }
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    public void telefono() 
+    {
+        int numero;
+        try 
+        {
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO telefono (rut,telefono) VALUES (?,?)");
+            PreparedStatement pstm=cn.prepareStatement("SELECT rut FROM servidor");
+            rs=pstm.executeQuery();
+            while(rs.next())
+            {
+                numero= (int) (Math.random()*29999999)+70000000;
+                pstmt.setString(1, rs.getString("rut"));
+                pstmt.setString(2,String.valueOf(numero));
+                pstmt.execute();
             }
             rs.close();
             pstmt.close();

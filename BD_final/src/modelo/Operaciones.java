@@ -1,5 +1,6 @@
 package modelo;
 
+import llenarbd.Sector;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;

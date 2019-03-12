@@ -1,5 +1,5 @@
 
-package modelo;
+package llenarbd;
 
 public class Sector {
 
