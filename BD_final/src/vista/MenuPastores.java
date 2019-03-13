@@ -13,7 +13,6 @@ public class MenuPastores extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setOperacionesBD(ope);
-        //setIglesia(iglesia);
         iniciar_ArrayPastores();
         actualizar_ListaPastores();       
     }
