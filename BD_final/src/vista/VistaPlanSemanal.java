@@ -7,20 +7,11 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaPlanSemanal extends javax.swing.JFrame {
-
-         VistaPlanSemanal (obj. Operaciones , obj. iglesia) :
-       *llamar setOperacionesBD (obj. Operaciones)
-       *llamar setIglesia (obj. Iglesia)
-       *iniciar_componentes ()
-       *iniciar_ArrayReuniones()
-       *actualizar_TablaReuniones()
-         
          
     public VistaPlanSemanal( Operaciones operaciones , Iglesia iglesia) {
         initComponents();
         setOperacionesBD (operaciones);
-        setIglesia(iglesia);
-        iniciar_Componentes ();
+        setIglesias(iglesia);
         iniciar_ArrayReuniones();
         actualizar_TablaReuniones();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 

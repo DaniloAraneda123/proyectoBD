@@ -1,16 +1,14 @@
 
 package vista;
 import java.util.ArrayList;
-import bd_final.Iglesia;
-import bd_final.Operaciones;
-import bd_final.Junta;
+import modelo.Iglesia;
+import modelo.Operaciones;
+import modelo.Junta;
 
 
 
 public class MenuReuniones extends javax.swing.JDialog {
 
-
-    
     
     
     public MenuReuniones(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia igle) {
@@ -159,7 +157,7 @@ public class MenuReuniones extends javax.swing.JDialog {
         actualizar_ArrayReuniones(junta);
         actualizar_ListaReuniones();
         actualizarBD(junta);
-        
+        //ACTUALIZAR EL PLANIFICAREUNION
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
