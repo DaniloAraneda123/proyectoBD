@@ -1,6 +1,13 @@
 
 
 package vista;
+import modelo.Operaciones;
+import java.util.ArrayList;
+import modelo.Pastor;
+import modelo.Iglesia; 
+import modelo.Sector;
+import modelo.Servidor;
+import modelo.Junta;
 
 
 public class PlanificaReunion extends javax.swing.JDialog {
@@ -222,8 +229,42 @@ public class PlanificaReunion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+   public iniciar_ArrayServidores () {
+     arrayServidores = operacionesBD.obtenerServidoresSemanales();
+     //Esto retorna la lista de servidores que les toca trabajar.
+   }
+   
+   public iniciar_ArrayPastores () {
+     arrayPastores = operacionesBD.obtenerPastores();
+     //Esto retorna la lista de pastores para esa iglesia.
+   } 
 
+   public iniciar_ArraySectores () {
+     arraySectores = operacionesBD.obtenerSectores();
+     //Esto retorna la lista de sectores para esa iglesia.
+   }
+  
+   public iniciar_ListaServidores () {
+    arrayListaServidores  = operacionesBD.obtenerListaServidores(reunion);
+    //Retorna los parcicipantes de esta junta.
+   }
 
+   public iniciar_ListaPastores () {
+    arrayListaPastores = operacionesBD.obtenerListaPastores (reunion);
+   }
+ 
+    
+    
+    //Atributos
+    private Operaciones operacionesBD ;
+    private Iglesia iglesia;
+    private ArrayList<Pastor> arrayPastores;
+    private ArrayList<Servidor> arrayServidores;
+    private ArrayList<Sector> arraySectores;
+    private ArrayList<Pastor> arrayListaPastores;
+    private ArrayList<Servidor> arrayListaServidores;
+    private Junta reunion;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CampoAccionServidor;
     private javax.swing.JButton botonAgregarPas;
