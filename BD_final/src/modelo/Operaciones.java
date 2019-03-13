@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Operaciones 
@@ -530,5 +531,51 @@ public class Operaciones
     
     //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA
     //ingresarPastor(id idIglesia)
+
+
+
+    /** consulta para ver ¿Qué personas trabajan esta semana en la iglesia ‘Y’?  */
+    public void consulta1(Date fecha1,Date fecha2, int id_iglesia){
+
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select disctinct rut,nombre,apellido1  FROM persona , participa " +
+                    " WHERE persona.rut = participa.rutpersona and\n" +
+                    "                 participa.fecha >=  ? \n" +
+                    "                 participa.fecha <= ? \n" +
+                    "                 iglesia.id = ?");
+
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha1.getTime()) );
+            pstmt.setInt(3,id_iglesia );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+
+
+    }
+     /** consulta para ver ¿Qué personas han trabajado en qué tipo de actividad ordenado por tipo de actividad? */
+    public void consulta2 () throws SQLException{
     
+    PreparedStatement pstmt=cn.prepareStatement("Select distinct rut , nombre , apellido1 , NombreActividad\n" +
+"From Persona , Participa\n" +
+"Where Persona.Rut = Participa.RutPersona\n" +
+"Order by NombreActividad");
+
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha1.getTime()) );
+            pstmt.setInt(3,id_iglesia );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    
+    
+    }
 }
