@@ -7,14 +7,16 @@ public class Junta {
     private Date fecha;
     private String nombreReunion;
     private String horaInicio;
-    private String horaTermino;       
+    private String horaTermino;    
+    private String descripcion;
     private int iglesia;
     
-    public Junta(Date fecha, String reunion,String horaInicio , String horaTermino ,int iglesia) {
+    public Junta(Date fecha, String reunion,String horaInicio , String horaTermino , String descripcion , int iglesia) {
         this.fecha = fecha;
         this.nombreReunion = reunion;
         this.iglesia = iglesia;
         this.horaInicio = horaInicio;
+        this.descripcion = descripcion;
         this.horaTermino = horaTermino;
     }
 
@@ -59,6 +61,16 @@ public class Junta {
        this.horaTermino = horaTermino;
     }
 
+    
+    public String getDescripcion () {
+       return descripcion;
+    }
+    
+    public void setDescripcion (String descripcion) {
+       this.descripcion = descripcion;
+    }
+    
+    
     @Override
     public String toString() {
         return "Reunion= " + nombreReunion +" Fecha= "+fecha + " " + horaInicio + " : " + horaTermino;

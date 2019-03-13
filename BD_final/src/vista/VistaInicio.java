@@ -14,7 +14,7 @@ public class VistaInicio extends javax.swing.JFrame {
         initComponents();
         setOperacionesBD (ope);
         iniciar_ArrayIglesias();
-        iniciar_ListaIglesiaSelec();
+        iniciar_Componentes();
         actualizar_ListaIglesiaSelec();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -35,12 +35,12 @@ public class VistaInicio extends javax.swing.JFrame {
     public void setArrayIglesias ( ArrayList<Iglesia> arrayI ) {
          arrayIglesias = arrayI;
     }
-             
+    ////////////////////////////////////////////////////////////////////////////
     public void iniciar_ArrayIglesias() {
       arrayIglesias  = getOperacionesBD().obtenerIglesias();
     }
         
-     public void iniciar_ListaIglesiaSelec() {
+     public void iniciar_Componentes() {
         listaIglesiasSelec.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaIglesiasSelec.setVisibleRowCount(7);
     }    
@@ -49,7 +49,7 @@ public class VistaInicio extends javax.swing.JFrame {
        listaIglesiasSelec.setListData(arrayIglesias.toArray()); 
     }
 
-    
+    ////////////////////////////////////////////////////////////////////////////
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -270,20 +270,23 @@ public class VistaInicio extends javax.swing.JFrame {
     
      public boolean comprobarRegion() {
         //definirlo
-      
+        return true;
         
      } 
      
      public boolean comprobarComuna() {
         //definirlo
+        return true;
      }
      
      public boolean comprobarNumero () {
         //tiene que ser un numero entero positivo
+         return true;
      }
      
      public boolean comprobarCalle () {
         //definirlo
+        return true;
      } 
      //GETTEXT MANDA EXCEPCION OJO XD.
      public String getRegion () {
