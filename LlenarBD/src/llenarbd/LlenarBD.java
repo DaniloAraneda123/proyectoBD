@@ -6,11 +6,13 @@ public class LlenarBD
     public static void main(String[] args) 
     {
         conexion cn=new conexion();
-        cn.rutPastores();
-        cn.rutServidores();
-        cn.trabajaPara();
+        //cn.rutPastores();
+        //cn.rutServidores();
+        //cn.trabajaPara();
         //cn.sectores();
-        cn.telefono();
+        //cn.telefono();
+        //cn.llenarJunta();
+        cn.llenarPredica();
     }
     
 }
