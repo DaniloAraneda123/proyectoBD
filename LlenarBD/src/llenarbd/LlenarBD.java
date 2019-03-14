@@ -12,7 +12,8 @@ public class LlenarBD
         //cn.sectores();
         //cn.telefono();
         //cn.llenarJunta();
-        cn.llenarPredica();
+        //cn.llenarPredica();
+        cn.llenarJunta();
     }
     
 }
