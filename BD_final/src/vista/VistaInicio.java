@@ -315,18 +315,7 @@ public class VistaInicio extends javax.swing.JFrame {
          int ultimoId = ultima.getId() + 1 ;
          return ultimoId;
      }
-         
-      public void actualizar_ArrayIglesia (Iglesia iglesia) {
-         arrayIglesias.add(iglesia);
-      }
-       
-      public void actualizar_ListaIglesiaAgre () {
-         listaIglesiasAgre.setListData(arrayIglesias.toArray()); 
-      }
 
-      public void actualizar_IglesiasBD (Iglesia iglesia) {
-          operacionesBD.insertarIglesia(iglesia.getId() , iglesia.getRegion() , iglesia.getComuna() , iglesia.getCalle() , iglesia.getNumero());
-      }
     
     
     
