@@ -1,6 +1,9 @@
 package modelo;
 
-Public class Pastor_Predica {
+import java.util.Date;
+
+
+public class Pastor_Predica(){
 
 
     private Date fecha;
