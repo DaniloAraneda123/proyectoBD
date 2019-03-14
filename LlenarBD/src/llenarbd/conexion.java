@@ -266,5 +266,50 @@ public class conexion
     
     //////////////////////////////////////////////////////////////////////////////////////
     
-    
+    public void llenarParticipa()
+    {
+        ArrayList<String> ruts=new ArrayList<>();
+        ArrayList<datosJunta> dt=new ArrayList<>();
+        ArrayList<Integer> inte=new ArrayList<>();
+        ArrayList<String> act=new ArrayList<>();
+        int n;
+        try 
+        {
+            Statement st=cn.createStatement();
+            rs=st.executeQuery("SELECT fecha,hora,id_iglesia FROM junta;");
+            while(rs.next())
+            {
+                dt.add(new datosJunta(rs.getDate("fecha"),rs.getString("hora"),rs.getInt("id_iglesia")));
+            }
+            
+            rs=st.executeQuery("SELECT nombre_actividad FROM tipo_actividad;");
+            while(rs.next())
+            {
+                act.add(rs.getString("nombre_actividad"));
+            }
+            PreparedStatement ps=cn.prepareStatement("INSERT INTO participa (hora,fecha,id_iglesia,id_sector,rol,nombre_actividad) VALUES(?,?,?,?,?,?);");
+            
+            for(int j=0;j<dt.size();j++)
+            {
+                act.clear();;
+                ruts.clear();
+                rs=st.executeQuery("SELECT rut FROM servidor WHERE id_iglesia="+dt.get(j)+";");
+                while(rs.next())
+                {
+                    ruts.add(rs.getString("rut"));
+                }
+                rs=st.executeQuery("SELECT id_sector FROM sector WHERE id_iglesia="+dt.get(j)+";");
+                while(rs.next())
+                {
+                    inte.add(rs.getInt("id_sector"));
+                }
+                n=(int) (Math.random()*numero-1);
+            }
+            
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+ex);
+        }
+    }
 }
