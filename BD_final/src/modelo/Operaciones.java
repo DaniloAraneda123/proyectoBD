@@ -525,11 +525,11 @@ public class Operaciones
     
     //NECESITO UN METODO QUE DEVUELVE UN ARRAY DE TIPOSACTIVIDADES 
     
-    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOACTIVIDAD 
+    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOACTIVIDAD puedo gerardo 
     
-    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOREUNION
+    //NECESITO UN METODO QUE ME PERMITA AGREGAR UN TIPOREUNION puedo gerardo ya esta hecha
     
-    //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA
+    //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA puedo gerardo
     //ingresarPastor(id idIglesia)
 
 
@@ -543,7 +543,7 @@ public class Operaciones
                     " WHERE persona.rut = participa.rutpersona and\n" +
                     "                 participa.fecha >=  ? \n" +
                     "                 participa.fecha <= ? \n" +
-                    "                 iglesia.id = ?");
+                    "                 iglesia.id = ? ;");
 
             pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
             pstmt.setDate(2,new java.sql.Date(fecha1.getTime()) );
@@ -562,7 +562,7 @@ public class Operaciones
     PreparedStatement pstmt=cn.prepareStatement("Select distinct rut , nombre , apellido1 , nombreActividad\n" +
         "from persona , participa\n" +
     "Where persona.rut = participa.rutPersona\n" +
-    "Order by nombre_actividad");
+    "Order by nombre_actividad ;");
 
             
             pstmt.execute();
@@ -582,7 +582,7 @@ public class Operaciones
             PreparedStatement pstmt=cn.prepareStatement("Select nombre_reunion , count (*) , extract (month from fecha) as MES\n" +
 "              From junta  \n" +
 "              Where extract ( year from fecha ) = ?\n" +
-"              Group by nombre_reunion , Mes");
+"              Group by nombre_reunion , Mes ;");
 
             pstmt.setDate(1,new java.sql.Date(ano.getTime()));
             pstmt.execute();
@@ -605,7 +605,7 @@ public class Operaciones
         " pastorpredica.hora_junta = junta.hora and \n" +
         " junta.nombre_reunion = ? and \n" +
         " junta.fecha=> ?  and \n" +
-        " junta.fecha <= ?");
+        " junta.fecha <= ? ;");
 
             pstmt.setString(1, reunion);
             pstmt.setDate(2,new java.sql.Date(fecha1.getTime()));
@@ -628,7 +628,7 @@ public class Operaciones
         "From sector, participa \n" +
         "Where participa.idsector = sector.idsector and\n" +
         "participa.fecha>= ?\n" +
-        "participa.fecha<= ? ");
+        "participa.fecha<= ? ;");
 
            
             pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
@@ -639,6 +639,123 @@ public class Operaciones
         {
             JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
         }
+    }
+    
+    
+    /** ¿ Cuántas reuniones se hacen de cada tipo en un rango de fechas  ?   */
+    public void consulta6(Date fecha1,Date fecha2){
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select Count(*) tipo_actividad \n" +
+            "From junta\n" +
+            "Where junta.fecha >= ? and\n" +
+            "junta.fecha <= ? ;");
+
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha2.getTime()) );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    /**   ¿ Cuántas personas especializadas de cada tipo hay en total ? */
+    public void consulta7(Date fecha1,Date fecha2){
+
+        try{
+            PreparedStatement pstmt=cn.prepareStatement("Select Count(*)\n" +
+            " From   persona \n" +
+            "Group by  persona.especialidad;");
+
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha2.getTime()) );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+   
+    
+     /**   ¿ Qué trabajadores pertenecen a qué iglesia ? */
+    public void consulta8(){
+
+        try{
+            PreparedStatement pstmt=cn.prepareStatement("Select rut , nombre, apellido , id\n" +
+        "From  participa , servidor\n" +
+        "Where rut.servidor = rut_persona\n" +
+        "Group by id_iglesia ;");
+
+           
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    
+   
+     /**    Obtener datos de todos los pastores */
+    public void consulta9(int id_iglesia){
+
+        try{
+            PreparedStatement pstmt=cn.prepareStatement("Select* FROM pastor, trabaja_para"
+                    + "WHERE rut_pastor = rut.pastor "
+                    + "and id_iglesia = ?  ;");
+            
+            pstmt.setInt(1,id_iglesia );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    /**  ¿Qué personas nunca han participado en una actividad?*/
+    public void consulta10(int id_iglesia){
+
+        try{
+            PreparedStatement pstmt=cn.prepareStatement("Select Rut , nombre , apellido\n" +
+            "From servidor \n" +
+            "Where rut not in ( Select distinct rut.servidor From participa );");
+            
+           // falta agregarle iglesia 
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    /**  consulta para insertar tipo de reunion */
+    public void insertar_tipo_reunion(String nombre ,int genero, int edadmin, int edadmax)
+    {
+        
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO tiporeunion (nombre,genero,edad_min,edad_max) VALUES(?,?,?,?)");
+            pstmt.setString(1, nombre);
+            pstmt.setInt(2, genero);
+            pstmt.setInt(3, edadmin);
+            pstmt.setInt(4, edadmax);
+            
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            
+        }
+        
+       
     }
     
 }
