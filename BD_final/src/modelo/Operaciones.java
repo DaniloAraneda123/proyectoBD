@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Operaciones 
@@ -322,9 +323,11 @@ public class Operaciones
             pstmt.setInt(3, idIglesia);
             rs=pstmt.executeQuery();
             pstmt.close();
+            Date dt;
             while(rs.next()) 
             {
-                p=new Junta(rs.getDate("fecha"),rs.getString("Nombre_Reunion"), rs.getTime("horaInicio").toString(),rs.getTime("horaTermino").toString(),idIglesia);
+                dt=new Date(rs.getDate("fecha").getTime());
+                p=new Junta(dt,rs.getString("Nombre_Reunion"), rs.getString("horaInicio"),rs.getString("descripcion"),idIglesia);
                 resultado.add(p);
             }
         }
@@ -530,5 +533,120 @@ public class Operaciones
     
     //AGREGAR UN PASTOR A UNA DETERMINADA IGLESIA
     //ingresarPastor(id idIglesia)
+
+
+
+    /** consulta para ver ¿Qué personas trabajan esta semana en la iglesia ‘Y’?  */
+    public void consulta1(Date fecha1,Date fecha2, int id_iglesia){
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select disctinct rut,nombre,apellido1  FROM persona , participa " +
+                    " WHERE persona.rut = participa.rutpersona and\n" +
+                    "                 participa.fecha >=  ? \n" +
+                    "                 participa.fecha <= ? \n" +
+                    "                 iglesia.id = ?");
+
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha1.getTime()) );
+            pstmt.setInt(3,id_iglesia );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+
+    }
+     /** consulta para ver ¿Qué personas han trabajado en qué tipo de actividad ordenado por tipo de actividad? */
+<<<<<<< HEAD
+    public void consulta2 () throws SQLException
+    {
+=======
+    public void consulta2 () throws SQLException{
+    try{
+    PreparedStatement pstmt=cn.prepareStatement("Select distinct rut , nombre , apellido1 , nombreActividad\n" +
+        "from persona , participa\n" +
+    "Where persona.rut = participa.rutPersona\n" +
+    "Order by nombre_actividad");
+
+            
+            pstmt.execute();
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+
+>>>>>>> fbc25670495b3297973aafbdcfcc3bfe688076b6
+    
+    /** consulta para ver ¿Cuántas reuniones se han realizado cada mes por tipo el año ‘X’ ?  */
+    public void consulta3(Date ano){
+
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select nombre_reunion , count (*) , extract (month from fecha) as MES\n" +
+"              From junta  \n" +
+"              Where extract ( year from fecha ) = ?\n" +
+"              Group by nombre_reunion , Mes");
+
+            pstmt.setDate(1,new java.sql.Date(ano.getTime()));
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    /** ¿Qué pastores predicaron en ‘X’ reunión en un rango de fecha?  */
+    public void consulta4(Date fecha1,Date fecha2, String reunion){
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select nombre, apellido1 \n" +
+        "From pastor, pastorpredica, junta \n" +
+        "Where pastor.rut = pastorpredica.rut and \n" +
+        " pastorpredica.fecha_junta = junta.fecha and  \n" +
+        " pastorpredica.hora_junta = junta.hora and \n" +
+        " junta.nombre_reunion = ? and \n" +
+        " junta.fecha=> ?  and \n" +
+        " junta.fecha <= ?");
+
+            pstmt.setString(1, reunion);
+            pstmt.setDate(2,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(3,new java.sql.Date(fecha2.getTime()) );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
+    
+    
+    /** ¿Qué sectores se utilizan más entre un rango de fechas?  */
+    public void consulta5(Date fecha1,Date fecha2){
+
+        try{
+
+            PreparedStatement pstmt=cn.prepareStatement("Select  tipo, Count(*)\n" +
+        "From sector, participa \n" +
+        "Where participa.idsector = sector.idsector and\n" +
+        "participa.fecha>= ?\n" +
+        "participa.fecha<= ? ");
+
+           
+            pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            pstmt.setDate(2,new java.sql.Date(fecha2.getTime()) );
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+        }
+    }
     
 }
+
