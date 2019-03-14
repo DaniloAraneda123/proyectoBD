@@ -323,9 +323,11 @@ public class Operaciones
             pstmt.setInt(3, idIglesia);
             rs=pstmt.executeQuery();
             pstmt.close();
+            Date dt;
             while(rs.next()) 
             {
-                p=new Junta(rs.getDate("fecha"),rs.getString("Nombre_Reunion"), rs.getTime("horaInicio").toString(),rs.getTime("horaTermino").toString(),idIglesia);
+                dt=new Date(rs.getDate("fecha").getTime());
+                p=new Junta(dt,rs.getString("Nombre_Reunion"), rs.getString("horaInicio"),rs.getString("descripcion"),idIglesia);
                 resultado.add(p);
             }
         }
@@ -559,7 +561,8 @@ public class Operaciones
 
     }
      /** consulta para ver ¿Qué personas han trabajado en qué tipo de actividad ordenado por tipo de actividad? */
-    public void consulta2 () throws SQLException{
+    public void consulta2 () throws SQLException
+    {
     
     PreparedStatement pstmt=cn.prepareStatement("Select distinct rut , nombre , apellido1 , NombreActividad\n" +
 "From Persona , Participa\n" +

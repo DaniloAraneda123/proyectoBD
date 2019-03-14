@@ -177,6 +177,8 @@ public class conexion
             JOptionPane.showMessageDialog(null,"Rip Consulta"+ex);
         }
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
 
     public void llenarJunta() 
     {
@@ -220,6 +222,8 @@ public class conexion
         }
                 
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
 
     public void llenarPredica() 
     {
@@ -259,4 +263,8 @@ public class conexion
             JOptionPane.showMessageDialog(null,"Rip Consulta"+ex);
         }
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////
+    
+    
 }
