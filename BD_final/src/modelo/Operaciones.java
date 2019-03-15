@@ -559,10 +559,8 @@ public class Operaciones
 
     }
      /** consulta para ver ¿Qué personas han trabajado en qué tipo de actividad ordenado por tipo de actividad? */
-<<<<<<< HEAD
-    public void consulta2 () throws SQLException
-    {
-=======
+
+ 
     public void consulta2 () throws SQLException{
     try{
     PreparedStatement pstmt=cn.prepareStatement("Select distinct rut , nombre , apellido1 , nombreActividad\n" +
@@ -578,7 +576,7 @@ public class Operaciones
         }
     }
 
->>>>>>> fbc25670495b3297973aafbdcfcc3bfe688076b6
+
     
     /** consulta para ver ¿Cuántas reuniones se han realizado cada mes por tipo el año ‘X’ ?  */
     public void consulta3(Date ano){

@@ -9,7 +9,7 @@ import modelo.Sector;
 import modelo.Servidor;
 import modelo.Junta;
 import modelo.Participa;
-import modelo.Pastor_predica;
+import modelo.Pastor_Predica;
 import modelo.Trabaja_para;
 import javax.swing.DefaultComboBoxModel;
 
@@ -235,37 +235,25 @@ public class PlanificaReunion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-       Evento de boton 
-   *botonAgregarSer :
-   *al pulsar agregarServidor nosotros creamos un obj. de la clase Participa.
-   *para esta labor necesitamos obtener la clase Servidor de la lista con el 
-   *determinado ID , tipo actividad y ademas con la clase iglesia crear todos los
-   *campos necesarios para crearlo.
-   *ActualizarBD ( Participa)
-   *actualizar_ListaServidor()
-
-   *botonAgregarPas :
-   *al pulsar agregarPastor nosotros creamos un obj. de la clase PastorPredica
-   *para esta labor necesitamos las clases Pastor que obtenemos de la lista y
-   *Reunion.
-   *creamos un obj. de la clase TrabajaPara que requiere de los campos de Pastor e
-    iglesia.
-   *ActualizarBD (PastorPredica) 
-   *ActualizarBD (TrabajaPara)  
-   *actualizar_ListaPastor() 
    
     private void botonAgregarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarSerActionPerformed
-        Servidor = 
-        Participa servidorParticipa = new Participa(String rutPersona, String Hora, Date Fecha, int idIglesia, String tipoTarea, int idSector, String rol);
-        
-        
-        
-        
+        Servidor servidor = obtenerCampoServidor();
+        Sector sector = obtenerCampoSectorSer();
+        String accion = obtenerCampoAccionServidor();
+        Participa servidorParticipa = new Participa(servidor.getRut() , reunion.getHoraInicio(), reunion.getFecha() , iglesia.getId() , servidor.getEspecialidad(), sector.getId() , accion);
+        actualizar_ArrayListaServidores(servidor);
+        actualizarBD(servidorParticipa);
+        actualizar_ListaServidor();  
     }//GEN-LAST:event_botonAgregarSerActionPerformed
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
-        // TODO add your handling code here:
+        Pastor pastor = obtenerCampoPastor();
+        Pastor_Predica pastorPredica = new Pastor_Predica(reunion.getFecha(), reunion.getHoraIni(), pastor.getRut(), obtenerCampoAccionPastor());
+        Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
+        actualizar_ArrayListaPastores(pastor);
+        actualizarBD(pastorPredica);
+        actualizarBD(trabajaPara);
+        actualizar_ListaPastor();
     }//GEN-LAST:event_botonAgregarPasActionPerformed
 
   ///////////////////////////////////////////////////////////////////  
@@ -344,6 +332,14 @@ public class PlanificaReunion extends javax.swing.JDialog {
      public void actualizar_CampoSectores () {
          campoSectoSer.setModel(new DefaultComboBoxModel<>(arraySectores));
      }
+  
+     public void actualizar_ListaServidor () {
+        listaServidores.setListData(arrayServidores.toArray()); 
+     }  
+
+     public void actualizar_ListaPastor () {
+        listaPastores.setListData(arrayPastores.toArray());
+     }  
    ///////////////////////////////////////////////////////////////////////////// 
    public void actualizar_ArraySectores(Sector sector) {
        arraySectores.add(sector);
@@ -356,14 +352,14 @@ public class PlanificaReunion extends javax.swing.JDialog {
    public void actualizar_ArrayPastores(Pastor pastor) {
        arrayPastores.add(pastor);
    }
-   ////////////////////////////////////////////////////////////////////////////
-   public void actualizar_ListaServidor () {
-       listaServidores.setListData(arrayServidores.toArray()); 
-   } 
+   
+   public void actualizar_ArrayListaServidores (Servidor servidor ) {
+        arrayListaServidores.add(servidor);
+   }
 
-   public void actualizar_ListaPastor () {
-       listaPastores.setListData(arrayPastores.toArray());
-   }  
+   public void actualizar_ArrayListaPastores (Pastor pastor) {
+        arrayListaPastores(pastor);
+   }
    /////////////////////////////////////////////////////////////////////////////
    public void actualizarBD (Participa personaParticipa) {
            operacionesBD.agregarParticipante (personaParticipa);

@@ -1,15 +1,21 @@
 
 package vista;
-import bd_final.Operaciones;
+import modelo.Operaciones;
+import modelo.Iglesia;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
 public class MenuConsultas extends javax.swing.JDialog {
 
-    public MenuConsultas(java.awt.Frame parent, boolean modal) {
+    public MenuConsultas(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia igle) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD(ope);
+        setIglesia(igle);
+        iniciar_Componentes();
+        iniciar_ListaConsultas();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -22,6 +28,12 @@ public class MenuConsultas extends javax.swing.JDialog {
         botonConsultar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaResultado = new javax.swing.JTable();
+        campoAño = new com.toedter.calendar.JYearChooser();
+        campoFechaIni = new com.toedter.calendar.JDateChooser();
+        campoFechaTer = new com.toedter.calendar.JDateChooser();
+        etiquetaAño = new javax.swing.JLabel();
+        etiquetaFechaIni = new javax.swing.JLabel();
+        etiquetaFechaTer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -32,9 +44,19 @@ public class MenuConsultas extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listaConsultas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaConsultasValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaConsultas);
 
         botonConsultar.setText("CONSULTAR");
+        botonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsultarActionPerformed(evt);
+            }
+        });
 
         tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -49,43 +71,109 @@ public class MenuConsultas extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tablaResultado);
 
+        etiquetaAño.setText("Año :");
+
+        etiquetaFechaIni.setText("Fecha inicio :");
+
+        etiquetaFechaTer.setText("Fecha final :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonConsultar)
-                        .addGap(213, 213, 213))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(etiquetaTitulo)
-                        .addGap(199, 199, 199))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(etiquetaTitulo)
+                        .addGap(165, 165, 165))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etiquetaAño))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiquetaFechaIni)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(campoFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(etiquetaFechaTer)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(etiquetaTitulo)
                 .addGap(28, 28, 28)
+                .addComponent(etiquetaTitulo)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(botonConsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaAño)
+                    .addComponent(etiquetaFechaIni)
+                    .addComponent(etiquetaFechaTer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarActionPerformed
+        int indice = listaConsultas.getSelectedIndex();
+        if (indice >= 0) 
+        {
+            obtener_Respuesta(indice + 1);
+        }
+    }//GEN-LAST:event_botonConsultarActionPerformed
+ 
+    private void listaConsultasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaConsultasValueChanged
+       int indice = listaConsultas.getSelectedIndex();
+       if (indice >= 0)
+       {
+          if (indice == 2) {
+                campoAño.setVisible(true);
+                etiquetaAño.setVisible(true);
+          }
+          else if (indice >= 3 && indice <= 5) {
+                etiquetaFechaTer.setVisible(true);
+                etiquetaFechaIni.setVisible(true); 
+                campoFechaIni.setVisible(true);
+                campoFechaTer.setVisible(true);
+          }
+          else  {
+                etiquetaFechaTer.setVisible(false);
+                etiquetaFechaIni.setVisible(false); 
+                campoFechaIni.setVisible(false);
+                campoFechaTer.setVisible(false);
+          }
+       }
+     
+    }//GEN-LAST:event_listaConsultasValueChanged
+   
+    
     public void setOperacionesBD (Operaciones ope) {
        operacionesBD = ope;
     }
@@ -94,6 +182,26 @@ public class MenuConsultas extends javax.swing.JDialog {
        return operacionesBD;
     }
   
+    public void setIlgesia (Iglesia igle) {
+        iglesia = igle;
+    }
+    
+    public Iglesia getIglesia () {
+       return iglesia;
+    }
+    
+    public int obtenerAño () {
+        return campoAño.getYear();
+    }
+    
+    public Date obtenerFechaIni () {
+       return   campoFechaIni.lastSelectedDate();
+    }
+            
+    public Date obtenerFechaTer () {
+       return  campoFechaTer.lastSelectedDate();
+    }
+    
     public void iniciar_ListaConsultas () {
          arrayConsultas = new ArrayList<>( Arrays.asList("Qué Personas trabajan esta semana en la Iglesia." , 
                  "Qué Personas han trabajado en que Tipo de actividad" , "Cuántas Reuniones se han realizado cada mes por tipo, el año X" ,           
@@ -107,19 +215,50 @@ public class MenuConsultas extends javax.swing.JDialog {
     public void iniciar_Componentes() {
         listaConsultas.setVisibleRowCount(7);
         tablaResultado.setVisible(false);
+        etiquetaAño.setVisible(false);
+        etiquetaFechaIni.setVisible(false);
+        etiquetaFechaTer.setVisible(false);
+        campoAño.setVisible(false);
+        campoFechaIni.setVisible(false);
+        campoFechaTer.setVisible(false);
     }
 
-    public void  obtener_Respuesta(int opcion) :
+    
+    
+    public void  obtener_Respuesta(int opcion) {
+        switch (opcion) 
+        {
+            case 1 : operacionesBD.
+            case 2 : operacionesBD
+            case 3 :   operacionesBD } 
+            case 4 : operacionesBD
+            case 5 : operacionesBD
+            case 6 : operacionesBD
+            case 7 : operacionesBD
+            case 8 : operacionesBD
+            case 9 : operacionesBD
+            case 10 : operacionesBD
+        }  
+        tablaResultado.setVisible(true);
+    }
      segun el numero , hace la correspondiente pregunta a la BD , para ello
      obtiene el operacionesBD y llama al metodo correspondiente mostrando finalmente 
      los resultado en la table y la hace visible.
     
 
-    //Atributos.
+    //Atributos
+    
     private ArrayList<String> arrayConsultas;
     private Operaciones operacionesBD;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonConsultar;
+    private com.toedter.calendar.JYearChooser campoAño;
+    private com.toedter.calendar.JDateChooser campoFechaIni;
+    private com.toedter.calendar.JDateChooser campoFechaTer;
+    private javax.swing.JLabel etiquetaAño;
+    private javax.swing.JLabel etiquetaFechaIni;
+    private javax.swing.JLabel etiquetaFechaTer;
     private javax.swing.JLabel etiquetaTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
