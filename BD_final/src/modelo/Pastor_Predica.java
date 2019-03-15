@@ -1,24 +1,8 @@
 package modelo;
-
-<<<<<<< HEAD
-
-
-Public class Pastor_Predica {
-=======
-<<<<<<< HEAD
-
 import java.util.Date;
 
- class Pastor_Predica {
-=======
-import java.util.Date;
-
-
-public class Pastor_Predica(){
->>>>>>> fbc25670495b3297973aafbdcfcc3bfe688076b6
->>>>>>> 87b856022791c44dda530d9945fec1f9180c2afc
-
-
+public class Pastor_Predica
+{
     private Date fecha;
     private String hora;
     private String Rut_pastor;

@@ -8,7 +8,10 @@ import modelo.Iglesia;
 import modelo.Sector;
 import modelo.Servidor;
 import modelo.Junta;
-
+import modelo.Participa;
+import modelo.Pastor_predica;
+import modelo.Trabaja_para;
+import javax.swing.DefaultComboBoxModel;
 
 public class PlanificaReunion extends javax.swing.JDialog {
 
@@ -46,7 +49,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
         campoServidor = new javax.swing.JComboBox();
         campoSectorSer = new javax.swing.JComboBox();
         campoPastor = new javax.swing.JComboBox();
-        CampoAccionServidor = new javax.swing.JTextField();
+        campoAccionServidor = new javax.swing.JTextField();
         campoAccionPastor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,6 +75,11 @@ public class PlanificaReunion extends javax.swing.JDialog {
         etiquetaSector.setText("Sector :");
 
         botonAgregarSer.setText("AGREGAR");
+        botonAgregarSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarSerActionPerformed(evt);
+            }
+        });
 
         botonElimiinarSer.setText("ELIMINAR");
 
@@ -94,6 +102,11 @@ public class PlanificaReunion extends javax.swing.JDialog {
         etiquetaAccionPas.setText("Acción :");
 
         botonAgregarPas.setText("AGREGAR");
+        botonAgregarPas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarPasActionPerformed(evt);
+            }
+        });
 
         botonEliminarPas.setText("ELIMINAR");
 
@@ -130,7 +143,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(etiquetaAccion)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(CampoAccionServidor))
+                                            .addComponent(campoAccionServidor))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(etiquetaSector)
                                             .addGap(18, 18, 18)
@@ -148,18 +161,13 @@ public class PlanificaReunion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                            .addGap(82, 82, 82)
+                            .addComponent(etiquetaAccionPas)
+                            .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(268, 268, 268)
-                                    .addComponent(botonAgregarPas))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(82, 82, 82)
-                                    .addComponent(etiquetaAccionPas)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(campoPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addContainerGap())
+                                .addComponent(campoPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(56, 56, 56))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(49, 49, 49)
                             .addComponent(etiquetaPastores)
@@ -167,10 +175,12 @@ public class PlanificaReunion extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetaPastor)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(botonEliminarPas, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(etiquetaPastor)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonEliminarPas, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(botonAgregarPas, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -194,19 +204,15 @@ public class PlanificaReunion extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(etiquetaAccion)
-                                    .addComponent(CampoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(etiquetaSector)
-                                            .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(botonElimiinarSer)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(botonAgregarSer)))
+                                    .addComponent(campoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(etiquetaSector)
+                                    .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAgregarSer))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonElimiinarSer)
+                                .addGap(11, 11, 11)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -217,45 +223,161 @@ public class PlanificaReunion extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiquetaAccionPas))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonAgregarPas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEliminarPas)
-                        .addGap(18, 18, 18)
+                        .addGap(13, 13, 13)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
-   public iniciar_ArrayServidores () {
+       Evento de boton 
+   *botonAgregarSer :
+   *al pulsar agregarServidor nosotros creamos un obj. de la clase Participa.
+   *para esta labor necesitamos obtener la clase Servidor de la lista con el 
+   *determinado ID , tipo actividad y ademas con la clase iglesia crear todos los
+   *campos necesarios para crearlo.
+   *ActualizarBD ( Participa)
+   *actualizar_ListaServidor()
+
+   *botonAgregarPas :
+   *al pulsar agregarPastor nosotros creamos un obj. de la clase PastorPredica
+   *para esta labor necesitamos las clases Pastor que obtenemos de la lista y
+   *Reunion.
+   *creamos un obj. de la clase TrabajaPara que requiere de los campos de Pastor e
+    iglesia.
+   *ActualizarBD (PastorPredica) 
+   *ActualizarBD (TrabajaPara)  
+   *actualizar_ListaPastor() 
+   
+    private void botonAgregarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarSerActionPerformed
+        Servidor = 
+        Participa servidorParticipa = new Participa(String rutPersona, String Hora, Date Fecha, int idIglesia, String tipoTarea, int idSector, String rol);
+        
+        
+        
+        
+    }//GEN-LAST:event_botonAgregarSerActionPerformed
+
+    private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregarPasActionPerformed
+
+  ///////////////////////////////////////////////////////////////////  
+   public String obtenerCampoAccionServidor () {
+       return campoAccionServidor.getText();
+   }
+
+   public String obtenerCampoAccionPastor () {
+       return campoAccionPastor.getText();
+   }
+
+   public Pastor obtenerCampoPastor () {
+       Pastor pastor = (Pastor) campoPastor.getSelectedItem();
+       return pastor;
+   }
+
+   public Sector obtenerCampoSectorSer () {
+       Sector sector = (Sector) campoSectorSer.getSelectedItem();
+       return sector;
+   }
+
+   public Servidor obtenerCampoServidor () {
+       Servidor servidor = (Servidor) campoServidor.getSelectedItem();
+       return servidor;
+   }
+  ///////////////////////////////////////////////////////////////////  
+   public void iniciar_ArrayServidores () {
      arrayServidores = operacionesBD.obtenerServidoresSemanales();
      //Esto retorna la lista de servidores que les toca trabajar.
    }
    
-   public iniciar_ArrayPastores () {
+   public void iniciar_ArrayPastores () {
      arrayPastores = operacionesBD.obtenerPastores();
      //Esto retorna la lista de pastores para esa iglesia.
    } 
 
-   public iniciar_ArraySectores () {
+   public void iniciar_ArraySectores () {
      arraySectores = operacionesBD.obtenerSectores();
      //Esto retorna la lista de sectores para esa iglesia.
    }
   
-   public iniciar_ListaServidores () {
+   public void iniciar_ListaServidores () {
     arrayListaServidores  = operacionesBD.obtenerListaServidores(reunion);
     //Retorna los parcicipantes de esta junta.
    }
 
-   public iniciar_ListaPastores () {
+   public void iniciar_ListaPastores () {
     arrayListaPastores = operacionesBD.obtenerListaPastores (reunion);
+    //Retorna los pastores predicando de esta junta.
    }
+   /////////////////////////////////////////////////////////////////////////////
+   public void setIglesia (Iglesia igle) {
+      iglesia = igle;
+   }
+  
+   public Iglesia getIglesia () {
+      return iglesia;
+   }
+
+   public void setOperacionesBD (Operaciones ope)  {
+       operacionesBD = ope;
+   }
+
+   public Operaciones getOperacionesBD () {
+       return operacionesBD;
+   }
+   /////////////////////////////////////////////////////////////////////////////
+     public void actualizar_CampoServidor() {
+        campoServidor.setModel( new DefaultComboBoxModel<>( arrayServidores) );
+     } 
  
-    
-    
+     public void actualizar_CampoPastor() {
+        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores));
+     }
+     
+     public void actualizar_CampoSectores () {
+         campoSectoSer.setModel(new DefaultComboBoxModel<>(arraySectores));
+     }
+   ///////////////////////////////////////////////////////////////////////////// 
+   public void actualizar_ArraySectores(Sector sector) {
+       arraySectores.add(sector);
+   }
+
+   public void actualizar_ArrayServidores(Servidor servidor) {
+       arrayServidores.add(servidor);
+   }
+
+   public void actualizar_ArrayPastores(Pastor pastor) {
+       arrayPastores.add(pastor);
+   }
+   ////////////////////////////////////////////////////////////////////////////
+   public void actualizar_ListaServidor () {
+       listaServidores.setListData(arrayServidores.toArray()); 
+   } 
+
+   public void actualizar_ListaPastor () {
+       listaPastores.setListData(arrayPastores.toArray());
+   }  
+   /////////////////////////////////////////////////////////////////////////////
+   public void actualizarBD (Participa personaParticipa) {
+           operacionesBD.agregarParticipante (personaParticipa);
+   }
+
+   public void actualizarBD (Pastor_Predica pastorPredica) {
+           operacionesBD.agregarPastorPredica (pastorPredica);
+   }
+
+   public void actualizarBD (Trabaja_para pastorTrabaja) {
+           operacionesBD.agregarPastorTrabaja(pastorTrabaja);
+   }
+   /////////////////////////////////////////////////////////////////////////////
+
     //Atributos
     private Operaciones operacionesBD ;
     private Iglesia iglesia;
@@ -266,12 +388,12 @@ public class PlanificaReunion extends javax.swing.JDialog {
     private ArrayList<Servidor> arrayListaServidores;
     private Junta reunion;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CampoAccionServidor;
     private javax.swing.JButton botonAgregarPas;
     private javax.swing.JButton botonAgregarSer;
     private javax.swing.JButton botonElimiinarSer;
     private javax.swing.JButton botonEliminarPas;
     private javax.swing.JTextField campoAccionPastor;
+    private javax.swing.JTextField campoAccionServidor;
     private javax.swing.JComboBox campoPastor;
     private javax.swing.JComboBox campoSectorSer;
     private javax.swing.JComboBox campoServidor;
