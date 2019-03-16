@@ -1,6 +1,6 @@
 package modelo;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 
 
 public class Persona {
@@ -9,12 +9,12 @@ public class Persona {
     protected String nombre;
     protected String apellido;
     protected int genero;
-    protected Calendar fechaNacimiento;
+    protected Date fechaNacimiento;
     protected ArrayList<String> telefonos;
     protected ArrayList<String> mails;
 
     //Constructores
-    public Persona(String rut, String nombre, String apellido, int genero, Calendar fechaNacimiento, ArrayList<String> telefonos, ArrayList<String> mails) {
+    public Persona(String rut, String nombre, String apellido, int genero, Date fechaNacimiento, ArrayList<String> telefonos, ArrayList<String> mails) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -61,11 +61,11 @@ public class Persona {
         this.genero = genero;
     }
 
-    public Calendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Calendar fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

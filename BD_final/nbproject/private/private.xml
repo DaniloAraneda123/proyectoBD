@@ -3,12 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/vista/VistaPlanSemanal.java</file>
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/modelo/Operaciones.java</file>
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/vista/MenuReuniones.java</file>
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/modelo/Junta.java</file>
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/vista/VistaInicio.java</file>
             <file>file:/C:/Users/vales/Desktop/ProyectoBDatos/BD_final/src/control/Fechas.java</file>
+=======
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuPastores.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuConsultas.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/modelo/Pastor_Predica.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuReuniones.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/modelo/Operaciones.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/VistaInicio.java</file>
+>>>>>>> c55d32a2cfc73304df8b3751f6d14ff9ed2f42df
         </group>
     </open-files>
 </project-private>

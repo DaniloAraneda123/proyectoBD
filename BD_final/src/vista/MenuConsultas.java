@@ -28,16 +28,17 @@ public class MenuConsultas extends javax.swing.JDialog {
         botonConsultar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaResultado = new javax.swing.JTable();
-        campoAño = new com.toedter.calendar.JYearChooser();
-        campoFechaIni = new com.toedter.calendar.JDateChooser();
-        campoFechaTer = new com.toedter.calendar.JDateChooser();
         etiquetaAño = new javax.swing.JLabel();
         etiquetaFechaIni = new javax.swing.JLabel();
         etiquetaFechaTer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(52, 152, 219));
 
+        etiquetaTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         etiquetaTitulo.setText("Lista de consultas");
+
+        jScrollPane1.setBackground(new java.awt.Color(52, 152, 219));
 
         listaConsultas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -57,6 +58,8 @@ public class MenuConsultas extends javax.swing.JDialog {
                 botonConsultarActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setBackground(new java.awt.Color(52, 152, 219));
 
         tablaResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,22 +95,18 @@ public class MenuConsultas extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(etiquetaAño))
-                                .addGap(26, 26, 26)
+                                .addComponent(etiquetaAño)
+                                .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(etiquetaFechaIni)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(campoFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(50, 50, 50)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(etiquetaFechaTer)
                                                 .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
                 .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -128,12 +127,8 @@ public class MenuConsultas extends javax.swing.JDialog {
                     .addComponent(etiquetaFechaIni)
                     .addComponent(etiquetaFechaTer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -249,9 +244,6 @@ public class MenuConsultas extends javax.swing.JDialog {
     private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonConsultar;
-    private com.toedter.calendar.JYearChooser campoAño;
-    private com.toedter.calendar.JDateChooser campoFechaIni;
-    private com.toedter.calendar.JDateChooser campoFechaTer;
     private javax.swing.JLabel etiquetaAño;
     private javax.swing.JLabel etiquetaFechaIni;
     private javax.swing.JLabel etiquetaFechaTer;
