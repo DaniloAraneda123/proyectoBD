@@ -176,4 +176,63 @@ public class Consultar {
         
         return resultado;
     }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public ArrayList<Sector> obtenerSectores(int id)
+    {
+        ArrayList<Sector> resultado=new ArrayList<>();
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("SELECT id_iglesia,id_sector,nombre,capacidad FROM sector WHERE id_iglesia=?");
+            pstmt.setInt(1, id);
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                resultado.add(new Sector(rs.getInt("id_sector"),rs.getString("nombre"),rs.getInt("capacidad")));
+            }
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=null;
+        }
+        
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public ArrayList<TipoReunion> tipoReuniones()
+    {
+        ArrayList<TipoReunion> resultado=new ArrayList<>();
+        TipoReunion p;
+        char c;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT Nombre ,EdadMin ,EdadMax,Genero FROM Tipo_Reunion"); 
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                if(rs.getInt("Genero")==1)
+                {
+                    c='M';
+                }
+                else
+                {
+                    c='F';
+                }
+                p=new TipoReunion(c,rs.getInt("EdadMax"),rs.getInt("EdadMin"),rs.getString("Nombre"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
 }

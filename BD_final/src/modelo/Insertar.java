@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,12 +56,14 @@ public class Insertar
         }
     }
     
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * metodo para insertar persona 
      * @param persona objeto persona a retornar
      * @return retorna un true si la operacion se ejecuto sin problemas
      */
-    public boolean insertarPersona(Servidor persona)
+    public boolean insertarServidor(Servidor persona)
     {
         boolean resultado=true;
         try
@@ -101,4 +104,149 @@ public class Insertar
         return resultado;
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean insertarPastor(Pastor pastor)
+    {
+        boolean resultado=true;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO persona (rut,nombre,apellido,genero,fecha_nacimiento,jerarquia) VALUES(?,?,?,?,?,?);");   
+            pstmt.setString(1, pastor.getRut());
+            pstmt.setString(2, pastor.getNombre());
+            pstmt.setString(3, pastor.getApellido());
+            pstmt.setString(4,String.valueOf(pastor.getGenero()));
+            pstmt.setDate(5,new java.sql.Date(pastor.getFechaNacimiento().getTime()));
+            pstmt.setInt(6,pastor.getJerarquia());
+            pstmt.execute();
+            pstmt.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+            resultado=false;
+        }
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean insertarIglesia(Iglesia ig)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO iglesia (id,calle,region,numero,comuna) VALUES(?,?,?,?,?)");
+            pstmt.setInt(1, ig.getId());
+            pstmt.setString(2, ig.getCalle());
+            pstmt.setString(3, ig.getRegion());
+            pstmt.setInt(4, ig.getId());
+            pstmt.setString(5, ig.getComuna());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=false;
+        }
+        
+        return resultado;
+     
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean agregarSector(Sector s,int idIglesia)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO sector (id_iglesia,id_sector,capacidad,nombre) VALUES (?,?,?,?)");
+            pstmt.setInt(1, idIglesia);
+            pstmt.setInt(2, s.getId());
+            pstmt.setInt(3, s.getCapacidad());
+            pstmt.setString(4, s.getTipo());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            resultado=false;
+        }
+        
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean insertarTipoReunion(TipoReunion tp)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO tiporeunion (nombre,genero,edad_min,edad_max) VALUES(?,?,?,?)");
+            pstmt.setString(1, tp.getNombre());
+            pstmt.setInt(2, tp.getGenero());
+            pstmt.setInt(3, tp.getEdadMin());
+            pstmt.setInt(4, tp.getEdadMax());
+            
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");   
+            resultado=false;
+        }
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean insertarJunta(Junta jt,int idIglesia)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO junta (fecha,id_iglesia,nombre_reunion,hora,descripcion) VALUES(?,?,?,?,?)");
+            pstmt.setDate(1, new java.sql.Date(jt.getFecha().getTime()));
+            pstmt.setInt(2,idIglesia);
+            pstmt.setString(3, jt.getReunion());
+            pstmt.setString(4, jt.getHoraInicio());
+            pstmt.setString(5, jt.getDescripcion());
+            
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");   
+            resultado=false;
+        }
+        return resultado;
+        
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public boolean insertarParticipa(Junta jt,int idIglesia)
+    {
+        boolean resultado=true;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO junta (fecha,id_iglesia,nombre_reunion,hora,descripcion) VALUES(?,?,?,?,?)");
+            pstmt.setDate(1, new java.sql.Date(jt.getFecha().getTime()));
+            pstmt.setInt(2,idIglesia);
+            pstmt.setString(3, jt.getReunion());
+            pstmt.setString(4, jt.getHoraInicio());
+            pstmt.setString(5, jt.getDescripcion());
+            
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");   
+            resultado=false;
+        }
+        return resultado;
+        
+    }
 }
