@@ -1,5 +1,6 @@
 
 package vista;
+import control.Fechas;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Iglesia;
@@ -199,8 +200,12 @@ public class MenuReuniones extends javax.swing.JDialog {
       }
    
       public void iniciar_ArrayReuniones() {
-       arrayReuniones = operacionesBD.juntasSemanales();
-       //NECESITO ESTE METODO.
+         Date fechaActual = new Date();
+         fechaActual.setYear( 1900 + fechaActual.getYear());
+         Fechas fecha = new Fechas(fechaActual);
+         Date fechaInicio = fecha.calcula_FechaInicio();
+         Date fechaTermino = fecha.calcula_FechaTermino(); 
+         arrayReuniones = operacionesBD.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId()); 
       }
       
       public void actualizar_ArrayReuniones (Junta junta) {
@@ -213,6 +218,7 @@ public class MenuReuniones extends javax.swing.JDialog {
       
       public void actualizarBD(Junta junta) {
             //AGREGARMOS A LA BD UNA JUNTA.
+          operacionesBD.insertarJuntaSemanal(junta);
       }
       
     //Atributos

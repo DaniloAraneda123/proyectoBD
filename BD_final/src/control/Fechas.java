@@ -102,7 +102,7 @@ public class Fechas {
           return fecha;
       }    
       
-      public Date calcular_FechaInicio() {
+      public Date calcula_FechaInicio() {
           int dia = fecha.getDay();
           int diaInicio = fecha.getDate();
           int mesInicio = fecha.getMonth();

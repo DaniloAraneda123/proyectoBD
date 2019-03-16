@@ -38,10 +38,9 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
          Date fechaActual = new Date();
          fechaActual.setYear( 1900 + fechaActual.getYear());
          Fechas fecha = new Fechas(fechaActual);
-         Date fechaInicio = fecha.calcularFechaInicio();
-         Date fechaTermino = fecha.calcularFechaTermino(); 
-         arrayReuniones = operacionesBD.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());
-         
+         Date fechaInicio = fecha.calcula_FechaInicio();
+         Date fechaTermino = fecha.calcula_FechaTermino(); 
+         arrayReuniones = operacionesBD.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());      
      } 
               
       public void actualizar_TablaReuniones() {
