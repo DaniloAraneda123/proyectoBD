@@ -136,8 +136,8 @@ public class conexion
                 l=g.generarSectores();
                 for(int j=0;j<7;j++)
                 {
-                    pstmt.setInt(1, l.get(j).getId());
-                    pstmt.setInt(2, i);
+                    pstmt.setInt(1, i);
+                    pstmt.setInt(2, l.get(j).getId());
                     pstmt.setString(3, l.get(j).getTipo());
                     pstmt.setInt(4, l.get(j).getCapacidad());
                     pstmt.execute();
@@ -268,8 +268,8 @@ public class conexion
     
     public void llenarParticipa()
     {
-        ArrayList<String> ruts=new ArrayList<>();
-        ArrayList<datosJunta> dt=new ArrayList<>();
+        ArrayList<String> rutServidores=new ArrayList<>();
+        ArrayList<datosJunta> juntas=new ArrayList<>();
         ArrayList<Integer> inte=new ArrayList<>();
         ArrayList<String> act=new ArrayList<>();
         int n;
@@ -279,7 +279,7 @@ public class conexion
             rs=st.executeQuery("SELECT fecha,hora,id_iglesia FROM junta;");
             while(rs.next())
             {
-                dt.add(new datosJunta(rs.getDate("fecha"),rs.getString("hora"),rs.getInt("id_iglesia")));
+                juntas.add(new datosJunta(rs.getDate("fecha"),rs.getString("hora"),rs.getInt("id_iglesia")));
             }
             
             rs=st.executeQuery("SELECT nombre_actividad FROM tipo_actividad;");
@@ -287,23 +287,40 @@ public class conexion
             {
                 act.add(rs.getString("nombre_actividad"));
             }
-            PreparedStatement ps=cn.prepareStatement("INSERT INTO participa (hora,fecha,id_iglesia,id_sector,rol,nombre_actividad) VALUES(?,?,?,?,?,?);");
             
-            for(int j=0;j<dt.size();j++)
+            PreparedStatement ps=cn.prepareStatement("INSERT INTO participa (hora,fecha,id_iglesia,id_sector,rol,tipo_tarea,rut_servidor) VALUES(?,?,?,?,?,?,?);");
+            
+            /////////////////FOR DE JUNTAS/////////////////////////////
+            for(int i=0;i<juntas.size();i++)
             {
-                act.clear();;
-                ruts.clear();
-                rs=st.executeQuery("SELECT rut FROM servidor WHERE id_iglesia="+dt.get(j)+";");
+                inte.clear();;
+                rutServidores.clear();
+                rs=st.executeQuery("SELECT rut FROM servidor WHERE iglesia_id="+juntas.get(i).id+";");
                 while(rs.next())
                 {
-                    ruts.add(rs.getString("rut"));
+                    rutServidores.add(rs.getString("rut"));
                 }
-                rs=st.executeQuery("SELECT id_sector FROM sector WHERE id_iglesia="+dt.get(j)+";");
+                rs=st.executeQuery("SELECT id_sector FROM sector WHERE id_iglesia="+juntas.get(i).id+";");
                 while(rs.next())
                 {
                     inte.add(rs.getInt("id_sector"));
                 }
-                n=(int) (Math.random()*numero-1);
+                
+                //////////////////////////////////////////FOR PARA ASIGNAR TAREAS EN CADA JUNTA
+                for(int j=0;j<5;j++)
+                {
+                    ps.setString(1, juntas.get(i).hora);
+                    ps.setDate(2, new java.sql.Date(juntas.get(i).fecha.getTime()));
+                    ps.setInt(3, juntas.get(i).id);
+                    ps.setInt(4, inte.get(j));
+                    ps.setString(5,"encargado");
+                    ps.setString(6,act.get((int) (Math.random()*4)));
+                    n=(int) (Math.random() * rutServidores.size());
+                    ps.setString(7,rutServidores.get(n));
+                    rutServidores.remove(n);
+                    ps.execute();
+                    
+                }
             }
             
         } 

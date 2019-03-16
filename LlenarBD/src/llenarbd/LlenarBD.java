@@ -9,11 +9,12 @@ public class LlenarBD
         //cn.rutPastores();
         //cn.rutServidores();
         //cn.trabajaPara();
-        //cn.sectores();
+        cn.sectores();
         //cn.telefono();
         //cn.llenarJunta();
         //cn.llenarPredica();
-        cn.llenarJunta();
+        //cn.llenarJunta();
+        cn.llenarParticipa();
     }
     
 }
