@@ -9,6 +9,13 @@ public class Junta {
     private String horaInicio;
     private String descripcion;
     private int iglesia;
+
+    public Junta(Date fecha, String nombreReunion, String horaInicio, int iglesia) {
+        this.fecha = fecha;
+        this.nombreReunion = nombreReunion;
+        this.horaInicio = horaInicio;
+        this.iglesia = iglesia;
+    }
     
     public Junta(Date fecha, String reunion,String horaInicio , String descripcion , int iglesia) {
         this.fecha = fecha;

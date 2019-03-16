@@ -228,9 +228,9 @@ public class MenuConsultas extends javax.swing.JDialog {
     public void  obtener_Respuesta(int opcion) {
         switch (opcion) 
         {
-            case 1 : operacionesBD.
+            case 1 : operacionesBD.consulta1();
             case 2 : operacionesBD
-            case 3 :   operacionesBD } 
+            case 3 : operacionesBD
             case 4 : operacionesBD
             case 5 : operacionesBD
             case 6 : operacionesBD
@@ -241,10 +241,6 @@ public class MenuConsultas extends javax.swing.JDialog {
         }  
         tablaResultado.setVisible(true);
     }
-     segun el numero , hace la correspondiente pregunta a la BD , para ello
-     obtiene el operacionesBD y llama al metodo correspondiente mostrando finalmente 
-     los resultado en la table y la hace visible.
-    
 
     //Atributos
     

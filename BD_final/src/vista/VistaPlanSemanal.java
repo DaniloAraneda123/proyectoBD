@@ -4,6 +4,8 @@ import modelo.Iglesia;
 import modelo.Junta;
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.util.Date;
+import control.Fechas;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaPlanSemanal extends javax.swing.JFrame {
@@ -12,7 +14,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         initComponents();
         setOperacionesBD (operaciones);
         setIglesias(iglesia);
-        iniciar_ArrayReuniones();
+        actualizar_ArrayReuniones();
         actualizar_TablaReuniones();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setVisible(true);
@@ -30,25 +32,27 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         return operacionesBD;
       } 
    
-     //falta definir la forma para 
-     public void  iniciar_ArrayReuniones() {
-          arrayReuniones = operacionesBD.juntasSemanales();
-     }
-     
-     public void actualizar_ArrayReuniones (Junta reunion ) {
-         arrayReuniones.add(reunion);
+
+     public void actualizar_ArrayReuniones () {
+         //LLAMAR A LA BD Y OBTENER EL ARREGLO DE REUNIONES
+         Date fechaActual = new Date();
+         fechaActual.setYear( 1900 + fechaActual.getYear());
+         Fechas fecha = new Fechas(fechaActual);
+         Date fechaInicio = fecha.calcularFechaInicio();
+         Date fechaTermino = fecha.calcularFechaTermino(); 
+         arrayReuniones = operacionesBD.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());
+         
      } 
               
       public void actualizar_TablaReuniones() {
           
-          String matriz [][] = new String [arrayReuniones.size()][4];
+          String matriz [][] = new String [arrayReuniones.size()][3];
           for (int i=0 ; i<arrayReuniones.size() ; i++) {
-             matriz[i][0]  = arrayReuniones.get(i).getFecha().toString();
-             matriz[i][1]  = arrayReuniones.get(i).getReunion();
-             matriz[i][2]  = arrayReuniones.get(i).getHoraInicio();
-             matriz[i][3]  = arrayReuniones.get(i).getHoraTermino();
+             matriz[i][0] = arrayReuniones.get(i).getHoraInicio();
+             matriz[i][1] = arrayReuniones.get(i).getFecha().toString();
+             matriz[i][2] = arrayReuniones.get(i).getReunion();
           }
-          listaReuniones.setModel( new DefaultTableModel (matriz , new String [] {"Reunión" , "Fecha" , "Hora Inicio" , "Hora Termino"}));
+          listaReuniones.setModel( new DefaultTableModel (matriz , new String [] {"Hora Inicio" , "Fecha" , "tipo Reunión"}));
           
       }
 
@@ -71,6 +75,11 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         MenuConsultas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         botonVolver.setText("VOLVER");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +192,11 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     private void MenuSectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSectoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MenuSectoresActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+       actualizar_ArrayReuniones();
+       actualizar_TablaReuniones();
+    }//GEN-LAST:event_formFocusGained
 
 
     //ATRIBUTOS
