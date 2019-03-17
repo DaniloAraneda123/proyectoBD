@@ -1,32 +1,32 @@
 package vista;
+import java.sql.SQLException;
 import modelo.Operaciones;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Iglesia;
 import javax.swing.ListSelectionModel;
 
 
-public class VistaInicio extends javax.swing.JFrame {
-///////////////////////////////////////////////////////////////////////////////////////////
-                          //PESTAÑA SELECCIONAR//
-    //CONSTRUCTORES    
-    public VistaInicio( Operaciones ope) 
+public class VistaInicio extends javax.swing.JFrame 
+{
+    
+    public VistaInicio() 
     {
         initComponents();
-        setOperacionesBD (ope);
-        iniciar_ArrayIglesias();
-        iniciar_Componentes();
-        actualizar_ListaIglesiaSelec();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
+        try {
+            operacionesBD = new Operaciones();
+            arrayIglesias=operacionesBD.consultar.obtenerIglesias();
+            iniciar_Componentes();
+            actualizar_ListasIglesia();
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setVisible(true);
+        } 
+        catch (SQLException|ClassNotFoundException ex) 
+        {
+            JOptionPane.showMessageDialog(this,ex.toString(), "Error en la Conexion",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        } 
     }
-    
-    //MÉTODOS.
-    public void setOperacionesBD (Operaciones ope)  {
-          operacionesBD = ope;
-    }
-    public Operaciones getOperacionesBD () {
-          return operacionesBD;
-    } 
     
     public ArrayList<Iglesia> getArrayIglesias () {
          return arrayIglesias;
@@ -36,17 +36,15 @@ public class VistaInicio extends javax.swing.JFrame {
          arrayIglesias = arrayI;
     }
     ////////////////////////////////////////////////////////////////////////////
-    public void iniciar_ArrayIglesias() {
-      arrayIglesias  = getOperacionesBD().obtenerIglesias();
-    }
         
      public void iniciar_Componentes() {
         listaIglesiasSelec.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaIglesiasSelec.setVisibleRowCount(7);
     }    
      
-    public void actualizar_ListaIglesiaSelec() {
+    public void actualizar_ListasIglesia() {
        listaIglesiasSelec.setListData(arrayIglesias.toArray()); 
+       listaIglesiasAgre.setListData(arrayIglesias.toArray()); 
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -117,14 +115,18 @@ public class VistaInicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(185, 185, 185)
-                .addComponent(etiquetaTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(196, 196, 196))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(etiquetaTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(196, 196, 196))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(botonSeleccionar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonSeleccionar)
-                    .addComponent(deslizadorSelec, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addComponent(deslizadorSelec, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +165,6 @@ public class VistaInicio extends javax.swing.JFrame {
 
         campoNum.setBackground(new java.awt.Color(52, 152, 219));
         campoNum.setBorder(null);
-        campoNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNumActionPerformed(evt);
-            }
-        });
 
         campoCalle.setBackground(new java.awt.Color(52, 152, 219));
         campoCalle.setBorder(null);
@@ -198,6 +195,11 @@ public class VistaInicio extends javax.swing.JFrame {
         botonEliminar.setBorderPainted(false);
         botonEliminar.setFocusPainted(false);
         botonEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         etiquetaComuna.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiquetaComuna.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,7 +248,6 @@ public class VistaInicio extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(botonEliminar))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                 .addComponent(etiquetaCalle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -255,31 +256,14 @@ public class VistaInicio extends javax.swing.JFrame {
                                     .addComponent(campoCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                                 .addGap(102, 102, 102)
                                 .addComponent(botonAgregar)))
-                        .addGap(58, 58, 58))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(etiquetaTitulo)
-                .addGap(0, 0, Short.MAX_VALUE))
-=======
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(etiquetaTitulo)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 15, Short.MAX_VALUE)
-                                        .addComponent(etiquetaCalle)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jSeparator2)
-                                            .addComponent(campoCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                                        .addGap(102, 102, 102)
-                                        .addComponent(botonAgregar)))))
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())))
->>>>>>> c55d32a2cfc73304df8b3751f6d14ff9ed2f42df
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(etiquetaTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,11 +292,7 @@ public class VistaInicio extends javax.swing.JFrame {
                                 .addGap(0, 0, 0)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-<<<<<<< HEAD
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-=======
                             .addGroup(jPanel2Layout.createSequentialGroup()
->>>>>>> c55d32a2cfc73304df8b3751f6d14ff9ed2f42df
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(etiquetaNum)
@@ -328,7 +308,7 @@ public class VistaInicio extends javax.swing.JFrame {
                         .addComponent(botonAgregar)
                         .addGap(31, 31, 31)
                         .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(205, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         Seleccionar.addTab("agregar/eliminar", jPanel2);
@@ -355,33 +335,36 @@ public class VistaInicio extends javax.swing.JFrame {
        {
            Iglesia iglesiaSeleccionada = arrayIglesias.get(indice);
            setVisible(false);
-           VistaPlanSemanal vista= new VistaPlanSemanal( getOperacionesBD() , iglesiaSeleccionada);
+           VistaPlanSemanal vista= new VistaPlanSemanal( operacionesBD , iglesiaSeleccionada);
        }
       
     }//GEN-LAST:event_botonSeleccionarActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         //comprobar que todos lo campos esten correctos
-         Iglesia nuevaIglesia = new Iglesia ( obtener_UltimoId(), getRegion() , getComuna() ,getCalle() , Integer.parseInt(getNumero()) ) ;
-         actualizar_ArrayIglesia(nuevaIglesia);
-         actualizar_ListaIglesiaAgre();
-         actualizar_ListaIglesiaSelec();
-         actualizar_IglesiasBD(nuevaIglesia);
+        Iglesia nuevaIglesia = new Iglesia ( obtener_UltimoId(), getRegion() , getComuna() ,getCalle() , Integer.parseInt(getNumero()) ) ;
+        arrayIglesias.add(nuevaIglesia);
+        operacionesBD.insertar.insertarIglesia(nuevaIglesia);
+        actualizar_ListasIglesia();
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void campoNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNumActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        int indice = listaIglesiasAgre.getSelectedIndex();
+        if (indice >= 0)
+        {
+            Iglesia iglesiaSeleccionada = arrayIglesias.remove(indice);;
+            operacionesBD.eliminar.eliminarIglesia(iglesiaSeleccionada.getId());
+            actualizar_ListasIglesia();
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     public static void main(String args[]) 
     {      
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() 
             {
-                Operaciones operaciones = new Operaciones();
-                VistaInicio vista = new VistaInicio(operaciones);
-  
-                
+                VistaInicio vista = new VistaInicio();
             }
         });
     }
