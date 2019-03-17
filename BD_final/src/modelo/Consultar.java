@@ -14,24 +14,12 @@ public class Consultar {
     Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
-    private String bd = "postgres";
-    private String url = "jdbc:postgresql://localhost:5432/";
-    private String user = "postgres";
-    private String pass = "";
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public Consultar()
+    public Consultar(Connection cn)
     {
-        try 
-        {
-            Class.forName("org.postgresql.Driver");
-            cn=DriverManager.getConnection(this.url+this.bd+"?currentSchema=bd_prueba", this.user, this.pass);
-        } 
-        catch (ClassNotFoundException | SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
-        }
+        this.cn=cn;
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

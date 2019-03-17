@@ -14,50 +14,30 @@ import javax.swing.JOptionPane;
  */
 public class ConsultasEsp {
     
-    Connection cn;
+    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
-    private String bd = "postgres";
-    private String url = "jdbc:postgresql://localhost:5432/";
-    private String user = "postgres";
-    private String pass = "";
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public ConsultasEsp()
+    public ConsultasEsp(Connection cn)
     {
-        try 
-        {
-            Class.forName("org.postgresql.Driver");
-            cn=DriverManager.getConnection(this.url+this.bd+"?currentSchema=bd_prueba", this.user, this.pass);
-        } 
-        catch (ClassNotFoundException | SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
-        }
+        this.cn=cn;
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public void cerrarConexion() 
+    public int cantidadReuniones(int anio)
     {
-        try {
-            cn.close();
-        } 
-        catch (SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex+" Error al cerrar Conexion");
-        }
-    }
-    
-    public ResultSet cantidadReuniones(int anio)
-    {
+        int resultado=0;
         try
         {
             PreparedStatement pstmt = cn.prepareStatement(" SELECT Nombre_reunion , count (*) , extract (Month from Fecha) as MES FROM junta WHERE EXTRACT ( YEAR FROM fecha ) = ? "
                     + "Group by Nombre_reunion , Mes");
             pstmt.setInt(1,anio);
             rs=pstmt.executeQuery();
+            rs.next();
+            resultado=rs
             pstmt.close();
         }
         catch(Exception e)
@@ -65,7 +45,7 @@ public class ConsultasEsp {
             JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
         }
         
-        return rs;
+        return resultado;
     }
     
     public void consulta1(Date fecha1,Date fecha2, int id_iglesia){

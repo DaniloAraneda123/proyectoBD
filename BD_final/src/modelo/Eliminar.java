@@ -6,10 +6,11 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,40 +19,33 @@ import javax.swing.JOptionPane;
  */
 public class Eliminar {
     
-    Connection cn;
+    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
-    private String bd = "postgres";
-    private String url = "jdbc:postgresql://localhost:5432/";
-    private String user = "postgres";
-    private String pass = "";
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public Eliminar()
+    public Eliminar(Connection cn)
     {
-        try 
-        {
-            Class.forName("org.postgresql.Driver");
-            cn=DriverManager.getConnection(this.url+this.bd+"?currentSchema=bd_prueba", this.user, this.pass);
-        } 
-        catch (ClassNotFoundException | SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
-        }
+        this.cn=cn;
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public void cerrarConexion() 
+    public boolean eliminarIglesia(int idIglesia)
     {
-        try {
-            cn.close();
+        try 
+        {
+            ps=cn.prepareStatement("DELETE FROM iglesia WHERE id=?");
+            ps.setInt(1, idIglesia);
+            ps.execute();
         } 
         catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(null, ex+" Error al cerrar Conexion");
+            JOptionPane.showMessageDialog(null, ex);
+            return false;
         }
+        return true;
     }
     
 }
