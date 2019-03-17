@@ -214,15 +214,18 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void MenuTipoReuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoReuActionPerformed
-        // TODO add your handling code here:
+        MenuTiposReuniones dialogo = new MenuTiposReuniones();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuTipoReuActionPerformed
 
     private void MenuReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReunionActionPerformed
-        // TODO add your handling code here:
+        MenuReuniones dialogo = new MenuReuniones();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuReunionActionPerformed
 
     private void MenuSectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSectoresActionPerformed
-        // TODO add your handling code here:
+        MenuSectores dialogo = new MenuSectores();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuSectoresActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -231,23 +234,27 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_MenuActionPerformed
 
     private void MenuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultasActionPerformed
-        // TODO add your handling code here:
+        MenuConsultas dialogo = new MenuConsultas();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuConsultasActionPerformed
 
     private void MenuTipoActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoActActionPerformed
-        // TODO add your handling code here:
+        MenuTiposActividades dialogo = new MenuTiposActividades();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuTipoActActionPerformed
 
     private void MenuServidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuServidoresActionPerformed
-        // TODO add your handling code here:
+        MenuServidores dialogo = new MenuServidores();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuServidoresActionPerformed
 
     private void MenuPastoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPastoresActionPerformed
-        // TODO add your handling code here:
+        MenuPastores dialogo = new MenuPastores();
+        dialogo.setVisible(true);
     }//GEN-LAST:event_MenuPastoresActionPerformed
 
     private void listaReunionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaReunionesMousePressed

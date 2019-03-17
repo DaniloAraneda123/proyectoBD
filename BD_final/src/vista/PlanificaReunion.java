@@ -63,6 +63,18 @@ public class PlanificaReunion extends javax.swing.JDialog {
         campoAccionPastor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         etiquetaHora.setText("Hora");
 
@@ -266,6 +278,22 @@ public class PlanificaReunion extends javax.swing.JDialog {
         actualizar_ListaPastor();
     }//GEN-LAST:event_botonAgregarPasActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        reunion.setDescripcion(obtenerListaActividades());
+        operacionesBD.actualizarDescripcion(reunion); //Actualizar la reunion con el campo descripcion.
+        
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+       iniciar_ArrayPastores();
+       iniciar_ArrayServidores();
+       iniciar_ArraySectores();
+       actualizar_CampoPastores();
+       actualizar_CampoServidores();
+       actualizar_CampoSectores();
+    }//GEN-LAST:event_formWindowGainedFocus
+
   ///////////////////////////////////////////////////////////////////  
    public String obtenerCampoAccionServidor () {
        return campoAccionServidor.getText();
@@ -288,6 +316,10 @@ public class PlanificaReunion extends javax.swing.JDialog {
    public Servidor obtenerCampoServidor () {
        Servidor servidor = (Servidor) campoServidor.getSelectedItem();
        return servidor;
+   }
+   
+   public String obtenerListaActividades () {
+      return listaActividades.getText();
    }
   ///////////////////////////////////////////////////////////////////  
    public void iniciar_Componentes (Junta reunion) {
