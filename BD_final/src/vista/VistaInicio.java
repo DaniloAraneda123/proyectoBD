@@ -354,9 +354,10 @@ public class VistaInicio extends javax.swing.JFrame {
        if (indice >= 0)
        {
            Iglesia iglesiaSeleccionada = arrayIglesias.get(indice);
+           setVisible(false);
            VistaPlanSemanal vista= new VistaPlanSemanal( getOperacionesBD() , iglesiaSeleccionada);
        }
-       
+      
     }//GEN-LAST:event_botonSeleccionarActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed

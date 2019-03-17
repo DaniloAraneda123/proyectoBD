@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.Date;
 import control.Fechas;
+import modelo.Junta;
 import javax.swing.table.DefaultTableModel;
+
 
 public class VistaPlanSemanal extends javax.swing.JFrame {
          
@@ -100,14 +102,34 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        listaReuniones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listaReunionesMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaReuniones);
 
         Menu.setText("Menú");
+        Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuActionPerformed(evt);
+            }
+        });
 
         MenuPastores.setText("Pastores");
+        MenuPastores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuPastoresActionPerformed(evt);
+            }
+        });
         Menu.add(MenuPastores);
 
         MenuServidores.setText("Servidores");
+        MenuServidores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuServidoresActionPerformed(evt);
+            }
+        });
         Menu.add(MenuServidores);
 
         MenuSectores.setText("Sectores");
@@ -127,6 +149,11 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         Menu.add(MenuReunion);
 
         MenuTipoAct.setText("Tipo Act.");
+        MenuTipoAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuTipoActActionPerformed(evt);
+            }
+        });
         Menu.add(MenuTipoAct);
 
         MenuTipoReu.setText("Tipo Reu.");
@@ -138,6 +165,11 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         Menu.add(MenuTipoReu);
 
         MenuConsultas.setText("Consultas");
+        MenuConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuConsultasActionPerformed(evt);
+            }
+        });
         Menu.add(MenuConsultas);
 
         jMenuBar1.add(Menu);
@@ -177,7 +209,8 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        VistaInicio vistaInicio = new VistaInicio(operacionesBD);
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void MenuTipoReuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoReuActionPerformed
@@ -196,6 +229,38 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
        actualizar_ArrayReuniones();
        actualizar_TablaReuniones();
     }//GEN-LAST:event_formFocusGained
+
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuActionPerformed
+
+    private void MenuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuConsultasActionPerformed
+
+    private void MenuTipoActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoActActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuTipoActActionPerformed
+
+    private void MenuServidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuServidoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuServidoresActionPerformed
+
+    private void MenuPastoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPastoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuPastoresActionPerformed
+
+    private void listaReunionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaReunionesMousePressed
+        int fila = listaReuniones.getSelectedRow();
+        try {
+             Junta junta = arrayReuniones.get(fila);
+             PlanificaReunion planifica = new PlanificaReunion();
+        } catch (Exception e) {
+           
+            
+        }
+       // Junta junta = new Junta(listaReuniones.getValueAt(1) , listaReuniones.getValueAt(2) , listaReuniones.getValueAt(0), iglesia.getId());
+    }//GEN-LAST:event_listaReunionesMousePressed
 
 
     //ATRIBUTOS

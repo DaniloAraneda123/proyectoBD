@@ -16,9 +16,19 @@ import javax.swing.DefaultComboBoxModel;
 public class PlanificaReunion extends javax.swing.JDialog {
 
  
-    public PlanificaReunion(java.awt.Frame parent, boolean modal) {
+    public PlanificaReunion(java.awt.Frame parent, boolean modal ,Operaciones ope , Iglesia iglesia , Junta junta) {
         super(parent, modal);
         initComponents();
+        setOperacionesBD(ope);
+        setIglesia(iglesia);
+        setReunion(junta);
+        iniciar_Componentes(junta);
+        iniciar_ArrayServidores();
+        iniciar_ArraySectores();
+        iniciar_ArrayPastores();
+        actualizar_CampoSectores();
+        actualizar_CampoPastor();
+        actualizar_CampoServidor();
     }
 
 
@@ -280,6 +290,12 @@ public class PlanificaReunion extends javax.swing.JDialog {
        return servidor;
    }
   ///////////////////////////////////////////////////////////////////  
+   public void iniciar_Componentes (Junta reunion) {
+       etiquetaHoraActual.setText(reunion.getHoraInicio());
+       listaPastores.setVisibleRowCount(7);
+       listaServidores.setVisibleRowCount(7);
+   }
+   
    public void iniciar_ArrayServidores () {
      arrayServidores = operacionesBD.obtenerServidoresSemanales();
      //Esto retorna la lista de servidores que les toca trabajar.
@@ -320,6 +336,10 @@ public class PlanificaReunion extends javax.swing.JDialog {
    public Operaciones getOperacionesBD () {
        return operacionesBD;
    }
+   
+   public void setReunion ( Junta junta) {
+        reunion = junta;
+   }
    /////////////////////////////////////////////////////////////////////////////
      public void actualizar_CampoServidor() {
         campoServidor.setModel( new DefaultComboBoxModel<>( arrayServidores) );
@@ -330,7 +350,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
      }
      
      public void actualizar_CampoSectores () {
-         campoSectoSer.setModel(new DefaultComboBoxModel<>(arraySectores));
+         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores));
      }
   
      public void actualizar_ListaServidor () {
