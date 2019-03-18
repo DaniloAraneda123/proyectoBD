@@ -235,4 +235,63 @@ public class Insertar
         return resultado;
         
     }
+    
+    public boolean insertarTrabajaPara(Trabaja_para tp)
+    {
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO trabaja_para (id_iglesia,rut_pastor) VALUES(?,?)");
+            pstmt.setInt(1, tp.getIdIglesia());
+            pstmt.setString(2,tp.getRutPastor());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"Error en la ejecucion");   
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean insertarPastorPredica(PastorPredica pd)
+    {
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO pastor_predica(rut_pastor,fecha_junta,id_iglesia,rol,hora_junta) VALUES(?,?,?,?,?)");
+            pstmt.setString(1, pd.getRut_pastor());
+            pstmt.setDate(2,new java.sql.Date(pd.getFecha().getTime()));
+            pstmt.setInt(3,pd.getId());
+            pstmt.setString(4,pd.getRol());
+            pstmt.setString(5,pd.getHora());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"Error en la ejecucion");   
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean insertarParticipa(Participa pd)
+    {
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO participa(rut_servidor,fecha,id_iglesia,rol,hora,tipo_tarea,id_sector) VALUES(?,?,?,?,?,?,?)");
+            pstmt.setString(1, pd.getRutPersona());
+            pstmt.setDate(2,new java.sql.Date(pd.getFecha().getTime()));
+            pstmt.setInt(3,pd.getIdIglesia());
+            pstmt.setString(4,pd.getRol());
+            pstmt.setString(5,pd.getHora());
+            pstmt.setString(6,pd.getTipoTarea());
+            pstmt.setInt(7,pd.getIdSector());
+            pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"Error en la ejecucion");   
+            return false;
+        }
+        return true;
+    }
 }

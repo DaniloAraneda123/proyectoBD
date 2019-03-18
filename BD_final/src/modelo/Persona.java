@@ -1,9 +1,8 @@
 package modelo;
-import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Persona {
+public abstract class  Persona {
     //Atributos    
     protected String rut;
     protected String nombre;

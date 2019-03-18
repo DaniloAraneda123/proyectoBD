@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Date;
 
-public abstract class Participa {
+public class Participa {
      private String rutPersona;
      private String Hora;
      private Date Fecha;

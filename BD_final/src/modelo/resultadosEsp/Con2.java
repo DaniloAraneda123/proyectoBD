@@ -10,9 +10,34 @@ package modelo.resultadosEsp;
  * @author Niapi
  */
 public class Con2 {
+    
+    private String rut;
+    private String nombre;
+    private String apellido;
+    private String nombreActividad;
+    
 
-    public Con2(String string, String string0, String string1, String string2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Con2(String rut, String nombre, String apellido, String nombreActividad) {
+          this.rut=rut;
+          this.nombre=nombre;
+          this.apellido=apellido;
+          this.nombreActividad=nombreActividad;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getNombreActividad() {
+        return nombreActividad;
     }
     
 }

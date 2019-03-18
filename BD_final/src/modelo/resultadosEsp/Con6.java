@@ -10,9 +10,12 @@ package modelo.resultadosEsp;
  * @author Niapi
  */
 public class Con6 {
-
-    public Con6(String string, int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private int contador;
+    private String nombreReunion;
+    public Con6(String nombreReunion, int contador) {
+        this.contador=contador;
+        this.nombreReunion=nombreReunion;
     }
     
 }

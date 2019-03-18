@@ -1,10 +1,8 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -24,25 +22,12 @@ public class Consultar {
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public void cerrarConexion() 
-    {
-        try {
-            cn.close();
-        } 
-        catch (SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex+" Error al cerrar Conexion");
-        }
-    }
-    
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    public Servidor buscarPersona(String rut)
+    public Servidor buscarServidor(String rut)
     {
         Servidor persona=null;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia FROM persona WHERE rut=?");   
+            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia FROM servidor WHERE rut=?");   
             pstmt.setString(1, rut);
             rs=pstmt.executeQuery();
             persona=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
@@ -67,7 +52,7 @@ public class Consultar {
             ArrayList<String> telefonos=new ArrayList();
             while(rs.next())
             {
-                telefonos.add(rs.getString("email"));
+                telefonos.add(rs.getString("numero"));
             }
             persona.setTelefonos(telefonos);
             rs.close();
@@ -238,6 +223,72 @@ public class Consultar {
                     c='F';
                 }
                 p=new TipoReunion(c,rs.getInt("EdadMax"),rs.getInt("EdadMin"),rs.getString("Nombre"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    public ArrayList<Pastor> pastoresJunta(Junta jt)
+    {
+        ArrayList<Pastor> resultado=new ArrayList<>();
+        Pastor p;
+        char c;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement(
+                    "SELECT rut,nombre,apellido,genero,fechaNacimiento,jerarquia "+
+                    "FROM pastor, pastor_predica "+
+                    "WHERE rut=rut_pastor AND id_iglesia=? AND fecha_junta=? AND hora_junta=?");
+            pstmt.setInt(1, jt.getIglesia());
+            pstmt.setDate(2,new java.sql.Date(jt.getFecha().getTime()));
+            pstmt.setString(3, jt.getHoraInicio());
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                if(rs.getInt("genero")==1)
+                {
+                    c='M';
+                }
+                else
+                {
+                    c='F';
+                }
+                p=new Pastor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),c,rs.getDate("fechanacimiento"),rs.getInt("jerarquia"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    public ArrayList<Servidor> participantesJunta(Junta jt)
+    {
+        ArrayList<Servidor> resultado=new ArrayList<>();
+        Servidor p;
+        char c;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement(
+                    "SELECT rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia"+
+                    "FROM servidor, participa "+
+                    "WHERE rut=rut_servidor AND id_iglesia=? AND fecha=? AND hora=?");
+            pstmt.setInt(1, jt.getIglesia());
+            pstmt.setDate(2,new java.sql.Date(jt.getFecha().getTime()));
+            pstmt.setString(3, jt.getHoraInicio());
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
                 resultado.add(p);
             }
         }
