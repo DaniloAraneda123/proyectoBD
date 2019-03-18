@@ -10,18 +10,15 @@ public class Persona {
     protected String apellido;
     protected int genero;
     protected Date fechaNacimiento;
-    protected ArrayList<String> telefonos;
-    protected ArrayList<String> mails;
 
     //Constructores
-    public Persona(String rut, String nombre, String apellido, int genero, Date fechaNacimiento, ArrayList<String> telefonos, ArrayList<String> mails) {
+    public Persona(String rut, String nombre, String apellido, int genero, Date fechaNacimiento) 
+    {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
-        this.telefonos = telefonos;
-        this.mails = mails;
     }
 
     public Persona()
@@ -67,22 +64,6 @@ public class Persona {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public ArrayList<String> getTelefonos() {
-        return telefonos;
-    }
-
-    public void setTelefonos(ArrayList<String> telefonos) {
-        this.telefonos = telefonos;
-    }
-
-    public ArrayList<String> getMails() {
-        return mails;
-    }
-
-    public void setMails(ArrayList<String> mails) {
-        this.mails = mails;
     }
     
     

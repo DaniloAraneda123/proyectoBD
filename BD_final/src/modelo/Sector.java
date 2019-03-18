@@ -3,9 +3,9 @@ package modelo;
 
 public class Sector {
 
-    String tipo;
-    int capacidad;
-    int id;
+    private String tipo;
+    private int capacidad;
+    private int id;
     
     public Sector (int id , String tipo , int capacidad) {
         this.id = id;

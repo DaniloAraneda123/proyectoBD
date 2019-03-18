@@ -10,6 +10,9 @@ import javax.swing.ListSelectionModel;
 public class VistaInicio extends javax.swing.JFrame 
 {
     
+    
+    ///// FRAME TERMINADO
+    
     public VistaInicio() 
     {
         initComponents();

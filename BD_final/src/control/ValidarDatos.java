@@ -1,6 +1,6 @@
 package control;
 
-public class validarDatos 
+public class ValidarDatos 
 {
     /**
      * Comprueba si la el rut es valido ,no suprime caractere '.' '-' ' ' 

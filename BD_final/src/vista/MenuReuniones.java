@@ -153,11 +153,8 @@ public class MenuReuniones extends javax.swing.JDialog {
       
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         //COMPROBAR CAMPOS
-<<<<<<< HEAD
         Junta junta = new Junta(getFecha() , getTipoReu() , getHoraIni(), "" ,  iglesia.getId() );
-=======
         Junta junta = new Junta();
->>>>>>> a7c2d8df4d7103daa632dca4af57dc987b98c770
         actualizar_ArrayReuniones(junta);
         actualizar_ListaReuniones();
         actualizarBD(junta);

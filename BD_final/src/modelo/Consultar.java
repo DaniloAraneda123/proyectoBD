@@ -153,7 +153,33 @@ public class Consultar {
             pstmt.close();
             while(rs.next())
             {
-                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido1"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
+                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
+                resultado.add(p);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    public ArrayList<Pastor> obtenerPastores(String idIglesia)
+    {
+        ArrayList<Pastor> resultado=new ArrayList<>();
+        Pastor p;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,fechaNacimiento FROM pastor;");
+            pstmt.setString(1, idIglesia);
+            rs=pstmt.executeQuery();
+            pstmt.close();
+            while(rs.next())
+            {
+                p=new Pastor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getInt("jeraquia"));
                 resultado.add(p);
             }
         }

@@ -48,4 +48,6 @@ public class Eliminar {
         return true;
     }
     
+    ////////// ELIMINAR servidor,pastor,sector, junta,elmina, tipo Reunion
+    
 }
