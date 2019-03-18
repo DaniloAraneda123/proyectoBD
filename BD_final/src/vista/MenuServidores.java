@@ -34,7 +34,6 @@ public class MenuServidores extends javax.swing.JDialog {
         etiquetaFechaNac = new javax.swing.JLabel();
         campoApellido = new javax.swing.JTextField();
         etiquetaEspecialidad = new javax.swing.JLabel();
-        campoFechaNac = new javax.swing.JTextField();
         etiquetaGenero = new javax.swing.JLabel();
         campoEspecialidad = new javax.swing.JTextField();
         etiquetaTelefono = new javax.swing.JLabel();
@@ -49,6 +48,8 @@ public class MenuServidores extends javax.swing.JDialog {
         botonAgregarTele = new javax.swing.JButton();
         botonEliminarTele = new javax.swing.JButton();
         botonAgregarServidor = new javax.swing.JButton();
+        botonEliminarServidor = new javax.swing.JButton();
+        campoFechaNac = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,6 +123,8 @@ public class MenuServidores extends javax.swing.JDialog {
             }
         });
 
+        botonEliminarServidor.setText("ELIMINAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,11 +159,14 @@ public class MenuServidores extends javax.swing.JDialog {
                     .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(etiquetaTelefono)
+                .addGap(4, 4, 4)
+                .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(340, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(38, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,19 +186,16 @@ public class MenuServidores extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(botonAgregarMail)
-                                    .addComponent(botonEliminarMail))))))
+                                    .addComponent(botonEliminarMail)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonAgregarServidor)
+                                .addGap(44, 44, 44)
+                                .addComponent(botonEliminarServidor))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(etiquetaTelefono)
-                        .addGap(4, 4, 4)
-                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(botonAgregarServidor)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,9 +213,9 @@ public class MenuServidores extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaFechaNac)
-                            .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiquetaGenero)
-                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaRut)
@@ -223,9 +226,6 @@ public class MenuServidores extends javax.swing.JDialog {
                             .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaMail)
@@ -241,14 +241,19 @@ public class MenuServidores extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaTelefono)
                             .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addComponent(botonAgregarTele)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonEliminarTele)))
-                .addGap(29, 29, 29)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonAgregarTele)
+                                .addGap(11, 11, 11)
+                                .addComponent(botonEliminarTele))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonAgregarServidor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAgregarServidor)
+                    .addComponent(botonEliminarServidor))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -334,7 +339,7 @@ public class MenuServidores extends javax.swing.JDialog {
    }
    
    public String getCampoFechaNac() {
-      return campoFechaNac.getText();
+      return campoFechaNac.toString();
    }
 
    public boolean comprobarCampoEspecialidad() {
@@ -383,7 +388,7 @@ public class MenuServidores extends javax.swing.JDialog {
    }
    
    public void iniciar_ArrayServidores() {
-      arrayServidores = operacionesBD.obtenerServidores(iglesia.getId());    
+      arrayServidores = operacionesBD.consultar.servidoresIglesia(Integer.toString(iglesia.getId()));   
    }
   
    public void  actualizar_ArrayServidores(Servidor servidor) {
@@ -417,7 +422,7 @@ public class MenuServidores extends javax.swing.JDialog {
    }
    
    public void actualizarBD(Servidor servidor) {
-      //AGREGAR LA FORMA DE AGREGAR EL PASTOR
+      operacionesBD.insertar.insertarServidor(servidor);
    }
     
     //Atributos
@@ -431,10 +436,11 @@ public class MenuServidores extends javax.swing.JDialog {
     private javax.swing.JButton botonAgregarServidor;
     private javax.swing.JButton botonAgregarTele;
     private javax.swing.JButton botonEliminarMail;
+    private javax.swing.JButton botonEliminarServidor;
     private javax.swing.JButton botonEliminarTele;
     private javax.swing.JTextField campoApellido;
     private javax.swing.JTextField campoEspecialidad;
-    private javax.swing.JTextField campoFechaNac;
+    private com.toedter.calendar.JDateChooser campoFechaNac;
     private javax.swing.JTextField campoGenero;
     private javax.swing.JTextField campoMail;
     private javax.swing.JTextField campoNombre;
