@@ -9,7 +9,7 @@ import modelo.Sector;
 import modelo.Servidor;
 import modelo.Junta;
 import modelo.Participa;
-import modelo.Pastor_Predica;
+import modelo.PastorPredica;
 import modelo.Trabaja_para;
 import javax.swing.DefaultComboBoxModel;
 
@@ -264,24 +264,24 @@ public class PlanificaReunion extends javax.swing.JDialog {
         String accion = obtenerCampoAccionServidor();
         Participa servidorParticipa = new Participa(servidor.getRut() , reunion.getHoraInicio(), reunion.getFecha() , iglesia.getId() , servidor.getEspecialidad(), sector.getId() , accion);
         actualizar_ArrayListaServidores(servidor);
-        actualizarBD(servidorParticipa);
+        actualizarBD_PersonaParticipa(servidorParticipa);
         actualizar_ListaServidor();  
     }//GEN-LAST:event_botonAgregarSerActionPerformed
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
         Pastor pastor = obtenerCampoPastor();
-        Pastor_Predica pastorPredica = new Pastor_Predica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor());
+        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor());
         Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
         actualizar_ArrayListaPastores(pastor);
-        actualizarBD(pastorPredica);
-        actualizarBD(trabajaPara);
+        actualizarBD_PastorPredica(pastorPredica);
+        actualizarBD_TrabajaPara(trabajaPara);
         actualizar_ListaPastor();
     }//GEN-LAST:event_botonAgregarPasActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         reunion.setDescripcion(obtenerListaActividades());
-        operacionesBD.actualizarDescripcion(reunion); //Actualizar la reunion con el campo descripcion.
-        
+        //operacionesBD.actualizarDescripcion(reunion); //Actualizar la reunion con el campo descripcion.
+        operacionesBD.actualizar.actualizarDescripcion(reunion.getDescripcion(), reunion);
         
     }//GEN-LAST:event_formWindowClosed
 
@@ -289,8 +289,8 @@ public class PlanificaReunion extends javax.swing.JDialog {
        iniciar_ArrayPastores();
        iniciar_ArrayServidores();
        iniciar_ArraySectores();
-       actualizar_CampoPastores();
-       actualizar_CampoServidores();
+       actualizar_CampoPastor();
+       actualizar_CampoServidor();
        actualizar_CampoSectores();
     }//GEN-LAST:event_formWindowGainedFocus
 
@@ -329,25 +329,24 @@ public class PlanificaReunion extends javax.swing.JDialog {
    }
    
    public void iniciar_ArrayServidores () {
-     arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
+       arrayServidores = operacionesBD.consultar.servidoresIglesia(Integer.toString(iglesia.getId()));
+     //arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
    }
    
    public void iniciar_ArrayPastores () {
-     arrayPastores = operacionesBD.consultar.obtenerPastores();
+     arrayPastores = operacionesBD.consultar.obtenerPastores(Integer.toString(iglesia.getId()));
    } 
 
    public void iniciar_ArraySectores () {
-     arraySectores = operacionesBD.consultar.obtenerSectores();
+     arraySectores = operacionesBD.consultar.obtenerSectores(iglesia.getId());
    }
   
    public void iniciar_ListaServidores () {
-    arrayListaServidores  = operacionesBD.obtenerListaServidores(reunion);
-    //Retorna los parcicipantes de esta junta.
+    arrayListaServidores  = operacionesBD.consultar.participantesJunta(reunion);
    }
 
    public void iniciar_ListaPastores () {
-    arrayListaPastores = operacionesBD.obtenerListaPastores (reunion);
-    //Retorna los pastores predicando de esta junta.
+    arrayListaPastores = operacionesBD.consultar.pastoresJunta(reunion);
    }
    /////////////////////////////////////////////////////////////////////////////
    public void setIglesia (Iglesia igle) {
@@ -375,11 +374,11 @@ public class PlanificaReunion extends javax.swing.JDialog {
      } 
  
      public void actualizar_CampoPastor() {
-        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores.toArray));
+        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores.toArray()));
      }
      
      public void actualizar_CampoSectores () {
-         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores.toArray));
+         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores.toArray()));
      }
   
      public void actualizar_ListaServidor () {
@@ -410,16 +409,16 @@ public class PlanificaReunion extends javax.swing.JDialog {
         arrayListaPastores.add(pastor);
    }
    /////////////////////////////////////////////////////////////////////////////
-   public void actualizarBD (Participa personaParticipa) {
-           operacionesBD.agregarParticipante(personaParticipa);
+   public void actualizarBD_PersonaParticipa (Participa personaParticipa) {
+           operacionesBD.insertar.insertarParticipa(personaParticipa);
    }
 
-   public void actualizarBD (Pastor_Predica pastorPredica) {
-           operacionesBD.agregarPastorPredica (pastorPredica);
+   public void actualizarBD_PastorPredica (PastorPredica pastorPredica) {
+           operacionesBD.insertar.insertarPastorPredica (pastorPredica);
    }
 
-   public void actualizarBD (Trabaja_para pastorTrabaja) {
-           operacionesBD.agregarPastorTrabaja(pastorTrabaja);
+   public void actualizarBD_TrabajaPara (Trabaja_para pastorTrabaja) {
+           operacionesBD.insertar.insertarTrabajaPara(pastorTrabaja);
    }
    /////////////////////////////////////////////////////////////////////////////
 

@@ -140,7 +140,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
     
       public boolean comprobarCampoTipo() {
           //DEIFINIR
-          return 0;
+          return true;
       }
           
       public String getCampoTipo() {
@@ -149,7 +149,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
               
       public boolean comporbarCampoEspecialidad() {
          //DEFINIR.
-          return 0;
+          return true;
       }
      
       public String getCampoEspecialidad() {

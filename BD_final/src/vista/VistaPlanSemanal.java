@@ -253,7 +253,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuServidoresActionPerformed
 
     private void MenuPastoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPastoresActionPerformed
-        MenuPastores dialogo = new MenuPastores(this ,true , operacionesBD);
+        MenuPastores dialogo = new MenuPastores(this ,true , operacionesBD , iglesia);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuPastoresActionPerformed
 
