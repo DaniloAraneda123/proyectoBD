@@ -8,10 +8,12 @@ import modelo.resultadosEsp.Con7;
 import modelo.resultadosEsp.Con6;
 import modelo.resultadosEsp.Con2;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import modelo.Junta;
 import modelo.Pastor;
 import modelo.Sector;
 import modelo.Servidor;
+import modelo.TipoReunion;
 
 
 public class MenuConsultas extends javax.swing.JDialog {
@@ -42,6 +44,8 @@ public class MenuConsultas extends javax.swing.JDialog {
         campoAño = new com.toedter.calendar.JYearChooser();
         campoFechaIni = new com.toedter.calendar.JDateChooser();
         campoFechaTer = new com.toedter.calendar.JDateChooser();
+        campoTipoReunion = new javax.swing.JComboBox();
+        etiquetaTipoReunion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(52, 152, 219));
@@ -91,21 +95,26 @@ public class MenuConsultas extends javax.swing.JDialog {
 
         etiquetaFechaTer.setText("Fecha final :");
 
+        campoTipoReunion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        etiquetaTipoReunion.setText("Tipo reunion: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiquetaTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etiquetaTitulo)
-                        .addGap(165, 165, 165))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 96, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiquetaAño, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(campoAño, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,40 +132,41 @@ public class MenuConsultas extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(etiquetaFechaTer)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaTipoReunion)
+                            .addComponent(campoTipoReunion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(194, 194, 194)
+                        .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
                 .addComponent(etiquetaTitulo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiquetaAño)
-                            .addComponent(etiquetaFechaIni)
-                            .addComponent(etiquetaFechaTer))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(etiquetaAño)
+                                .addComponent(etiquetaFechaIni)
+                                .addComponent(etiquetaFechaTer)
+                                .addComponent(etiquetaTipoReunion))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(campoAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(campoFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(campoFechaTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoTipoReunion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(botonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -180,17 +190,27 @@ public class MenuConsultas extends javax.swing.JDialog {
                 campoAño.setVisible(true);
                 etiquetaAño.setVisible(true);
           }
-          else if (indice >= 3 && indice <= 5) {
+          else if (indice == 4 || indice == 5) {
                 etiquetaFechaTer.setVisible(true);
                 etiquetaFechaIni.setVisible(true); 
                 campoFechaIni.setVisible(true);
                 campoFechaTer.setVisible(true);
           }
+          else if (indice == 3) {
+                etiquetaFechaTer.setVisible(true);
+                etiquetaFechaIni.setVisible(true);
+                etiquetaTipoReunion.setVisible(true);
+                campoFechaIni.setVisible(true);
+                campoFechaTer.setVisible(true);
+                campoTipoReunion.setVisible(true);
+          }
           else  {
                 etiquetaFechaTer.setVisible(false);
-                etiquetaFechaIni.setVisible(false); 
+                etiquetaFechaIni.setVisible(false);
+                etiquetaTipoReunion.setVisible(false); 
                 campoFechaIni.setVisible(false);
                 campoFechaTer.setVisible(false);
+                campoTipoReunion.setVisible(false);
           }
        }
      
@@ -225,8 +245,22 @@ public class MenuConsultas extends javax.swing.JDialog {
        return  campoFechaTer.getDate();
     }
     
+    public void actualizar_ArrayTipoReunion () {
+        arrayTipoReunion = operacionesBD.consultar.tipoReuniones();
+    }
+    
+    public void actualizar_CampoTipoReunion () {
+        campoTipoReunion.setModel( new DefaultComboBoxModel<>( arrayTipoReunion.toArray()) );
+    }
+    
+    public String obtenerCampoTipoReunion () {
+         TipoReunion tipoReunion = (TipoReunion) campoTipoReunion.getSelectedItem();
+         return tipoReunion.getNombre();
+    }
+    
     public void iniciar_ListaConsultas () {
-         arrayConsultas = new ArrayList<>( Arrays.asList("Qué Personas trabajan esta semana en la Iglesia." , 
+         arrayConsultas = new ArrayList<>( Arrays.asList(
+                 "Qué Personas trabajan esta semana en la Iglesia." , 
                  "Qué Personas han trabajado en que Tipo de actividad" , 
                  "Cuántas Reuniones se han realizado cada mes por tipo, el año X" ,           
                  "Qué Pastores predicaron en X Reunión desde la fecha  Y - Z" , 
@@ -246,7 +280,7 @@ public class MenuConsultas extends javax.swing.JDialog {
                   obtener_Respuesta(opcion);
               }
           }
-          else if (opcion >= 4 && opcion <= 6) {
+          else if (opcion >= 5 && opcion <= 6) {
                 if (obtenerAño() >= 0 && obtenerFechaIni() != null && obtenerFechaTer() != null) {
                     obtener_Respuesta(opcion);
                 }
@@ -262,9 +296,11 @@ public class MenuConsultas extends javax.swing.JDialog {
         etiquetaAño.setVisible(false);
         etiquetaFechaIni.setVisible(false);
         etiquetaFechaTer.setVisible(false);
+        etiquetaTipoReunion.setVisible(false);
         campoAño.setVisible(false);
         campoFechaIni.setVisible(false);
         campoFechaTer.setVisible(false);
+        campoTipoReunion.setVisible(false);
     }
 
     
@@ -275,7 +311,7 @@ public class MenuConsultas extends javax.swing.JDialog {
             case 1 : { consulta1 = operacionesBD.consultasEsp.consulta1( obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(1);   break; }
             case 2 : { consulta2 = operacionesBD.consultasEsp.consulta2();  mostrarTabla(2); break; } 
             case 3 : {}
-            case 4 : {}
+            case 4 : { consulta4 = operacionesBD.consultasEsp.consulta4(obtenerFechaIni() , obtenerFechaTer() , obtenerCampoTipoReunion()); mostrarTabla(4); break; }
             case 5 : { consulta5 = operacionesBD.consultasEsp.consulta5(obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(5); break; } 
             case 6 : { consulta6 = operacionesBD.consultasEsp.consulta6(obtenerFechaIni() , obtenerFechaTer()); mostrarTabla(6); break; }
             case 7 : { consulta7 = operacionesBD.consultasEsp.consulta7(); mostrarTabla(7); break; }
@@ -291,10 +327,12 @@ public class MenuConsultas extends javax.swing.JDialog {
     }
     
     //Atributos
+    private ArrayList<TipoReunion> arrayTipoReunion;
+    //////////////////////////////////////////////
     private ArrayList<Servidor> consulta1;
     private ArrayList<Con2> consulta2;
     private ArrayList<Junta> consulta3; //FALTA
-    private ArrayList<Pastor> consulta4; // FALTA
+    private ArrayList<Pastor> consulta4;
     private ArrayList<Sector> consulta5;
     //////////////////////////////////////////////
     private ArrayList<Con6> consulta6;
@@ -309,9 +347,11 @@ public class MenuConsultas extends javax.swing.JDialog {
     private com.toedter.calendar.JYearChooser campoAño;
     private com.toedter.calendar.JDateChooser campoFechaIni;
     private com.toedter.calendar.JDateChooser campoFechaTer;
+    private javax.swing.JComboBox campoTipoReunion;
     private javax.swing.JLabel etiquetaAño;
     private javax.swing.JLabel etiquetaFechaIni;
     private javax.swing.JLabel etiquetaFechaTer;
+    private javax.swing.JLabel etiquetaTipoReunion;
     private javax.swing.JLabel etiquetaTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
