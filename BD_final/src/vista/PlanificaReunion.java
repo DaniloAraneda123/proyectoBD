@@ -270,7 +270,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
         Pastor pastor = obtenerCampoPastor();
-        Pastor_Predica pastorPredica = new Pastor_Predica(reunion.getFecha(), reunion.getHoraIni(), pastor.getRut(), obtenerCampoAccionPastor());
+        Pastor_Predica pastorPredica = new Pastor_Predica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor());
         Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
         actualizar_ArrayListaPastores(pastor);
         actualizarBD(pastorPredica);
@@ -329,18 +329,15 @@ public class PlanificaReunion extends javax.swing.JDialog {
    }
    
    public void iniciar_ArrayServidores () {
-     arrayServidores = operacionesBD.obtenerServidoresSemanales();
-     //Esto retorna la lista de servidores que les toca trabajar.
+     arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
    }
    
    public void iniciar_ArrayPastores () {
-     arrayPastores = operacionesBD.obtenerPastores();
-     //Esto retorna la lista de pastores para esa iglesia.
+     arrayPastores = operacionesBD.consultar.obtenerPastores();
    } 
 
    public void iniciar_ArraySectores () {
-     arraySectores = operacionesBD.obtenerSectores();
-     //Esto retorna la lista de sectores para esa iglesia.
+     arraySectores = operacionesBD.consultar.obtenerSectores();
    }
   
    public void iniciar_ListaServidores () {
@@ -374,15 +371,15 @@ public class PlanificaReunion extends javax.swing.JDialog {
    }
    /////////////////////////////////////////////////////////////////////////////
      public void actualizar_CampoServidor() {
-        campoServidor.setModel( new DefaultComboBoxModel<>( arrayServidores) );
+        campoServidor.setModel( new DefaultComboBoxModel<>( arrayServidores.toArray()) );
      } 
  
      public void actualizar_CampoPastor() {
-        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores));
+        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores.toArray));
      }
      
      public void actualizar_CampoSectores () {
-         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores));
+         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores.toArray));
      }
   
      public void actualizar_ListaServidor () {
@@ -410,11 +407,11 @@ public class PlanificaReunion extends javax.swing.JDialog {
    }
 
    public void actualizar_ArrayListaPastores (Pastor pastor) {
-        arrayListaPastores(pastor);
+        arrayListaPastores.add(pastor);
    }
    /////////////////////////////////////////////////////////////////////////////
    public void actualizarBD (Participa personaParticipa) {
-           operacionesBD.agregarParticipante (personaParticipa);
+           operacionesBD.agregarParticipante(personaParticipa);
    }
 
    public void actualizarBD (Pastor_Predica pastorPredica) {

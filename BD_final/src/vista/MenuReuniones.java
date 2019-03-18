@@ -1,9 +1,11 @@
 
 package vista;
+import control.Fechas;
 import java.util.ArrayList;
 import modelo.Iglesia;
 import modelo.Operaciones;
 import modelo.Junta;
+import java.util.Date;
 
 
 
@@ -153,7 +155,6 @@ public class MenuReuniones extends javax.swing.JDialog {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         //COMPROBAR CAMPOS
         Junta junta = new Junta(getFecha() , getTipoReu() , getHoraIni(), "" ,  iglesia.getId() );
-        Junta junta = new Junta();
         actualizar_ArrayReuniones(junta);
         actualizar_ListaReuniones();
         actualizarBD(junta);
@@ -174,8 +175,8 @@ public class MenuReuniones extends javax.swing.JDialog {
          return true;
       }
 
-      public String getFecha () {
-        return campoFecha.getText();
+      public Date getFecha () {
+        return campoFecha.getDate();
       }
       
 
@@ -221,7 +222,12 @@ public class MenuReuniones extends javax.swing.JDialog {
       }
    
       public void iniciar_ArrayReuniones() {
-       arrayReuniones = operacionesBD.obtenerListaReuniones();
+       Date fechaActual = new Date();
+       fechaActual.setYear( fechaActual.getYear());
+       Fechas fecha = new Fechas(fechaActual);
+       Date fechaInicio = fecha.calcula_FechaInicio();
+       Date fechaTermino = fecha.calcula_FechaTermino(); 
+       arrayReuniones = operacionesBD.consultar.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());
       }
       
       public void actualizar_ArrayReuniones (Junta junta) {
@@ -229,11 +235,12 @@ public class MenuReuniones extends javax.swing.JDialog {
       }  
 
       public void actualizar_ListaReuniones() {
-       arrayReuniones.setListData(arrayReuniones.toArray()); 
+       listaReunion.setListData(arrayReuniones.toArray()); 
       }
       
       public void actualizarBD(Junta junta) {
             //AGREGARMOS A LA BD UNA JUNTA.
+          operacionesBD.insertar.insertarJunta(junta,iglesia.getId());
       }
       
     //Atributos

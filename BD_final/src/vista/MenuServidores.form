@@ -128,11 +128,13 @@
                           <Component id="campoEspecialidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="campoFechaNac" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">

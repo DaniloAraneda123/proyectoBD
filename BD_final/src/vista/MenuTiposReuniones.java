@@ -174,7 +174,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
  
      public boolean comprobarCampoNombre() {
          //DEFINIR
-         return 0;
+         return true;
      }
      
      public String getCampoNombre() {
@@ -183,7 +183,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
      
      public boolean comprobarCampoGenero () {
          //deifnir
-         return 0;
+         return true;
      }
     
      public String getCampoGenero () {
@@ -192,7 +192,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
        
      public boolean comprobarCampoEdadMin () {
          //DEFINIR
-         return 0;
+         return true;
      }
      
      public String getCampoEdadMin() {
@@ -201,7 +201,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
      
      public boolean comprobarCampoEdadMax () {
          //DEFINIR
-         return 0;
+         return true;
      }
      
      public String getCampoEdadMax() {
@@ -209,7 +209,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
      }
    
       public void iniciar_ArrayTiposReuniones () {
-        arrayTiposReuniones = operacionesBD.tipoReuniones();
+        arrayTiposReuniones = operacionesBD.consultar.tipoReuniones();
         actualizar_ListaTiposReuniones();
       } 
     
@@ -231,6 +231,7 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
       
       public void actualizarBD ( TipoReunion tipoReu) {
             //metodo para agregar una reunion
+          operacionesBD.insertar.insertarTipoReunion(tipoReu);
       }
       
      

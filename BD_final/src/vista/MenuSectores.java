@@ -2,7 +2,7 @@
 package vista;
 import modelo.Operaciones;
 import modelo.Iglesia;
-import modelo.Sectores;
+import modelo.Sector;
 import java.util.ArrayList;
 
 public class MenuSectores extends javax.swing.JDialog {
@@ -201,7 +201,7 @@ public class MenuSectores extends javax.swing.JDialog {
    
     //Atributos
     private Operaciones operacionesBD;
-    private ArrayList<Sectores> arraySectores;
+    private ArrayList<Sector> arraySectores;
     private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;

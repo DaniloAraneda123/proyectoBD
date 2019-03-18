@@ -147,11 +147,13 @@
                           <Component id="campoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="campoFechaNac" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="etiquetaFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="etiquetaGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -202,9 +204,9 @@
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botonAgregarPastor" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="botonEliminarPastor" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAgregarPastor" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>

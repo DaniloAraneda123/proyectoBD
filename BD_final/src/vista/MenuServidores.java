@@ -211,11 +211,12 @@ public class MenuServidores extends javax.swing.JDialog {
                             .addComponent(etiquetaEspecialidad)
                             .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiquetaFechaNac)
-                            .addComponent(etiquetaGenero)
-                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(etiquetaFechaNac)
+                                .addComponent(etiquetaGenero)
+                                .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaRut)
@@ -290,7 +291,7 @@ public class MenuServidores extends javax.swing.JDialog {
     //Metodos
    public boolean comprobarCampoRut() {
        //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoRut () {
@@ -299,7 +300,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
    public boolean comprobarCampoNombre() {
        //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoNombre () {
@@ -308,7 +309,7 @@ public class MenuServidores extends javax.swing.JDialog {
  
    public boolean comprobarCampoApellido () {
        //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoApellido() {
@@ -317,7 +318,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
    public boolean comprobarCampoTelefono() {
       //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoTelefono () {
@@ -326,7 +327,7 @@ public class MenuServidores extends javax.swing.JDialog {
    
    public boolean comprobarCampoMail() {
       //DEFINIR
-       return 0;
+       return true;
    }
    
    public String getCampoMail() {
@@ -335,7 +336,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
    public boolean comprobarCampoFechaNac () {
        //DEFINIR     
-       return 0;
+       return true;
    }
    
    public String getCampoFechaNac() {
@@ -344,7 +345,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
    public boolean comprobarCampoEspecialidad() {
       //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoEspecialidad() {
@@ -353,7 +354,7 @@ public class MenuServidores extends javax.swing.JDialog {
    
    public boolean comprobarCampoGenero() {
        //DEFINIR
-       return 0;
+       return true;
    }
 
    public String getCampoGenero () {

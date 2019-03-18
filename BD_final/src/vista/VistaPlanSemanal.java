@@ -41,7 +41,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
          Fechas fecha = new Fechas(fechaActual);
          Date fechaInicio = fecha.calcula_FechaInicio();
          Date fechaTermino = fecha.calcula_FechaTermino(); 
-         System.out.print(fechaTermino+" "+fechaInicio);
+         //System.out.print(fechaTermino+" "+fechaInicio);
          arrayReuniones = operacionesBD.consultar.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());      
      } 
               
@@ -210,7 +210,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         setVisible(false);
-        VistaInicio vistaInicio = new VistaInicio(operacionesBD);
+        VistaInicio vistaInicio = new VistaInicio();
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void MenuTipoReuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoReuActionPerformed
@@ -219,12 +219,12 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuTipoReuActionPerformed
 
     private void MenuReunionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReunionActionPerformed
-        MenuReuniones dialogo = new MenuReuniones();
+        MenuReuniones dialogo = new MenuReuniones(this ,true , operacionesBD , iglesia);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuReunionActionPerformed
 
     private void MenuSectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSectoresActionPerformed
-        MenuSectores dialogo = new MenuSectores();
+        MenuSectores dialogo = new MenuSectores(this , true , operacionesBD , iglesia);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuSectoresActionPerformed
 
@@ -238,22 +238,22 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuActionPerformed
 
     private void MenuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuConsultasActionPerformed
-        MenuConsultas dialogo = new MenuConsultas();
+        MenuConsultas dialogo = new MenuConsultas(this , true , operacionesBD , iglesia);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuConsultasActionPerformed
 
     private void MenuTipoActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoActActionPerformed
-        MenuTiposActividades dialogo = new MenuTiposActividades();
+        MenuTiposActividades dialogo = new MenuTiposActividades(this , true , operacionesBD);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuTipoActActionPerformed
 
     private void MenuServidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuServidoresActionPerformed
-        MenuServidores dialogo = new MenuServidores();
+        MenuServidores dialogo = new MenuServidores(this , true , operacionesBD , iglesia);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuServidoresActionPerformed
 
     private void MenuPastoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPastoresActionPerformed
-        MenuPastores dialogo = new MenuPastores();
+        MenuPastores dialogo = new MenuPastores(this ,true , operacionesBD);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuPastoresActionPerformed
 
