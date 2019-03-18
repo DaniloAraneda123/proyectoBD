@@ -19,6 +19,7 @@ public class Operaciones
     public ConsultasEsp consultasEsp;
     public Insertar insertar;
     public Eliminar eliminar;
+    public Actualizar actualizar;
     
     public Operaciones() throws SQLException, ClassNotFoundException
     {
@@ -28,6 +29,7 @@ public class Operaciones
         consultasEsp=new ConsultasEsp(cn);
         insertar=new Insertar(cn);
         eliminar=new Eliminar(cn);
+        actualizar=new Actualizar(cn);
     }
     
     public void cerrarConexion() 

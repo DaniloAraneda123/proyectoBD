@@ -1,7 +1,6 @@
 package vista;
 import modelo.Operaciones;
 import modelo.Iglesia;
-import modelo.Junta;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,11 +37,12 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
      public void actualizar_ArrayReuniones () {
          //LLAMAR A LA BD Y OBTENER EL ARREGLO DE REUNIONES
          Date fechaActual = new Date();
-         fechaActual.setYear( 1900 + fechaActual.getYear());
+         fechaActual.setYear( fechaActual.getYear());
          Fechas fecha = new Fechas(fechaActual);
          Date fechaInicio = fecha.calcula_FechaInicio();
          Date fechaTermino = fecha.calcula_FechaTermino(); 
-         arrayReuniones = operacionesBD.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());      
+         System.out.print(fechaTermino+" "+fechaInicio);
+         arrayReuniones = operacionesBD.consultar.juntasSemanales(fechaInicio , fechaTermino , iglesia.getId());      
      } 
               
       public void actualizar_TablaReuniones() {
@@ -214,7 +214,7 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void MenuTipoReuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuTipoReuActionPerformed
-        MenuTiposReuniones dialogo = new MenuTiposReuniones();
+        MenuTiposReuniones dialogo = new MenuTiposReuniones(this,true,operacionesBD);
         dialogo.setVisible(true);
     }//GEN-LAST:event_MenuTipoReuActionPerformed
 
@@ -261,10 +261,11 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         int fila = listaReuniones.getSelectedRow();
         try {
              Junta junta = arrayReuniones.get(fila);
-             PlanificaReunion planifica = new PlanificaReunion();
+             PlanificaReunion planifica = new PlanificaReunion(this,true,operacionesBD,iglesia,junta);
+             planifica.setVisible(true);
         } catch (Exception e) {
            
-            
+            System.out.print(e);
         }
        // Junta junta = new Junta(listaReuniones.getValueAt(1) , listaReuniones.getValueAt(2) , listaReuniones.getValueAt(0), iglesia.getId());
     }//GEN-LAST:event_listaReunionesMousePressed

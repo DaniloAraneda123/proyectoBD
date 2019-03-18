@@ -22,6 +22,8 @@ public class VistaInicio extends javax.swing.JFrame
             iniciar_Componentes();
             actualizar_ListasIglesia();
             setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+            setResizable(false);
             setVisible(true);
         } 
         catch (SQLException|ClassNotFoundException ex) 

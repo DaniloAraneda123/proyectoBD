@@ -114,22 +114,22 @@ public class Consultar {
         Junta p;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT fecha ,horaInicio, horaTermino, nombreReunion FROM Junta "
-                    + "WHERE Fecha >= ? and Fecha <= ? and Id_iglesia = ?"); 
+            PreparedStatement pstmt = cn.prepareStatement("SELECT fecha ,hora , descripcion, nombre_reunion FROM Junta "
+                    + "WHERE fecha >= ? and fecha <= ? and Id_iglesia = ?"); 
             java.sql.Date date1 = new java.sql.Date(desde.getTime());
             java.sql.Date date2 = new java.sql.Date(hasta.getTime());
             pstmt.setDate(1, date1);
             pstmt.setDate(2, date2);
             pstmt.setInt(3, idIglesia);
             rs=pstmt.executeQuery();
-            pstmt.close();
             Date dt;
             while(rs.next()) 
             {
                 dt=new Date(rs.getDate("fecha").getTime());
-                p=new Junta(dt,rs.getString("Nombre_Reunion"), rs.getString("horaInicio"),rs.getString("descripcion"),idIglesia);
+                p=new Junta(dt,rs.getString("nombre_reunion"), rs.getString("hora"),rs.getString("descripcion"),idIglesia);
                 resultado.add(p);
             }
+            pstmt.close();
         }
         catch(Exception e)
         {
