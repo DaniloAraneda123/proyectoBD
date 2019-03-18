@@ -1,5 +1,6 @@
 package modelo;
 
+import modelo.resultadosEsp.Con3;
 import modelo.resultadosEsp.Con7;
 import modelo.resultadosEsp.Con2;
 import java.sql.Connection;
@@ -95,24 +96,29 @@ public class ConsultasEsp {
      * 
      * consulta para ver ¿Cuántas reuniones se han realizado cada mes por tipo el año ‘X’ ?  
      */
-    public void consulta3(int anio)
+    public ArrayList<Con3> consulta3(int anio)
     {
+        ArrayList<Con3> lista=new ArrayList<>();
         try{
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT nombre_reunion, count (*), EXTRACT(month FROM fecha)AS mes" +
+                "SELECT nombre_reunion, count (*) AS contador, EXTRACT(month FROM fecha)AS mes" +
                 "FROM junta  " +
                 "WHERE extract ( year FROM fecha ) = ?" +
                 "GROUP BY nombre_reunion, Mes;");
 
             pstmt.setInt(1,anio);
             rs=pstmt.executeQuery();
-            
+            while(rs.next())
+            {
+                lista.add(new Con3(rs.getString("nombre_reunion"),rs.getInt("contador"),rs.getInt("mes")));
+            }
             
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
         }
+        return lista;
     }
     
     /** Consulta 4

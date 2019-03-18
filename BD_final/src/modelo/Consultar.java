@@ -211,7 +211,6 @@ public class Consultar {
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT Nombre ,EdadMin ,EdadMax,Genero FROM Tipo_Reunion"); 
             rs=pstmt.executeQuery();
-            pstmt.close();
             while(rs.next())
             {
                 if(rs.getInt("Genero")==1)
@@ -299,5 +298,36 @@ public class Consultar {
         
         return resultado;
     }
-    
+
+
+
+    public ArrayList<TipoActividad> tipoActividad()
+    {
+        ArrayList<TipoActividad> resultado=new ArrayList<>();
+        ArrayList<String> lista;
+        try
+        {
+            PreparedStatement pstmt = cn.prepareStatement("SELECT nombre_actividad FROM tipo_actividad");
+            PreparedStatement pstmt2 = cn.prepareStatement("SELECT nombre_especialidad FROM especialidad WHERE nombre_especialidad=?");
+            ResultSet rs2;
+            rs=pstmt.executeQuery();
+            while(rs.next())
+            {
+                lista=new ArrayList<>();
+                pstmt2.setString(1, rs.getString("nombre_actividad"));
+                rs2=pstmt2.executeQuery();
+                while(rs2.next())
+                {
+                    lista.add(rs2.getString("nombre_especialidad"));
+                }
+                resultado.add(new TipoActividad(rs.getString("nombre_actividad"),lista));
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+        }
+        
+        return resultado;
+    }    
 }

@@ -1,13 +1,15 @@
 
 package modelo;
 
+import java.util.ArrayList;
+
 
 public class TipoActividad {
      
     private String tipo;
-    private String especialidad;
+    private ArrayList<String> especialidad;
      
-    public TipoActividad (String tipo , String especialidad) {
+    public TipoActividad (String tipo , ArrayList<String> especialidad) {
         this.tipo = tipo;
         this.especialidad = especialidad;
     }
@@ -16,7 +18,7 @@ public class TipoActividad {
         return tipo;
     }
 
-    public String getEspecialidad() {
+    public ArrayList<String> getEspecialidad() {
         return especialidad;
     }
 
@@ -24,7 +26,7 @@ public class TipoActividad {
         this.tipo = tipo;
     }
 
-    public void setEspecialidad (String especialidad) {
+    public void setEspecialidad (ArrayList<String> especialidad) {
         this.especialidad = especialidad;
     }
     
