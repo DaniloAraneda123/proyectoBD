@@ -4,6 +4,14 @@ import modelo.Operaciones;
 import modelo.Iglesia;
 import java.util.ArrayList;
 import java.util.Arrays;
+import modelo.resultadosEsp.Con7;
+import modelo.resultadosEsp.Con6;
+import modelo.resultadosEsp.Con2;
+import java.util.Date;
+import modelo.Junta;
+import modelo.Pastor;
+import modelo.Sector;
+import modelo.Servidor;
 
 
 public class MenuConsultas extends javax.swing.JDialog {
@@ -160,7 +168,7 @@ public class MenuConsultas extends javax.swing.JDialog {
         int indice = listaConsultas.getSelectedIndex();
         if (indice >= 0) 
         {
-            obtener_Respuesta(indice + 1);
+            comprobarPregunta(indice + 1);
         }
     }//GEN-LAST:event_botonConsultarActionPerformed
  
@@ -197,7 +205,7 @@ public class MenuConsultas extends javax.swing.JDialog {
        return operacionesBD;
     }
   
-    public void setIlgesia (Iglesia igle) {
+    public void setIglesia (Iglesia igle) {
         iglesia = igle;
     }
     
@@ -210,22 +218,43 @@ public class MenuConsultas extends javax.swing.JDialog {
     }
     
     public Date obtenerFechaIni () {
-       return   campoFechaIni.lastSelectedDate();
+       return   campoFechaIni.getDate();
     }
             
     public Date obtenerFechaTer () {
-       return  campoFechaTer.lastSelectedDate();
+       return  campoFechaTer.getDate();
     }
     
     public void iniciar_ListaConsultas () {
          arrayConsultas = new ArrayList<>( Arrays.asList("Qué Personas trabajan esta semana en la Iglesia." , 
-                 "Qué Personas han trabajado en que Tipo de actividad" , "Cuántas Reuniones se han realizado cada mes por tipo, el año X" ,           
-                 "Qué Pastores predicaron en X Reunión desde la fecha  Y - Z" , "Qué Sectores se utilizan más desde la fecha Y - Z" , 
-                 "Cuántas Reuniones se hacen de cada Tipo desde la fecha Y - Z" , "Cuántas personas especializadas hay de cada Tipo en total" ,
-                 "Qué Servidores pertenecen a esta iglesia" , "Obtener datos de todos los pastores" , "Qué servidor nunca ha participado en un actividad"
+                 "Qué Personas han trabajado en que Tipo de actividad" , 
+                 "Cuántas Reuniones se han realizado cada mes por tipo, el año X" ,           
+                 "Qué Pastores predicaron en X Reunión desde la fecha  Y - Z" , 
+                 "Qué Sectores se utilizan más desde la fecha Y - Z" , 
+                 "Cuántas Reuniones se hacen de cada Tipo desde la fecha Y - Z" , 
+                 "Cuántas personas especializadas hay de cada Tipo en total" ,
+                 "Obtener datos de todos los pastores" , 
+                 "Qué servidor nunca ha participado en un actividad"
                  ));
          listaConsultas.setListData(arrayConsultas.toArray()); 
     }
+    
+    public void comprobarPregunta (int opcion) {
+      
+          if (opcion == 3) {
+              if (obtenerAño() >= 0) { 
+                  obtener_Respuesta(opcion);
+              }
+          }
+          else if (opcion >= 4 && opcion <= 6) {
+                if (obtenerAño() >= 0 && obtenerFechaIni() != null && obtenerFechaTer() != null) {
+                    obtener_Respuesta(opcion);
+                }
+          }
+          else  {
+                obtener_Respuesta(opcion);
+          }
+    } 
  
     public void iniciar_Componentes() {
         listaConsultas.setVisibleRowCount(7);
@@ -243,22 +272,35 @@ public class MenuConsultas extends javax.swing.JDialog {
     public void  obtener_Respuesta(int opcion) {
         switch (opcion) 
         {
-            case 1 : operacionesBD.consulta1();
-            case 2 : operacionesBD
-            case 3 : operacionesBD
-            case 4 : operacionesBD
-            case 5 : operacionesBD
-            case 6 : operacionesBD
-            case 7 : operacionesBD
-            case 8 : operacionesBD
-            case 9 : operacionesBD
-            case 10 : operacionesBD
+            case 1 : { consulta1 = operacionesBD.consultasEsp.consulta1( obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(1);   break; }
+            case 2 : { consulta2 = operacionesBD.consultasEsp.consulta2();  mostrarTabla(2); break; } 
+            case 3 : {}
+            case 4 : {}
+            case 5 : { consulta5 = operacionesBD.consultasEsp.consulta5(obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(5); break; } 
+            case 6 : { consulta6 = operacionesBD.consultasEsp.consulta6(obtenerFechaIni() , obtenerFechaTer()); mostrarTabla(6); break; }
+            case 7 : { consulta7 = operacionesBD.consultasEsp.consulta7(); mostrarTabla(7); break; }
+            case 8 : { consulta8 = operacionesBD.consultasEsp.consulta9(iglesia.getId()); mostrarTabla(8); break; }
+            case 9 : { consulta9 = operacionesBD.consultasEsp.consulta10(iglesia.getId()); mostrarTabla(9);  break; } 
         }  
-        tablaResultado.setVisible(true);
+     
     }
 
-    //Atributos
+    //SEGUN LA OPCION SE MOSTRARA EL CONTENIDO DE ESTA TABla.
+    public void mostrarTabla (int opcion ) { 
+       tablaResultado.setVisible(true);
+    }
     
+    //Atributos
+    private ArrayList<Servidor> consulta1;
+    private ArrayList<Con2> consulta2;
+    private ArrayList<Junta> consulta3; //FALTA
+    private ArrayList<Pastor> consulta4; // FALTA
+    private ArrayList<Sector> consulta5;
+    //////////////////////////////////////////////
+    private ArrayList<Con6> consulta6;
+    private ArrayList<Con7> consulta7;
+    private ArrayList<Pastor> consulta8;
+    private ArrayList<Servidor> consulta9;
     private ArrayList<String> arrayConsultas;
     private Operaciones operacionesBD;
     private Iglesia iglesia;

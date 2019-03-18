@@ -9,10 +9,11 @@ import modelo.Pastor;
 public class MenuPastores extends javax.swing.JDialog {
 
 
-    public MenuPastores(java.awt.Frame parent, boolean modal , Operaciones ope ) {
+    public MenuPastores(java.awt.Frame parent, boolean modal , Operaciones ope , Iglesia igle ) {
         super(parent, modal);
         initComponents();
         setOperacionesBD(ope);
+        setIglesia(igle);
         iniciar_ArrayPastores();
         actualizar_ListaPastores();       
     }
@@ -396,8 +397,16 @@ public class MenuPastores extends javax.swing.JDialog {
        return operacionesBD;
    } 
    
+   public void setIglesia(Iglesia igle) {
+       iglesia = igle;
+   }
+   
+   public Iglesia getIglesia () {
+      return iglesia;
+   }
+    
    public void iniciar_ArrayPastores() {
-      arrayPastores = operacionesBD.obtenerPastores();    
+      arrayPastores = operacionesBD.consultar.obtenerPastores(Integer.toString(iglesia.getId()));    
    }
   
    public void  actualizar_ArrayPastores(Pastor pastor) {
@@ -439,6 +448,7 @@ public class MenuPastores extends javax.swing.JDialog {
     private ArrayList<String> arrayTelefonos;
     private ArrayList<Pastor> arrayPastores;
     private Operaciones operacionesBD;
+    private Iglesia iglesia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarMail;
     private javax.swing.JButton botonAgregarPastor;

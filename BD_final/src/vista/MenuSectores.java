@@ -134,7 +134,7 @@ public class MenuSectores extends javax.swing.JDialog {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
        //LLAMAR A LOS METODO COMRPOBAR.
-        Sectores nuevoSector = new Sectores ( iglesia.getId() , getCampoTipo() , Integer.parseInt(getCampoCapacidad())  );
+        Sector nuevoSector = new Sector ( iglesia.getId() , getCampoTipo() , Integer.parseInt(getCampoCapacidad())  );
         actualizar_ArraySectores(nuevoSector);
         actualizar_ListaSectores();
         actualizarBD(nuevoSector);
@@ -145,7 +145,7 @@ public class MenuSectores extends javax.swing.JDialog {
     
       public boolean comprobar_CampoTipo () {
           //definir
-          return 0;
+          return true;
       }
       
       public String getCampoTipo () {
@@ -154,7 +154,7 @@ public class MenuSectores extends javax.swing.JDialog {
 
       public boolean comprobar_CampoCapacidad() {
         // debe ser un entero.
-         return 0;
+         return true;
      }
       
       public String getCampoCapacidad () {
@@ -170,10 +170,10 @@ public class MenuSectores extends javax.swing.JDialog {
      }
    
      public void iniciar_ArraySectores() {
-       arraySectores = operacionesBD.obtenerSectores( iglesia.getId());
+       arraySectores = operacionesBD.consultar.obtenerSectores( iglesia.getId());
      } 
 
-     public void actualizar_ArraySectores (Sectores sector) {
+     public void actualizar_ArraySectores (Sector sector) {
         arraySectores.add(sector);
      }
     
@@ -193,9 +193,8 @@ public class MenuSectores extends javax.swing.JDialog {
          return iglesia;
      }
      
-    public void actualizarBD (Sectores nuevoSector) 
-    {
-       //necesito una pregunta para añadir a la BD uns sector
+    public void actualizarBD (Sector nuevoSector)  {
+        operacionesBD.insertar.agregarSector(nuevoSector, iglesia.getId());
     }
 
    
