@@ -401,7 +401,13 @@ public class MenuConsultas extends javax.swing.JDialog {
         }
         else if (opcion == 5) 
         {
-             
+             matriz = new String[consulta5.size()][2];
+             for (int i=0 ; i< consulta5.size() ; i++) {
+               matriz[i][0] = Integer.toString (consulta5.get(i).getContador());
+               matriz[i][1] = consulta5.get(i).getNombre();
+   
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Contador " , " Nombre "}));
         }
         else if (opcion == 6) 
         {
