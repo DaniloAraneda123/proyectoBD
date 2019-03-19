@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Iglesia;
 import javax.swing.ListSelectionModel;
-
+import java.util.regex.Matcher;
 
 public class VistaInicio extends javax.swing.JFrame 
 {
@@ -383,24 +383,19 @@ public class VistaInicio extends javax.swing.JFrame
                               //PESTAÑA AGREGAR/ELIMINAR.//
     
      public boolean comprobarRegion() {
-        //definirlo
-        return true;
-        
+        return getRegion().matches("[^0-9]*");
      } 
      
      public boolean comprobarComuna() {
-        //definirlo
-        return true;
+        return getComuna().matches("[^0-9]*");
      }
      
      public boolean comprobarNumero () {
-        //tiene que ser un numero entero positivo
-         return true;
+         return getNumero().matches("[0-9]+");
      }
      
      public boolean comprobarCalle () {
-        //definirlo
-        return true;
+        return getCalle().matches("[^0-9]*");
      } 
      //GETTEXT MANDA EXCEPCION OJO XD.
      public String getRegion () {

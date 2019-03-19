@@ -72,11 +72,6 @@ public class MenuPastores extends javax.swing.JDialog {
         botonEliminarMail.setFocusPainted(false);
         botonEliminarMail.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
 
-        listaPastores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listaPastores);
 
         etiquetaJerarquia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -117,18 +112,8 @@ public class MenuPastores extends javax.swing.JDialog {
             }
         });
 
-        listaTelefonos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaTelefonos);
 
-        listaMails.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(listaMails);
 
         botonAgregarTele.setBackground(new java.awt.Color(52, 152, 219));
@@ -367,16 +352,14 @@ public class MenuPastores extends javax.swing.JDialog {
     
     //Metodos
    public boolean comprobarCampoJerarquia () {
-     //DEFINIR
-       return true;
+       return getCampoJerarquia().matches("[1-9]+");
    } 
    public String getCampoJerarquia () {
        return campoJerarquia.getText();
    }
    
-   public boolean comprobarCampoRut() {
-       //DEFINIR
-       return true;
+     public boolean comprobarCampoRut() {
+       return ValidarDatos.validarRut(getCampoRut());
    }
 
    public String getCampoRut () {
@@ -384,8 +367,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoNombre() {
-       //DEFINIR
-       return true;
+       return getCampoNombre().matches("[^0-9]*");
    }
    
    public String getCampoNombre () {
@@ -393,8 +375,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
  
    public boolean comprobarCampoApellido () {
-       //DEFINIR
-       return true;
+       return getCampoApellido().matches("[^0-9]*");
    }
    
    public String getCampoApellido() {
@@ -402,8 +383,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoTelefono() {
-      //DEFINIR
-       return true;
+       return getCampoTelefono().matches("^[0-9]{8}$");
    }
 
    public String getCampoTelefono () {
@@ -411,17 +391,15 @@ public class MenuPastores extends javax.swing.JDialog {
    }
    
    public boolean comprobarCampoMail() {
-      //DEFINIR
-       return true;
+       return getCampoMail().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}");
    }
    
    public String getCampoMail() {
       return campoMail.getText();
    }
 
-   public boolean comprobarCampoFechaNac () {
-       //DEFINIR     
-       return true;
+   public boolean comprobarCampoFechaNac () {     
+       return getCampoFechaNac().matches("\\d{4}-\\d{2}-\\d{2}");
    }
    
    public String getCampoFechaNac() {
@@ -429,27 +407,20 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoEspecialidad() {
-      //DEFINIR
-       return true;
+       return getCampoEspecialidad.matches("[^0-9]*");
    }
 
-
+   public String getCampoEspecialidad() {
+       return campoEspecialidad.getText();
+   }
+   
    public boolean comprobarCampoGenero() {
-       //DEFINIR
-       return true;
+       return getCampoGenero.matches("[01]{1}");
    }
 
    public String getCampoGenero () {
        return campoGenero.getText();
    } 
-
-   public ArrayList<String> getlListaTelefonos()  {
-      return arrayTelefonos;
-   }  
-
-   public ArrayList<String> getListaMails() {
-       return arrayMails;
-   }
  
     ///////////////////////////////////////
    
@@ -470,7 +441,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
     
    public void iniciar_ArrayPastores() {
-      arrayPastores = operacionesBD.consultar.obtenerPastores(Integer.toString(iglesia.getId()));    
+      arrayPastores = operacionesBD.consultar.obtenerPastores(iglesia.getId());    
    }
   
    public void  actualizar_ArrayPastores(Pastor pastor) {

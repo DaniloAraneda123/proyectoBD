@@ -124,10 +124,11 @@ public class MenuSectores extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(etiquetaTitulo)
                 .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaTipo)
-                    .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonAgregar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(etiquetaTipo)
+                        .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -173,8 +174,7 @@ public class MenuSectores extends javax.swing.JDialog {
 
     
       public boolean comprobar_CampoTipo () {
-          //definir
-          return true;
+          return getCampoTipo().matches("[^0-9]*");
       }
       
       public String getCampoTipo () {
@@ -182,8 +182,7 @@ public class MenuSectores extends javax.swing.JDialog {
       }
 
       public boolean comprobar_CampoCapacidad() {
-        // debe ser un entero.
-         return true;
+         return getCampoCapacidad.matches("[1-9]+");
      }
       
       public String getCampoCapacidad () {

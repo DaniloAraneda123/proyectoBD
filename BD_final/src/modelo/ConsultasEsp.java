@@ -39,10 +39,10 @@ public class ConsultasEsp {
         try{
 
             PreparedStatement pstmt=cn.prepareStatement("SELECT DISTINCT rut,nombre,apellido FROM persona , participa " +
-                    " WHERE persona.rut = participa.rutpersona and\n" +
-                    "                 participa.fecha >=  ? \n" +
-                    "                 participa.fecha <= ? \n" +
-                    "                 iglesia.id = ? ;");
+                    "WHERE rut = rut_servidor " +
+                    "AND fecha >=  ? " +
+                    "AND fecha <= ? " +
+                    "AND id_iglesia = ? ;");
 
             pstmt.setDate(1,new java.sql.Date(desde.getTime()));
             pstmt.setDate(2,new java.sql.Date(hasta.getTime()) );
@@ -59,7 +59,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error en la Consulta");
+            JOptionPane.showMessageDialog(null, ex+"\n Error en la consulta1");
         }
         return lista;
 
@@ -74,10 +74,10 @@ public class ConsultasEsp {
         Con2 e;
         try{
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT DISTINCT  rut, nombre, apellido, nombreActividad"+
-                "FROM persona , participa" +
-                "WHERE persona.rut = participa.rutPersona" +
-                "ORDER BY nombre_actividad ;");
+                "SELECT DISTINCT  rut, nombre, apellido, tipo_tarea "+
+                "FROM servidor , participa " +
+                "WHERE rut = rut_servidor " +
+                "ORDER BY tipo_tarea ;");
             rs=pstmt.executeQuery();
             while(rs.next())
             {
@@ -86,7 +86,7 @@ public class ConsultasEsp {
             }
         }
         catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta2");
         }
         return lista;
     }
@@ -102,9 +102,9 @@ public class ConsultasEsp {
         ArrayList<Con3> lista=new ArrayList<>();
         try{
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT nombre_reunion, count (*) AS contador, EXTRACT(month FROM fecha)AS mes" +
-                "FROM junta  " +
-                "WHERE extract ( year FROM fecha ) = ?" +
+                "SELECT nombre_reunion, count (*) AS contador, EXTRACT(month FROM fecha)AS mes " +
+                "FROM junta " +
+                "WHERE EXTRACT(year FROM fecha)=?" +
                 "GROUP BY nombre_reunion, Mes;");
 
             pstmt.setInt(1,anio);
@@ -117,7 +117,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta3");
         }
         return lista;
     }
@@ -131,12 +131,12 @@ public class ConsultasEsp {
         Pastor p;
         try{
 
-            PreparedStatement pstmt=cn.prepareStatement("SELECT rut, nombre, apellido" +
-                "FROM pastor, pastor_predica, junta" +
-                "WHERE pastor.rut = pastor_predica.rut_pastor AND" +
-                "pastor_predica.fecha_junta = junta.fecha AND" +
-                "pastor_predica.hora_junta = junta.hora AND" +
-                "junta.nombre_reunion = ? and" +
+            PreparedStatement pstmt=cn.prepareStatement("SELECT rut, nombre, apellido " +
+                "FROM pastor, pastor_predica, junta " +
+                "WHERE pastor.rut = pastor_predica.rut_pastor AND " +
+                "pastor_predica.fecha_junta = junta.fecha AND " +
+                "pastor_predica.hora_junta = junta.hora AND " +
+                "junta.nombre_reunion = ? and " +
                 "junta.fecha=> ?  AND " +
                 "junta.fecha <= ? ;");
 
@@ -155,7 +155,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta4");
             return null;
         }
         return lista;
@@ -170,12 +170,13 @@ public class ConsultasEsp {
         ArrayList<Con5> lista=new ArrayList<>();
         try{
 
-            PreparedStatement pstmt=cn.prepareStatement("SELECT  nombre, COUNT(*) AS contador" +
-                "FROM sector, participa" +
-                "WHERE participa.id_sector = sector.id_sector AND" +
-                "participa.fecha>= ? AND" +
-                "participa.fecha<= ? AND" + 
-                "participa.id_iglesia=?;");
+            PreparedStatement pstmt=cn.prepareStatement("SELECT  nombre, COUNT(*) AS contador " +
+                "FROM sector, participa " +
+                "WHERE participa.id_sector = sector.id_sector AND " +
+                "participa.fecha>= ? AND " +
+                "participa.fecha<= ? AND " + 
+                "participa.id_iglesia=? "+
+                "GROUP BY nombre");
             pstmt.setDate(1,new java.sql.Date(fecha1.getTime()));
             pstmt.setDate(2,new java.sql.Date(fecha2.getTime()) );
             pstmt.setInt(3,idIglesia);
@@ -188,7 +189,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta5");
         }
         return lista;
     }
@@ -204,8 +205,8 @@ public class ConsultasEsp {
         try{
 
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT nombre_reunion, COUNT(*) AS contador" +
-                "FROM junta" +
+                "SELECT nombre_reunion, COUNT(*) AS contador " +
+                "FROM junta " +
                 "WHERE junta.fecha >= ? AND junta.fecha <= ? "+
                 "GROUP BY nombre_reunion ;");
 
@@ -220,7 +221,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+" Error");
+            JOptionPane.showMessageDialog(null, ex+" Error consulta6");
             return null;
         }
         return lista;
@@ -235,19 +236,19 @@ public class ConsultasEsp {
         Con7 s;
         try{
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT especialidad, COUNT(*) AS contador" +
-                "FROM persona " +
-                "GROUP BY especialidad;");
+                "SELECT especialidad, COUNT(*) AS contador " +
+                "FROM servidor " +
+                "GROUP BY especialidad ;");
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                s=new Con7(rs.getString("especilidad"),rs.getInt("contador"));
+                s=new Con7(rs.getString("especialidad"),rs.getInt("contador"));
                 lista.add(s);
             }
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta7");
             return null;
         }
         return lista;
@@ -263,7 +264,7 @@ public class ConsultasEsp {
         try{
             PreparedStatement pstmt=cn.prepareStatement(
                 "SELECT rut,nombre,apellido "+ 
-                "FROM pastor, trabaja_para"+ 
+                "FROM pastor, trabaja_para "+ 
                 "WHERE rut_pastor = rut "+ 
                 "AND id_iglesia= ? ;");
             pstmt.setInt(1,id_iglesia );
@@ -276,7 +277,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta9");
             return null;
         }
         return lista;
@@ -291,8 +292,8 @@ public class ConsultasEsp {
         Servidor servidor;
         try{
             PreparedStatement pstmt=cn.prepareStatement(
-                "SELECT rut, nombre, apellido" +
-                "FROM servidor" +
+                "SELECT rut, nombre, apellido " +
+                "FROM servidor " +
                 "WHERE rut NOT IN ( "
                         + "SELECT DISTINCT rut_servidor FROM participa "
                         + "WHERE id_iglesia=?);");
@@ -306,7 +307,7 @@ public class ConsultasEsp {
         }
         catch(Exception ex)
         {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");
+            JOptionPane.showMessageDialog(null, ex+"\n Error consulta10");
             return null;
         }
         return lista;

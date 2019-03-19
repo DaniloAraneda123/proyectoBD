@@ -17,9 +17,15 @@ public class Servidor extends Persona
      this.telefonos=telefonos;
     }
 
-    public Servidor(String string, String string0, String string1, int aInt, Date fecha, String string2, int aInt0) 
+    public Servidor(String rut, String nombre, String apellido, int genero, Date fechaNacimiento, String especilidad, int idIglesia) 
     {
-        
+        this.rut = rut;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
+        this.iglesia = idIglesia;
+        this.especialidad = especialidad;
     }
 
     public Servidor() {} ///// Constructor Vacio
@@ -49,7 +55,7 @@ public class Servidor extends Persona
 
     @Override
     public String toString() {
-        return "rut=" + rut + ", nombre=" + nombre + ", apellido=" + apellido;
+        return "rut:" + this.rut + ";" +this.nombre +" "+ this.apellido;
     }
     
     public void setTelefonos(ArrayList<String> telefonos) {

@@ -58,12 +58,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="campoFecha" min="-2" pref="72" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="campoHoraIni" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="campoHoraIni" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace min="62" pref="84" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="etiquetaHoraTer" min="-2" max="-2" attributes="0"/>
                               <Component id="etiquetaTipoReu" min="-2" max="-2" attributes="0"/>
@@ -116,10 +113,12 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="etiquetaHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="botonAgregar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="etiquetaHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campoHoraTer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
