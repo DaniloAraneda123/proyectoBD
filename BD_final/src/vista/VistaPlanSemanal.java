@@ -19,6 +19,9 @@ public class VistaPlanSemanal extends javax.swing.JFrame {
         actualizar_TablaReuniones();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        pack();
     }
     
       public void setIglesias (Iglesia unaIglesia) {
