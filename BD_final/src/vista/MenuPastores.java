@@ -72,11 +72,6 @@ public class MenuPastores extends javax.swing.JDialog {
         botonEliminarMail.setFocusPainted(false);
         botonEliminarMail.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
 
-        listaPastores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listaPastores);
 
         etiquetaJerarquia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -117,18 +112,8 @@ public class MenuPastores extends javax.swing.JDialog {
             }
         });
 
-        listaTelefonos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaTelefonos);
 
-        listaMails.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(listaMails);
 
         botonAgregarTele.setBackground(new java.awt.Color(52, 152, 219));
@@ -470,7 +455,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
     
    public void iniciar_ArrayPastores() {
-      arrayPastores = operacionesBD.consultar.obtenerPastores(Integer.toString(iglesia.getId()));    
+      arrayPastores = operacionesBD.consultar.obtenerPastores(iglesia.getId());    
    }
   
    public void  actualizar_ArrayPastores(Pastor pastor) {

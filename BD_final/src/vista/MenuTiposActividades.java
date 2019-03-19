@@ -123,7 +123,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonAgregar)
                             .addComponent(botonEliminar)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -220,7 +220,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
    
       public void actualizarBD (TipoActividad tipoAct) {
         //NECESITO UN METODO PARA AGREGAR A LA BD EL TIPO ACTIVIDAD
-         operacionesBD.insertar.agregarTipoActividad(tipoAct);
+         operacionesBD.insertar.insertarTipoActividad(tipoAct);
       }
   
   

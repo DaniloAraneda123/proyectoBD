@@ -29,6 +29,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
         actualizar_CampoSectores();
         actualizar_CampoPastor();
         actualizar_CampoServidor();
+        pack();
     }
 
 
@@ -62,8 +63,6 @@ public class PlanificaReunion extends javax.swing.JDialog {
         botonEliminarPas = new javax.swing.JButton();
         etiquetaHora = new javax.swing.JLabel();
         etiquetaHoraActual = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -81,8 +80,6 @@ public class PlanificaReunion extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(52, 152, 219));
 
-        campoSectorSer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         botonElimiinarSer.setBackground(new java.awt.Color(52, 152, 219));
         botonElimiinarSer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar.png"))); // NOI18N
         botonElimiinarSer.setBorder(null);
@@ -96,26 +93,15 @@ public class PlanificaReunion extends javax.swing.JDialog {
         etiquetaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaDescripcion.setText("Descripción");
 
-        listaServidores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaServidores);
 
+        etiquetaServidores.setBackground(new java.awt.Color(255, 255, 255));
         etiquetaServidores.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        etiquetaServidores.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaServidores.setText("Servidores");
 
         etiquetaPastores.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        etiquetaPastores.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaPastores.setText("Pastores");
 
-        listaPastores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listaPastores);
 
         listaActividades.setColumns(20);
@@ -183,12 +169,6 @@ public class PlanificaReunion extends javax.swing.JDialog {
         etiquetaHoraActual.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaHoraActual.setText(" (hora)");
 
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,173 +176,114 @@ public class PlanificaReunion extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaHora))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etiquetaServidores, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(27, 27, 27)
-                                        .addComponent(botonAgregarSer))
+                                        .addComponent(botonAgregarSer)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botonElimiinarSer))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(etiquetaAccion)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(etiquetaServidor)
+                                            .addComponent(etiquetaAccion)
+                                            .addComponent(etiquetaSector))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(campoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(etiquetaServidor)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(etiquetaSector)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(botonElimiinarSer))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(70, 70, 70)
-                            .addComponent(etiquetaDescripcion)
-                            .addGap(261, 261, 261)
-                            .addComponent(etiquetaServidores))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(336, 336, 336))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonAgregarPas)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminarPas)
-                                .addGap(25, 25, 25)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(etiquetaAccionPas)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(etiquetaPastor)
-                                .addGap(28, 28, 28)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoAccionServidor)
+                                            .addComponent(campoServidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(campoSectorSer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
+                                .addGap(42, 42, 42)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etiquetaPastores)
-                                    .addComponent(campoPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(56, 56, 56))))
+                                    .addComponent(etiquetaPastores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(botonAgregarPas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botonEliminarPas))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(etiquetaPastor)
+                                            .addComponent(etiquetaAccionPas))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoAccionPastor)
+                                            .addComponent(campoPastor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(etiquetaDescripcion)
+                                .addGap(52, 52, 52)
+                                .addComponent(etiquetaHora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaServidores)
+                    .addComponent(etiquetaPastores))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaServidor)
+                    .addComponent(campoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaPastor)
+                    .addComponent(campoPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaAccion)
+                    .addComponent(campoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaAccionPas)
+                    .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaSector)
+                    .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(botonAgregarPas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jSeparator2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiquetaServidor)
-                            .addComponent(campoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiquetaPastor)
-                            .addComponent(campoPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(etiquetaAccion)
-                                            .addComponent(campoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(etiquetaAccionPas)
-                                            .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(etiquetaSector)
-                                            .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(21, 21, 21)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(botonElimiinarSer)
-                                            .addComponent(botonAgregarSer)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(86, 86, 86)
-                                        .addComponent(botonEliminarPas)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(etiquetaHora)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiquetaServidores)
-                            .addComponent(etiquetaPastores)
-                            .addComponent(etiquetaDescripcion))
-                        .addGap(21, 21, 21)
-                        .addComponent(jSeparator1)))
-                .addContainerGap())
+                    .addComponent(botonElimiinarSer)
+                    .addComponent(botonAgregarSer)
+                    .addComponent(botonAgregarPas)
+                    .addComponent(botonEliminarPas))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaDescripcion)
+                    .addComponent(etiquetaHora)
+                    .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
    
-    private void botonAgregarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarSerActionPerformed
-        Servidor servidor = obtenerCampoServidor();
-        Sector sector = obtenerCampoSectorSer();
-        String accion = obtenerCampoAccionServidor();
-        Participa servidorParticipa = new Participa(servidor.getRut() , reunion.getHoraInicio(), reunion.getFecha() , iglesia.getId() , servidor.getEspecialidad(), sector.getId() , accion);
-        actualizar_ArrayListaServidores(servidor);
-        actualizarBD_PersonaParticipa(servidorParticipa);
-        actualizar_ListaServidor();  
-    }//GEN-LAST:event_botonAgregarSerActionPerformed
-
-    private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
-        Pastor pastor = obtenerCampoPastor();
-        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor() , iglesia.getId());
-        Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
-        actualizar_ArrayListaPastores(pastor);
-        actualizarBD_PastorPredica(pastorPredica);
-        actualizarBD_TrabajaPara(trabajaPara);
-        actualizar_ListaPastor();
-    }//GEN-LAST:event_botonAgregarPasActionPerformed
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         reunion.setDescripcion(obtenerListaActividades());
         operacionesBD.actualizar.actualizarDescripcion(reunion.getDescripcion(), reunion);
@@ -377,6 +298,26 @@ public class PlanificaReunion extends javax.swing.JDialog {
        actualizar_CampoServidor();
        actualizar_CampoSectores();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
+        Pastor pastor = obtenerCampoPastor();
+        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor() , iglesia.getId());
+        Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
+        actualizar_ArrayListaPastores(pastor);
+        actualizarBD_PastorPredica(pastorPredica);
+        actualizarBD_TrabajaPara(trabajaPara);
+        actualizar_ListaPastor();
+    }//GEN-LAST:event_botonAgregarPasActionPerformed
+
+    private void botonAgregarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarSerActionPerformed
+        Servidor servidor = obtenerCampoServidor();
+        Sector sector = obtenerCampoSectorSer();
+        String accion = obtenerCampoAccionServidor();
+        Participa servidorParticipa = new Participa(servidor.getRut() , reunion.getHoraInicio(), reunion.getFecha() , iglesia.getId() , servidor.getEspecialidad(), sector.getId() , accion);
+        actualizar_ArrayListaServidores(servidor);
+        actualizarBD_PersonaParticipa(servidorParticipa);
+        actualizar_ListaServidor();
+    }//GEN-LAST:event_botonAgregarSerActionPerformed
 
   ///////////////////////////////////////////////////////////////////  
    public String obtenerCampoAccionServidor () {
@@ -413,12 +354,11 @@ public class PlanificaReunion extends javax.swing.JDialog {
    }
    
    public void iniciar_ArrayServidores () {
-       arrayServidores = operacionesBD.consultar.servidoresIglesia(Integer.toString(iglesia.getId()));
-     //arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
+       arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
    }
    
    public void iniciar_ArrayPastores () {
-     arrayPastores = operacionesBD.consultar.obtenerPastores(Integer.toString(iglesia.getId()));
+     arrayPastores = operacionesBD.consultar.obtenerPastores(iglesia.getId());
    } 
 
    public void iniciar_ArraySectores () {
@@ -539,8 +479,6 @@ public class PlanificaReunion extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea listaActividades;
     private javax.swing.JList listaPastores;
     private javax.swing.JList listaServidores;

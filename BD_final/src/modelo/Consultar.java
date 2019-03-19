@@ -100,7 +100,7 @@ public class Consultar {
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT fecha ,hora , descripcion, nombre_reunion FROM Junta "
-                    + "WHERE fecha >= ? and fecha <= ? and Id_iglesia = ?"); 
+                    + "WHERE fecha >= ? and fecha <= ? and id_iglesia = ?"); 
             java.sql.Date date1 = new java.sql.Date(desde.getTime());
             java.sql.Date date2 = new java.sql.Date(hasta.getTime());
             pstmt.setDate(1, date1);
@@ -118,7 +118,7 @@ public class Consultar {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+            JOptionPane.showMessageDialog(null,"Rip Consulta juntasSemanales"+e);
         }
         
         return resultado;
@@ -126,25 +126,24 @@ public class Consultar {
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public ArrayList<Servidor> servidoresIglesia(String idIglesia)
+    public ArrayList<Servidor> servidoresIglesia(int idIglesia)
     {
         ArrayList<Servidor> resultado=new ArrayList<>();
         Servidor p;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia FROM persona WHERE iglesia=?");
-            pstmt.setString(1, idIglesia);
+            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia_id FROM servidor WHERE iglesia_id=?");
+            pstmt.setInt(1, idIglesia);
             rs=pstmt.executeQuery();
-            pstmt.close();
             while(rs.next())
             {
-                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
-                resultado.add(p);
+                resultado.add(new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),
+                        rs.getDate("fechanacimiento"),rs.getString("especialidad"),rs.getInt("iglesia_id")));
             }
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+            JOptionPane.showMessageDialog(null,"Rip Consulta servidoresIglesia"+e);
         }
         
         return resultado;
@@ -152,25 +151,24 @@ public class Consultar {
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public ArrayList<Pastor> obtenerPastores(String idIglesia)
+    public ArrayList<Pastor> obtenerPastores(int idIglesia)
     {
         ArrayList<Pastor> resultado=new ArrayList<>();
-        Pastor p;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,fechaNacimiento FROM pastor;");
-            pstmt.setString(1, idIglesia);
+            PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,fechanacimiento,jerarquia FROM pastor,trabaja_para "
+                    + "WHERE rut=rut_pastor AND id_iglesia=? ;");
+            pstmt.setInt(1, idIglesia);
             rs=pstmt.executeQuery();
-            pstmt.close();
             while(rs.next())
             {
-                p=new Pastor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getInt("jeraquia"));
-                resultado.add(p);
+                resultado.add(new Pastor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),
+                        rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getInt("jerarquia")));
             }
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Rip Consulta"+e);
+            JOptionPane.showMessageDialog(null,"Rip Consulta obtenerPastores"+e);
         }
         
         return resultado;
@@ -209,7 +207,7 @@ public class Consultar {
         char c;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("SELECT Nombre ,EdadMin ,EdadMax,Genero FROM Tipo_Reunion"); 
+            PreparedStatement pstmt = cn.prepareStatement("SELECT nombre ,edad_min ,edad_max,Genero FROM tipo_reunion"); 
             rs=pstmt.executeQuery();
             while(rs.next())
             {
@@ -221,7 +219,7 @@ public class Consultar {
                 {
                     c='F';
                 }
-                p=new TipoReunion(c,rs.getInt("EdadMax"),rs.getInt("EdadMin"),rs.getString("Nombre"));
+                p=new TipoReunion(c,rs.getInt("edad_max"),rs.getInt("edad_min"),rs.getString("nombre"));
                 resultado.add(p);
             }
         }
