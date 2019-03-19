@@ -166,10 +166,11 @@ public class MenuReuniones extends javax.swing.JDialog {
                         .addGap(20, 20, 20)
                         .addComponent(etiquetaTitulo)
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiquetaHoraTer)
-                            .addComponent(campoHoraTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAgregar))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAgregar)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(etiquetaHoraTer)
+                                .addComponent(campoHoraTer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botonEliminar)
@@ -218,8 +219,7 @@ public class MenuReuniones extends javax.swing.JDialog {
 
     //Métodos
       public boolean comprobarFecha() {
-         //DEFINIR
-         return true;
+         return getFecha().matches("\\d{4}-\\d{2}-\\d{2}");
       }
 
       public Date getFecha () {
@@ -228,8 +228,7 @@ public class MenuReuniones extends javax.swing.JDialog {
       
 
       public boolean comprobarHoraIni() {
-          //DEFINIR
-          return true;
+          return getHoraIni().matches("\\d{2}:\\d{2}");
       }
 
       public String getHoraIni() {
@@ -237,8 +236,7 @@ public class MenuReuniones extends javax.swing.JDialog {
       }
        
       public boolean comprobarHoraTer() {
-          //DEFINIR
-          return true;
+          return getHoraTer().matches("\\d{2}:\\d{2}");
       }
 
       public String getHoraTer () {
@@ -246,8 +244,7 @@ public class MenuReuniones extends javax.swing.JDialog {
       }
       
       public boolean comprobarTipoReu() {
-         //DEFINIR
-         return true;   
+         return getTipoReu().matches("[^0-9]+");   
       }
 
       public String getTipoReu() {
