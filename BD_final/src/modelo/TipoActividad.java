@@ -13,6 +13,12 @@ public class TipoActividad {
         this.tipo = tipo;
         this.especialidad = especialidad;
     }
+    
+    public TipoActividad (String tipo , String especialidad) {
+        this.tipo = tipo;
+        this.especialidad = new ArrayList<String>();
+        this.especialidad.add(especialidad);
+    }
    
     public String getTipo() {
         return tipo;
