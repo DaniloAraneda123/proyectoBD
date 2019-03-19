@@ -220,7 +220,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
    
       public void actualizarBD (TipoActividad tipoAct) {
         //NECESITO UN METODO PARA AGREGAR A LA BD EL TIPO ACTIVIDAD
-         operacionesBD.insertar.agregarTipoActividad(tipoAct);
+         operacionesBD.insertar.insertarTipoActividad(tipoAct);
       }
   
   
