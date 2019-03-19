@@ -188,7 +188,7 @@ public class Consultar {
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                resultado.add(new Sector(rs.getInt("id_sector"),rs.getString("nombre"),rs.getInt("capacidad")));
+                resultado.add(new Sector(rs.getInt("id_sector"),rs.getString("nombre"),rs.getInt("capacidad"),id));
             }
         }
         catch(Exception ex)

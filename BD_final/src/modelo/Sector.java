@@ -6,11 +6,21 @@ public class Sector {
     private String tipo;
     private int capacidad;
     private int id;
+    private int idIglesia;
     
-    public Sector (int id , String tipo , int capacidad) {
+    public Sector (int id , String tipo , int capacidad,int idIglesia) {
         this.id = id;
         this.tipo = tipo;
         this.capacidad = capacidad;
+        this.idIglesia = idIglesia;
+    }
+
+    public int getIdIglesia() {
+        return idIglesia;
+    }
+
+    public void setIdIglesia(int idIglesia) {
+        this.idIglesia = idIglesia;
     }
     
     public int getId () {

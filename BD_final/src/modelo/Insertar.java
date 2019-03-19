@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,7 +55,7 @@ public class Insertar
         boolean resultado=true;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO persona (rut,nombre,apellido1,genero,especialidad,fechaNacimiento,iglesia) VALUES(?,?,?,?,?,?,?);");   
+            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO servidor (rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia) VALUES(?,?,?,?,?,?,?);");   
             pstmt.setString(1, persona.getRut());
             pstmt.setString(2, persona.getNombre());
             pstmt.setString(3, persona.getApellido());
@@ -97,7 +98,7 @@ public class Insertar
         boolean resultado=true;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO persona (rut,nombre,apellido,genero,fecha_nacimiento,jerarquia) VALUES(?,?,?,?,?,?);");   
+            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO pastor (rut,nombre,apellido,genero,fecha_nacimiento,jerarquia) VALUES(?,?,?,?,?,?);");   
             pstmt.setString(1, pastor.getRut());
             pstmt.setString(2, pastor.getNombre());
             pstmt.setString(3, pastor.getApellido());
@@ -213,29 +214,6 @@ public class Insertar
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public boolean insertarParticipa(Junta jt,int idIglesia)
-    {
-        boolean resultado=true;
-        try{
-            
-            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO junta (fecha,id_iglesia,nombre_reunion,hora,descripcion) VALUES(?,?,?,?,?)");
-            pstmt.setDate(1, new java.sql.Date(jt.getFecha().getTime()));
-            pstmt.setInt(2,idIglesia);
-            pstmt.setString(3, jt.getReunion());
-            pstmt.setString(4, jt.getHoraInicio());
-            pstmt.setString(5, jt.getDescripcion());
-            
-            pstmt.execute();
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex+"\n Error al Conectar");   
-            resultado=false;
-        }
-        return resultado;
-        
-    }
-    
     public boolean insertarTrabajaPara(Trabaja_para tp)
     {
         try{
@@ -286,6 +264,33 @@ public class Insertar
             pstmt.setString(6,pd.getTipoTarea());
             pstmt.setInt(7,pd.getIdSector());
             pstmt.execute();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex+"Error en la ejecucion");   
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public boolean insertarTipoActividad(TipoActividad ta)
+    {
+        String especialidad;
+        try{
+            
+            PreparedStatement pstmt=cn.prepareStatement("INSERT INTO tipo_actividad(nombre_actividad) VALUES(?)");
+            pstmt.setString(1, ta.getTipo());
+            pstmt.execute();
+            pstmt=cn.prepareStatement("INSERT INTO especialidad(tipo_actividad,nombre_especialidad) VALUES(?,?)");
+            pstmt.setString(1, ta.getTipo());
+            Iterator<String> it=ta.getEspecialidad().iterator();
+            while(it.hasNext())
+            {
+                especialidad = it.next();
+                pstmt.setString(2, especialidad);
+                pstmt.execute();
+            }
         }
         catch(Exception ex)
         {

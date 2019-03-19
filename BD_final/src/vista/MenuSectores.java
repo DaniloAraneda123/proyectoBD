@@ -134,7 +134,7 @@ public class MenuSectores extends javax.swing.JDialog {
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
        //LLAMAR A LOS METODO COMRPOBAR.
-        Sector nuevoSector = new Sector ( iglesia.getId() , getCampoTipo() , Integer.parseInt(getCampoCapacidad())  );
+        Sector nuevoSector = new Sector ( iglesia.getId() , getCampoTipo() , Integer.parseInt(getCampoCapacidad()) ,iglesia.getId() );
         actualizar_ArraySectores(nuevoSector);
         actualizar_ListaSectores();
         actualizarBD(nuevoSector);

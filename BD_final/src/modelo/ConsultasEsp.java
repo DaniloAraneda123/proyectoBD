@@ -1,5 +1,6 @@
 package modelo;
 
+import modelo.resultadosEsp.Con5;
 import modelo.resultadosEsp.Con3;
 import modelo.resultadosEsp.Con7;
 import modelo.resultadosEsp.Con2;
@@ -164,15 +165,14 @@ public class ConsultasEsp {
     /** Consulta 5
      * ¿Qué sectores se utilizan más entre un rango de fechas?  
      */
-    public ArrayList<Sector> consulta5(Date fecha1,Date fecha2, int idIglesia)
+    public ArrayList<Con5> consulta5(Date fecha1,Date fecha2, int idIglesia)
     {
-        ArrayList<Sector> lista=new ArrayList<Sector>();
-        Sector s;
+        ArrayList<Con5> lista=new ArrayList<>();
         try{
 
-            PreparedStatement pstmt=cn.prepareStatement("SELECT  tipo, Count(*)" +
+            PreparedStatement pstmt=cn.prepareStatement("SELECT  nombre, COUNT(*) AS contador" +
                 "FROM sector, participa" +
-                "WHERE participa.idsector = sector.idsector AND" +
+                "WHERE participa.id_sector = sector.id_sector AND" +
                 "participa.fecha>= ? AND" +
                 "participa.fecha<= ? AND" + 
                 "participa.id_iglesia=?;");
@@ -182,8 +182,7 @@ public class ConsultasEsp {
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                s=new Sector(rs.getInt("id_sector"),rs.getString("capacidad"),rs.getInt("capacidad"));
-                lista.add(s);
+                lista.add(new Con5(rs.getString("nombre"),rs.getInt("contador")));
             }
             
         }

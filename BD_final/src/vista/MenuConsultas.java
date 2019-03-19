@@ -14,6 +14,7 @@ import modelo.Pastor;
 import modelo.Sector;
 import modelo.Servidor;
 import modelo.TipoReunion;
+import modelo.resultadosEsp.Con5;
 
 
 public class MenuConsultas extends javax.swing.JDialog {
@@ -333,7 +334,7 @@ public class MenuConsultas extends javax.swing.JDialog {
     private ArrayList<Con2> consulta2;
     private ArrayList<Junta> consulta3; //FALTA
     private ArrayList<Pastor> consulta4;
-    private ArrayList<Sector> consulta5;
+    private ArrayList<Con5> consulta5;
     //////////////////////////////////////////////
     private ArrayList<Con6> consulta6;
     private ArrayList<Con7> consulta7;
