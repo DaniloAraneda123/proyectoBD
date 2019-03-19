@@ -7,8 +7,10 @@ import java.util.Arrays;
 import modelo.resultadosEsp.Con7;
 import modelo.resultadosEsp.Con6;
 import modelo.resultadosEsp.Con2;
+import modelo.resultadosEsp.Con3;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 import modelo.Junta;
 import modelo.Pastor;
 import modelo.Sector;
@@ -310,7 +312,7 @@ public class MenuConsultas extends javax.swing.JDialog {
         {
             case 1 : { consulta1 = operacionesBD.consultasEsp.consulta1( obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(1);   break; }
             case 2 : { consulta2 = operacionesBD.consultasEsp.consulta2();  mostrarTabla(2); break; } 
-            case 3 : {}
+            case 3 : { consulta3 = operacionesBD.consultasEsp.consulta3(obtenerAño()); mostrarTabla(3); break;}
             case 4 : { consulta4 = operacionesBD.consultasEsp.consulta4(obtenerFechaIni() , obtenerFechaTer() , obtenerCampoTipoReunion()); mostrarTabla(4); break; }
             case 5 : { consulta5 = operacionesBD.consultasEsp.consulta5(obtenerFechaIni() , obtenerFechaTer() , iglesia.getId());  mostrarTabla(5); break; } 
             case 6 : { consulta6 = operacionesBD.consultasEsp.consulta6(obtenerFechaIni() , obtenerFechaTer()); mostrarTabla(6); break; }
@@ -323,6 +325,94 @@ public class MenuConsultas extends javax.swing.JDialog {
 
     //SEGUN LA OPCION SE MOSTRARA EL CONTENIDO DE ESTA TABla.
     public void mostrarTabla (int opcion ) { 
+        
+        String matriz[][];
+        if (opcion == 1)
+        {
+             matriz = new String[consulta1.size()][3];
+             for (int i=0 ; i< consulta1.size() ; i++) {
+               matriz[i][0] = consulta1.get(i).getRut();
+               matriz[i][1] = consulta1.get(i).getNombre();
+               matriz[i][2] = consulta1.get(i).getApellido();
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Rut " , " Nombre " , " Apellido "}));
+        }
+        else if (opcion == 2) 
+        {
+            matriz = new String[consulta2.size()][4];
+            for(int i=0 ; i < consulta2.size() ; i++) {
+               matriz[i][0] = consulta2.get(i).getRut();
+               matriz[i][1] = consulta2.get(i).getNombre();
+               matriz[i][2] = consulta2.get(i).getApellido();
+               matriz[i][3] = consulta2.get(i).getNombreActividad();        
+            }
+            tablaResultado.setModel( new DefaultTableModel (matriz , new String[] {" Rut " , " Nombre " , " Apellido " , " Nombre Actividad "}));
+        }
+        else if (opcion == 3) 
+        {
+            matriz = new String[consulta3.size()][3];
+            for (int i=0 ; i< consulta3.size() ; i++) {
+               matriz[i][0] = consulta3.get(i).getNombreReunion();
+               matriz[i][1] = Integer.toString (consulta3.get(i).getContador());
+               matriz[i][2] = Integer.toString (consulta3.get(i).getMes());
+            }
+            tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Nombre Reunion " , " Contador " , " Mes "}));
+        }
+        else if (opcion == 4) 
+        {
+             matriz = new String[consulta4.size()][3];
+             for (int i=0 ; i< consulta4.size() ; i++) {
+               matriz[i][0] = consulta4.get(i).getRut();
+               matriz[i][1] = consulta4.get(i).getNombre();
+               matriz[i][2] = consulta4.get(i).getApellido();
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Rut " , " Nombre " , " Apellido "}));
+        }
+        else if (opcion == 5) 
+        {
+             
+        }
+        else if (opcion == 6) 
+        {
+             matriz = new String[consulta6.size()][2];
+             for (int i=0 ; i< consulta6.size() ; i++) {
+               matriz[i][0] = Integer.toString (consulta6.get(i).getContador());
+               matriz[i][1] = consulta6.get(i).getNombreReunion();
+   
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Contador " , " Nombre Reunion "}));
+        }
+        else if (opcion == 7) 
+        {
+             matriz = new String[consulta7.size()][2];
+             for (int i=0 ; i< consulta7.size() ; i++) {
+               matriz[i][0] = Integer.toString (consulta7.get(i).getCantidad());
+               matriz[i][1] = consulta7.get(i).getEspecialidad();
+   
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Cantidad " , " Especialidad "}));
+        }
+        else if (opcion == 8) 
+        {
+             matriz = new String[consulta8.size()][3];
+             for (int i=0 ; i< consulta8.size() ; i++) {
+               matriz[i][0] = consulta8.get(i).getRut();
+               matriz[i][1] = consulta8.get(i).getNombre();
+               matriz[i][2] = consulta8.get(i).getApellido();
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Rut " , " Nombre " , " Apellido "}));
+        }
+        else if (opcion == 9) 
+        {
+             matriz = new String[consulta9.size()][3];
+             for (int i=0 ; i< consulta9.size() ; i++) {
+               matriz[i][0] = consulta9.get(i).getRut();
+               matriz[i][1] = consulta9.get(i).getNombre();
+               matriz[i][2] = consulta9.get(i).getApellido();
+             }
+             tablaResultado.setModel( new DefaultTableModel (matriz , new String [] {" Rut " , " Nombre " , " Apellido "}));
+        }
+  
        tablaResultado.setVisible(true);
     }
     
@@ -331,7 +421,7 @@ public class MenuConsultas extends javax.swing.JDialog {
     //////////////////////////////////////////////
     private ArrayList<Servidor> consulta1;
     private ArrayList<Con2> consulta2;
-    private ArrayList<Junta> consulta3; //FALTA
+    private ArrayList<Con3> consulta3; 
     private ArrayList<Pastor> consulta4;
     private ArrayList<Sector> consulta5;
     //////////////////////////////////////////////

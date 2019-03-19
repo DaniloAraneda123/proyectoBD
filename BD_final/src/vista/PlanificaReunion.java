@@ -270,7 +270,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
         Pastor pastor = obtenerCampoPastor();
-        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor());
+        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor() , iglesia.getId());
         Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
         actualizar_ArrayListaPastores(pastor);
         actualizarBD_PastorPredica(pastorPredica);
@@ -280,7 +280,6 @@ public class PlanificaReunion extends javax.swing.JDialog {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         reunion.setDescripcion(obtenerListaActividades());
-        //operacionesBD.actualizarDescripcion(reunion); //Actualizar la reunion con el campo descripcion.
         operacionesBD.actualizar.actualizarDescripcion(reunion.getDescripcion(), reunion);
         
     }//GEN-LAST:event_formWindowClosed

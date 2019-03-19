@@ -158,8 +158,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
   
       
       public void iniciar_ArrayTiposActividades () {
-            arrayTipoAct  = operacionesBD.obtenerTiposActividades();
-            //ESTE METODO DEVUELVE UN ARRAYLIST
+            arrayTipoAct  = operacionesBD.consultar.tipoActividad();
             actualizar_ListaTiposActividades();
       }     
 
@@ -183,6 +182,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
    
       public void actualizarBD (TipoActividad tipoAct) {
         //NECESITO UN METODO PARA AGREGAR A LA BD EL TIPO ACTIVIDAD
+         operacionesBD.insertar.agregarTipoActividad(tipoAct);
       }
   
   
