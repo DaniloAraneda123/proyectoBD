@@ -2,8 +2,7 @@ package vista;
 
 import modelo.Operaciones;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import modelo.Pastor;
 import modelo.Iglesia; 
 import modelo.Sector;
@@ -11,27 +10,32 @@ import modelo.Servidor;
 import modelo.Junta;
 import modelo.Participa;
 import modelo.PastorPredica;
-import modelo.Trabaja_para;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
+import modelo.TipoActividad;
 
-public class PlanificaReunion extends javax.swing.JDialog {
+public class PlanificaReunion extends javax.swing.JDialog 
+{
 
+    //Atributos
+    private Operaciones operacionesBD ;
+    private Iglesia iglesia;
+    private ArrayList<Pastor> pastoresJunta;
+    private ArrayList<Servidor> servidoresJunta;
+    private ArrayList<Sector> sectores;
+    private ArrayList<Pastor> pastoresIglesia;
+    private ArrayList<Servidor> servidoresIglesia;
+    private Junta reunion;
+    private ArrayList<TipoActividad> actividades;
+    private Pastor ps;
  
     public PlanificaReunion(java.awt.Frame parent, boolean modal ,Operaciones ope , Iglesia iglesia , Junta junta) {
         super(parent, modal);
         initComponents();
-        setOperacionesBD(ope);
-        setIglesia(iglesia);
-        setReunion(junta);
-        iniciar_Componentes(junta);
-        iniciar_ArrayServidores();
-        iniciar_ArraySectores();
-        iniciar_ArrayPastores();
-        actualizar_CampoSectores();
-        actualizar_CampoPastor();
-        actualizar_CampoServidor();
+        this.operacionesBD=ope;
+        this.iglesia=iglesia;
+        this.reunion=junta;
+        
+        consultarDatos();
+        llenarComponentes();
         setLocationRelativeTo(null);
         setResizable(false);
         pack();
@@ -57,6 +61,8 @@ public class PlanificaReunion extends javax.swing.JDialog {
         botonElimiinarSer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaServidores = new javax.swing.JList();
+        jLabel2 = new javax.swing.JLabel();
+        campoActividades = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         etiquetaPastores = new javax.swing.JLabel();
         etiquetaPastor = new javax.swing.JLabel();
@@ -138,6 +144,10 @@ public class PlanificaReunion extends javax.swing.JDialog {
         listaServidores.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(listaServidores);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Actividad:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -147,20 +157,23 @@ public class PlanificaReunion extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(etiquetaServidores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(botonAgregarSer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonElimiinarSer))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetaServidor)
+                        .addComponent(botonElimiinarSer)
+                        .addGap(35, 35, 35))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(etiquetaServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(etiquetaAccion)
-                            .addComponent(etiquetaSector))
+                            .addComponent(etiquetaSector)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoSectorSer, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoServidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(campoAccionServidor))))
+                            .addComponent(campoAccionServidor)
+                            .addComponent(campoActividades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,12 +194,16 @@ public class PlanificaReunion extends javax.swing.JDialog {
                     .addComponent(etiquetaSector)
                     .addComponent(campoSectorSer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonAgregarSer)
-                    .addComponent(botonElimiinarSer))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(campoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonAgregarSer, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonElimiinarSer, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(52, 152, 219));
@@ -261,7 +278,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaAccionPas)
                     .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonAgregarPas, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botonEliminarPas, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -317,15 +334,16 @@ public class PlanificaReunion extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaDescripcion)
-                    .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(etiquetaDescripcion)
+                        .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -375,176 +393,75 @@ public class PlanificaReunion extends javax.swing.JDialog {
 
    
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        reunion.setDescripcion(obtenerListaActividades());
-        operacionesBD.actualizar.actualizarDescripcion(reunion.getDescripcion(), reunion);
-        
+
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-       iniciar_ArrayPastores();
-       iniciar_ArrayServidores();
-       iniciar_ArraySectores();
-       actualizar_CampoPastor();
-       actualizar_CampoServidor();
-       actualizar_CampoSectores();
+
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
-        Pastor pastor = obtenerCampoPastor();
-        PastorPredica pastorPredica = new PastorPredica(reunion.getFecha(), reunion.getHoraInicio(), pastor.getRut(), obtenerCampoAccionPastor() , iglesia.getId());
-        Trabaja_para trabajaPara = new Trabaja_para( iglesia.getId() , pastor.getRut());
-        actualizar_ArrayListaPastores(pastor);
-        actualizarBD_PastorPredica(pastorPredica);
-        actualizarBD_TrabajaPara(trabajaPara);
-        actualizar_ListaPastor();
+        ps=pastoresIglesia.remove(campoPastor.getSelectedIndex());//servidor Escojido
+        
+        pastoresJunta.add(ps);
+        
+        campoPastor.setModel( new DefaultComboBoxModel<>( pastoresIglesia.toArray()) );
+        
+        listaPastores.setListData(pastoresJunta.toArray());
+        
+        operacionesBD.insertar.insertarPastorPredica(new PastorPredica(reunion.getFecha(),reunion.getHoraInicio(),ps.getRut(),campoAccionPastor.getText(),reunion.getIglesia()));
     }//GEN-LAST:event_botonAgregarPasActionPerformed
 
     private void botonAgregarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarSerActionPerformed
-        Servidor servidor = obtenerCampoServidor();
-        Sector sector = obtenerCampoSectorSer();
-        String accion = obtenerCampoAccionServidor();
-        Participa servidorParticipa = new Participa(servidor.getRut() , reunion.getHoraInicio(), reunion.getFecha() , iglesia.getId() , servidor.getEspecialidad(), sector.getId() , accion);
-        actualizar_ArrayListaServidores(servidor);
-        actualizarBD_PersonaParticipa(servidorParticipa);
-        actualizar_ListaServidor();
+        se=servidoresIglesia.remove(campoServidor.getSelectedIndex());//servidor Escojido
+        
+        servidoresJunta.add(se);
+        
+        campoServidor.setModel( new DefaultComboBoxModel<>( servidoresIglesia.toArray()) );
+        
+        listaServidores.setListData(servidoresJunta.toArray());
+        
+        operacionesBD.insertar.insertarParticipa(new Participa(se.getRut(),reunion.getHoraInicio(),reunion.getFecha(),iglesia.getId(),
+                actividades.get(campoActividades.getSelectedIndex()).getTipo(),sectores.get(campoSectorSer.getSelectedIndex()).getId(),campoAccionServidor.getText()));
+        
+        
     }//GEN-LAST:event_botonAgregarSerActionPerformed
 
-  ///////////////////////////////////////////////////////////////////  
-   public String obtenerCampoAccionServidor () {
-       return campoAccionServidor.getText();
-   }
-
-   public String obtenerCampoAccionPastor () {
-       return campoAccionPastor.getText();
-   }
-
-   public Pastor obtenerCampoPastor () {
-       Pastor pastor = (Pastor) campoPastor.getSelectedItem();
-       return pastor;
-   }
-
-   public Sector obtenerCampoSectorSer () {
-       Sector sector = (Sector) campoSectorSer.getSelectedItem();
-       return sector;
-   }
-
-   public Servidor obtenerCampoServidor () {
-       Servidor servidor = (Servidor) campoServidor.getSelectedItem();
-       return servidor;
-   }
-   
-   public String obtenerListaActividades () {
-      return listaActividades.getText();
-   }
-  ///////////////////////////////////////////////////////////////////  
-   public void iniciar_Componentes (Junta reunion) {
-       etiquetaHoraActual.setText(reunion.getHoraInicio());
-       listaPastores.setVisibleRowCount(7);
-       listaServidores.setVisibleRowCount(7);
-   }
-   
-   public void iniciar_ArrayServidores () {
-       arrayServidores = operacionesBD.consultar.servidoresIglesia(iglesia.getId());
-   }
-   
-   public void iniciar_ArrayPastores () {
-     arrayPastores = operacionesBD.consultar.obtenerPastores(iglesia.getId());
-   } 
-
-   public void iniciar_ArraySectores () {
-     arraySectores = operacionesBD.consultar.obtenerSectores(iglesia.getId());
-   }
-  
-   public void iniciar_ListaServidores () {
-    arrayListaServidores  = operacionesBD.consultar.participantesJunta(reunion);
-   }
-
-   public void iniciar_ListaPastores () {
-    arrayListaPastores = operacionesBD.consultar.pastoresJunta(reunion);
-   }
-   /////////////////////////////////////////////////////////////////////////////
-   public void setIglesia (Iglesia igle) {
-      iglesia = igle;
-   }
-  
-   public Iglesia getIglesia () {
-      return iglesia;
-   }
-
-   public void setOperacionesBD (Operaciones ope)  {
-       operacionesBD = ope;
-   }
-
-   public Operaciones getOperacionesBD () {
-       return operacionesBD;
-   }
-   
-   public void setReunion ( Junta junta) {
-        reunion = junta;
-   }
-   /////////////////////////////////////////////////////////////////////////////
-     public void actualizar_CampoServidor() {
-        campoServidor.setModel( new DefaultComboBoxModel<>( arrayServidores.toArray()) );
-     } 
- 
-     public void actualizar_CampoPastor() {
-        campoPastor.setModel( new DefaultComboBoxModel<>(arrayPastores.toArray()));
-     }
-     
-     public void actualizar_CampoSectores () {
-         campoSectorSer.setModel(new DefaultComboBoxModel<>(arraySectores.toArray()));
-     }
-  
-     public void actualizar_ListaServidor () {
-        listaServidores.setListData(arrayServidores.toArray()); 
-     }  
-
-     public void actualizar_ListaPastor () {
-        listaPastores.setListData(arrayPastores.toArray());
-     }  
-   ///////////////////////////////////////////////////////////////////////////// 
-   public void actualizar_ArraySectores(Sector sector) {
-       arraySectores.add(sector);
-   }
-
-   public void actualizar_ArrayServidores(Servidor servidor) {
-       arrayServidores.add(servidor);
-   }
-
-   public void actualizar_ArrayPastores(Pastor pastor) {
-       arrayPastores.add(pastor);
-   }
-   
-   public void actualizar_ArrayListaServidores (Servidor servidor ) {
-        arrayListaServidores.add(servidor);
-   }
-
-   public void actualizar_ArrayListaPastores (Pastor pastor) {
-        arrayListaPastores.add(pastor);
-   }
-   /////////////////////////////////////////////////////////////////////////////
-   public void actualizarBD_PersonaParticipa (Participa personaParticipa) {
-           operacionesBD.insertar.insertarParticipa(personaParticipa);
-   }
-
-   public void actualizarBD_PastorPredica (PastorPredica pastorPredica) {
-           operacionesBD.insertar.insertarPastorPredica (pastorPredica);
-   }
-
-   public void actualizarBD_TrabajaPara (Trabaja_para pastorTrabaja) {
-           operacionesBD.insertar.insertarTrabajaPara(pastorTrabaja);
-   }
-   /////////////////////////////////////////////////////////////////////////////
-
-    //Atributos
-    private Operaciones operacionesBD ;
-    private Iglesia iglesia;
-    private ArrayList<Pastor> arrayPastores;
-    private ArrayList<Servidor> arrayServidores;
-    private ArrayList<Sector> arraySectores;
-    private ArrayList<Pastor> arrayListaPastores;
-    private ArrayList<Servidor> arrayListaServidores;
-    private Junta reunion;
+    private void consultarDatos() 
+    {
+        pastoresJunta=operacionesBD.consultar.pastoresJunta(reunion);
+        
+        servidoresJunta=operacionesBD.consultar.participantesJunta(reunion);
+        
+        servidoresIglesia=operacionesBD.consultar.servidoresIglesia(iglesia.getId());
+        
+        pastoresIglesia=operacionesBD.consultar.obtenerPastores(iglesia.getId());
+        
+        sectores=operacionesBD.consultar.obtenerSectores(iglesia.getId());
+        
+        actividades=operacionesBD.consultar.tipoActividad();
+    }
+    
+    private void llenarComponentes() 
+    {
+        
+        campoActividades.setModel( new DefaultComboBoxModel<>(actividades.toArray()));
+         
+        etiquetaHoraActual.setText(reunion.getHoraInicio());
+        
+        campoSectorSer.setModel(new DefaultComboBoxModel<>(sectores.toArray()));
+        
+        campoServidor.setModel( new DefaultComboBoxModel<>( servidoresIglesia.toArray()) );
+        
+        campoPastor.setModel( new DefaultComboBoxModel<>(pastoresIglesia.toArray()));
+        
+        listaServidores.setListData(servidoresJunta.toArray()); 
+        
+        listaPastores.setListData(pastoresJunta.toArray());
+    }
+    
+    
+    private Servidor se;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarPas;
     private javax.swing.JButton botonAgregarSer;
@@ -552,6 +469,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
     private javax.swing.JButton botonEliminarPas;
     private javax.swing.JTextField campoAccionPastor;
     private javax.swing.JTextField campoAccionServidor;
+    private javax.swing.JComboBox campoActividades;
     private javax.swing.JComboBox campoPastor;
     private javax.swing.JComboBox campoSectorSer;
     private javax.swing.JComboBox campoServidor;
@@ -566,6 +484,7 @@ public class PlanificaReunion extends javax.swing.JDialog {
     private javax.swing.JLabel etiquetaServidores;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;

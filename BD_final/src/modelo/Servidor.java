@@ -55,7 +55,7 @@ public class Servidor extends Persona
 
     @Override
     public String toString() {
-        return "rut:" + this.rut + ";" +this.nombre +" "+ this.apellido;
+        return "rut : " + this.rut + " - " +this.nombre +" "+ this.apellido;
     }
     
     public void setTelefonos(ArrayList<String> telefonos) {

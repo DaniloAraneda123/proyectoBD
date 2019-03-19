@@ -28,7 +28,7 @@ public class Pastor extends Persona
     
     @Override
     public String toString() {
-        return  "rut:" + rut + ";" + nombre + " " + apellido ;
+        return  "rut: " + rut + " - " + nombre + " " + apellido ;
     }
     
 }

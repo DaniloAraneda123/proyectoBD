@@ -292,7 +292,7 @@ public class PlanificaJunta extends javax.swing.JDialog {
         etiquetaHoraActual.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaHoraActual.setText(" (hora)");
 
-        jButton1.setText("Confirmar");
+        jButton1.setText("Agendar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

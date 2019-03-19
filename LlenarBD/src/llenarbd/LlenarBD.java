@@ -8,13 +8,13 @@ public class LlenarBD
         conexion cn=new conexion();
         //cn.rutPastores();
         //cn.rutServidores();
-        //cn.trabajaPara();
-        cn.sectores();
+        cn.trabajaPara();
+        //cn.sectores();
         //cn.telefono();
         //cn.llenarJunta();
         //cn.llenarPredica();
         //cn.llenarJunta();
-        cn.llenarParticipa();
+        //cn.llenarParticipa();
     }
     
 }

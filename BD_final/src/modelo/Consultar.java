@@ -157,7 +157,7 @@ public class Consultar {
         try
         {
             PreparedStatement pstmt = cn.prepareStatement("SELECT rut,nombre,apellido,genero,fechanacimiento,jerarquia FROM pastor,trabaja_para "
-                    + "WHERE rut=rut_pastor AND id_iglesia=? ;");
+                    + "WHERE rut=rut_pastor AND id_iglesia=?;");
             pstmt.setInt(1, idIglesia);
             rs=pstmt.executeQuery();
             while(rs.next())
@@ -276,7 +276,7 @@ public class Consultar {
         try
         {
             PreparedStatement pstmt = cn.prepareStatement(
-                    "SELECT rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia"+
+                    "SELECT rut,nombre,apellido,genero,especialidad,fechanacimiento,servidor.iglesia_id "+
                     "FROM servidor, participa "+
                     "WHERE rut=rut_servidor AND id_iglesia=? AND fecha=? AND hora=?");
             pstmt.setInt(1, jt.getIglesia());
@@ -285,7 +285,7 @@ public class Consultar {
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia"));
+                p=new Servidor(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getInt("genero"),rs.getDate("fechaNacimiento"),rs.getString("especialidad"),rs.getInt("iglesia_id"));
                 resultado.add(p);
             }
         }

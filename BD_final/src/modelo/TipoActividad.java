@@ -16,7 +16,6 @@ public class TipoActividad {
     
     public TipoActividad (String tipo , String especialidad) {
         this.tipo = tipo;
-        this.especialidad = new ArrayList<String>();
         this.especialidad.add(especialidad);
     }
    
@@ -39,7 +38,7 @@ public class TipoActividad {
     
     @Override
     public String toString() {
-        return "Tipo=  " + tipo + " Especialidad= " + especialidad;
+        return "Tipo=  " + tipo;
     }
 
 }

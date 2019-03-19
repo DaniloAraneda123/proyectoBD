@@ -104,10 +104,9 @@ public class conexion
             while(rs.next())
             {
                 pstmt.setString(1, rs.getString("rut"));
-                numero= (int) (Math.random()*2)+ 1;
-                for(int j=1;j<=numero;j++)
+                if((int) (Math.random() * 2)==1)
                 {
-                    pstmt.setInt(2,j);
+                    pstmt.setInt(2,3);
                     pstmt.execute();
                 }
             }
