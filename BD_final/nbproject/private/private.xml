@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuPastores.java</file>
-            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuReuniones.java</file>
-            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/modelo/Operaciones.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/VistaPlanSemanal.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/MenuTiposReuniones.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/PlanificaReunion.java</file>
+            <file>file:/C:/Users/gercar/Documents/proyectoBD/BD_final/src/vista/VistaInicio.java</file>
         </group>
     </open-files>
 </project-private>

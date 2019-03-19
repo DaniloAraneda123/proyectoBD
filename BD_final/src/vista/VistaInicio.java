@@ -1,7 +1,10 @@
 package vista;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import modelo.Operaciones;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Iglesia;
 import javax.swing.ListSelectionModel;
@@ -33,6 +36,7 @@ public class VistaInicio extends javax.swing.JFrame
         } 
     }
     
+   
     public ArrayList<Iglesia> getArrayIglesias () {
          return arrayIglesias;
     }
@@ -84,6 +88,7 @@ public class VistaInicio extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cristo tu unica esperanza");
+        setIconImage(new ImageIcon(getClass().getResource("/vista/imgs/icon.png")).getImage());
 
         jPanel1.setBackground(new java.awt.Color(52, 152, 219));
 
