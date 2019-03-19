@@ -367,16 +367,14 @@ public class MenuPastores extends javax.swing.JDialog {
     
     //Metodos
    public boolean comprobarCampoJerarquia () {
-     //DEFINIR
-       return true;
+       return getCampoJerarquia().matches("[1-9]+");
    } 
    public String getCampoJerarquia () {
        return campoJerarquia.getText();
    }
    
-   public boolean comprobarCampoRut() {
-       //DEFINIR
-       return true;
+     public boolean comprobarCampoRut() {
+       return ValidarDatos.validarRut(getCampoRut());
    }
 
    public String getCampoRut () {
@@ -384,8 +382,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoNombre() {
-       //DEFINIR
-       return true;
+       return getCampoNombre().matches("[^0-9]*");
    }
    
    public String getCampoNombre () {
@@ -393,8 +390,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
  
    public boolean comprobarCampoApellido () {
-       //DEFINIR
-       return true;
+       return getCampoApellido().matches("[^0-9]*");
    }
    
    public String getCampoApellido() {
@@ -402,8 +398,7 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoTelefono() {
-      //DEFINIR
-       return true;
+       return getCampoTelefono().matches("^[0-9]{8}$");
    }
 
    public String getCampoTelefono () {
@@ -411,17 +406,15 @@ public class MenuPastores extends javax.swing.JDialog {
    }
    
    public boolean comprobarCampoMail() {
-      //DEFINIR
-       return true;
+       return getCampoMail().matches("[^@]+@[^@]+\\.[a-zA-Z]{2,}");
    }
    
    public String getCampoMail() {
       return campoMail.getText();
    }
 
-   public boolean comprobarCampoFechaNac () {
-       //DEFINIR     
-       return true;
+   public boolean comprobarCampoFechaNac () {     
+       return getCampoFechaNac().matches("\\d{4}-\\d{2}-\\d{2}");
    }
    
    public String getCampoFechaNac() {
@@ -429,27 +422,20 @@ public class MenuPastores extends javax.swing.JDialog {
    }
 
    public boolean comprobarCampoEspecialidad() {
-      //DEFINIR
-       return true;
+       return getCampoEspecialidad.matches("[^0-9]*");
    }
 
-
+   public String getCampoEspecialidad() {
+       return campoEspecialidad.getText();
+   }
+   
    public boolean comprobarCampoGenero() {
-       //DEFINIR
-       return true;
+       return getCampoGenero.matches("[01]{1}");
    }
 
    public String getCampoGenero () {
        return campoGenero.getText();
    } 
-
-   public ArrayList<String> getlListaTelefonos()  {
-      return arrayTelefonos;
-   }  
-
-   public ArrayList<String> getListaMails() {
-       return arrayMails;
-   }
  
     ///////////////////////////////////////
    

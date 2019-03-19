@@ -90,22 +90,26 @@
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="52" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="etiquetaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaEdadMin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoEdadMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="botonAgregar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="etiquetaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaEdadMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoEdadMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaEdadMax" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoEdadMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="botonEliminar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="etiquetaGenero" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaEdadMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoEdadMax" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
