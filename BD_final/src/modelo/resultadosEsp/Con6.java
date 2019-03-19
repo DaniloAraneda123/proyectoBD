@@ -17,5 +17,12 @@ public class Con6 {
         this.contador=contador;
         this.nombreReunion=nombreReunion;
     }
+   
+    public int getContador (){ 
+       return contador;
+    } 
     
+    public String getNombreReunion () {
+       return nombreReunion;
+    }
 }
