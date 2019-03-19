@@ -1,6 +1,7 @@
 package vista;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.SQLException;
 import modelo.Operaciones;
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class VistaInicio extends javax.swing.JFrame
             setLocationRelativeTo(null);
             setResizable(false);
             setVisible(true);
+            
+           Toolkit mp =Toolkit.getDefaultToolkit();
+           URL ur = this.getClass().getResource("vista/imgs/icon.png");
+           Image miicono = mp.getImage(ur);
+           setIconImage(miicono);
         } 
         catch (SQLException|ClassNotFoundException ex) 
         {

@@ -79,6 +79,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonAgregarMail.setBackground(new java.awt.Color(52, 152, 219));
         botonAgregarMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/agregar.png"))); // NOI18N
+        botonAgregarMail.setToolTipText("agregar mail");
         botonAgregarMail.setBorder(null);
         botonAgregarMail.setBorderPainted(false);
         botonAgregarMail.setFocusable(false);
@@ -91,6 +92,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonEliminarMail.setBackground(new java.awt.Color(52, 152, 219));
         botonEliminarMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar.png"))); // NOI18N
+        botonEliminarMail.setToolTipText("eliminar mail");
         botonEliminarMail.setBorder(null);
         botonEliminarMail.setBorderPainted(false);
         botonEliminarMail.setFocusPainted(false);
@@ -112,6 +114,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonAgregarTele.setBackground(new java.awt.Color(52, 152, 219));
         botonAgregarTele.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/agregar.png"))); // NOI18N
+        botonAgregarTele.setToolTipText("agregar telefono");
         botonAgregarTele.setBorder(null);
         botonAgregarTele.setBorderPainted(false);
         botonAgregarTele.setFocusable(false);
@@ -124,6 +127,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonEliminarTele.setBackground(new java.awt.Color(52, 152, 219));
         botonEliminarTele.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar.png"))); // NOI18N
+        botonEliminarTele.setToolTipText("eliminar telefono");
         botonEliminarTele.setBorder(null);
         botonEliminarTele.setBorderPainted(false);
         botonEliminarTele.setFocusPainted(false);
@@ -131,6 +135,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonAgregarServidor.setBackground(new java.awt.Color(52, 152, 219));
         botonAgregarServidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/agregar.png"))); // NOI18N
+        botonAgregarServidor.setToolTipText("agregar servidor");
         botonAgregarServidor.setBorder(null);
         botonAgregarServidor.setBorderPainted(false);
         botonAgregarServidor.setFocusable(false);
@@ -147,6 +152,7 @@ public class MenuServidores extends javax.swing.JDialog {
 
         botonEliminarServidor.setBackground(new java.awt.Color(52, 152, 219));
         botonEliminarServidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar.png"))); // NOI18N
+        botonEliminarServidor.setToolTipText("eliminar servidor");
         botonEliminarServidor.setBorder(null);
         botonEliminarServidor.setBorderPainted(false);
         botonEliminarServidor.setFocusPainted(false);

@@ -73,7 +73,7 @@ public class PlanificaJunta extends javax.swing.JDialog {
         etiquetaHoraActual = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        selectorFecha = new com.toedter.calendar.JDateChooser();
+        selectorFecha = new org.netbeans.modules.form.InvalidComponent();
         jLabel1 = new javax.swing.JLabel();
         Date date = new Date();
         SpinnerDateModel sm=new SpinnerDateModel(date, null, null, Calendar.MINUTE);
@@ -607,7 +607,7 @@ public class PlanificaJunta extends javax.swing.JDialog {
     private javax.swing.JTextArea listaActividades;
     private javax.swing.JList listaPastores;
     private javax.swing.JList listaServidores;
-    private com.toedter.calendar.JDateChooser selectorFecha;
+    private org.netbeans.modules.form.InvalidComponent selectorFecha;
     private javax.swing.JSpinner selectorTiempo;
     // End of variables declaration//GEN-END:variables
 

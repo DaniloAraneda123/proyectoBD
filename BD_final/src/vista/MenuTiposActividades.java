@@ -41,6 +41,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
 
         botonAgregar.setBackground(new java.awt.Color(52, 152, 219));
         botonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/agregar.png"))); // NOI18N
+        botonAgregar.setToolTipText("agregar actividad");
         botonAgregar.setBorder(null);
         botonAgregar.setBorderPainted(false);
         botonAgregar.setFocusPainted(false);
@@ -53,6 +54,7 @@ public class MenuTiposActividades extends javax.swing.JDialog {
 
         botonEliminar.setBackground(new java.awt.Color(52, 152, 219));
         botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar.png"))); // NOI18N
+        botonEliminar.setToolTipText("eliminar actividad");
         botonEliminar.setBorder(null);
         botonEliminar.setBorderPainted(false);
         botonEliminar.setFocusPainted(false);
