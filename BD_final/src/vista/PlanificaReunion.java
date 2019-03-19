@@ -74,10 +74,10 @@ public class PlanificaReunion extends javax.swing.JDialog
         jScrollPane3 = new javax.swing.JScrollPane();
         listaPastores = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaActividades = new javax.swing.JTextArea();
+        txtDescripcion = new javax.swing.JTextArea();
         etiquetaDescripcion = new javax.swing.JLabel();
         etiquetaHoraActual = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        descripcion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -101,7 +101,7 @@ public class PlanificaReunion extends javax.swing.JDialog
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agendar Junta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles Junta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(52, 152, 219));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 51, 51), new java.awt.Color(51, 51, 51), java.awt.Color.darkGray, java.awt.Color.darkGray));
@@ -140,6 +140,11 @@ public class PlanificaReunion extends javax.swing.JDialog
         botonElimiinarSer.setBorderPainted(false);
         botonElimiinarSer.setFocusPainted(false);
         botonElimiinarSer.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
+        botonElimiinarSer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonElimiinarSerActionPerformed(evt);
+            }
+        });
 
         listaServidores.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(listaServidores);
@@ -160,8 +165,7 @@ public class PlanificaReunion extends javax.swing.JDialog
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(botonAgregarSer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonElimiinarSer)
-                        .addGap(35, 35, 35))
+                        .addComponent(botonElimiinarSer))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(etiquetaServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,7 +189,7 @@ public class PlanificaReunion extends javax.swing.JDialog
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaServidor)
                     .addComponent(campoServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaAccion)
                     .addComponent(campoAccionServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,6 +242,11 @@ public class PlanificaReunion extends javax.swing.JDialog
         botonEliminarPas.setBorderPainted(false);
         botonEliminarPas.setFocusPainted(false);
         botonEliminarPas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
+        botonEliminarPas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarPasActionPerformed(evt);
+            }
+        });
 
         listaPastores.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane3.setViewportView(listaPastores);
@@ -278,7 +287,7 @@ public class PlanificaReunion extends javax.swing.JDialog
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaAccionPas)
                     .addComponent(campoAccionPastor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonAgregarPas, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botonEliminarPas, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -287,10 +296,10 @@ public class PlanificaReunion extends javax.swing.JDialog
                 .addContainerGap())
         );
 
-        listaActividades.setBackground(new java.awt.Color(204, 204, 204));
-        listaActividades.setColumns(20);
-        listaActividades.setRows(5);
-        jScrollPane2.setViewportView(listaActividades);
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane2.setViewportView(txtDescripcion);
 
         etiquetaDescripcion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         etiquetaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
@@ -300,7 +309,12 @@ public class PlanificaReunion extends javax.swing.JDialog
         etiquetaHoraActual.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaHoraActual.setText(" (hora)");
 
-        jButton1.setText("Editar Descripcion");
+        descripcion.setText("Editar Descripcion");
+        descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descripcionActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Fecha");
 
@@ -327,23 +341,23 @@ public class PlanificaReunion extends javax.swing.JDialog
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
+                                .addComponent(descripcion)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(etiquetaDescripcion)
                         .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(descripcion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -401,7 +415,7 @@ public class PlanificaReunion extends javax.swing.JDialog
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void botonAgregarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarPasActionPerformed
-        ps=pastoresIglesia.remove(campoPastor.getSelectedIndex());//servidor Escojido
+        ps=pastoresIglesia.remove(campoPastor.getSelectedIndex());//pastor Escojido
         
         pastoresJunta.add(ps);
         
@@ -426,6 +440,35 @@ public class PlanificaReunion extends javax.swing.JDialog
         
         
     }//GEN-LAST:event_botonAgregarSerActionPerformed
+        
+    private void botonElimiinarSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElimiinarSerActionPerformed
+        se=servidoresJunta.remove(listaServidores.getSelectedIndex());//servidor Escojido
+        
+        servidoresIglesia.add(se);
+        
+        campoServidor.setModel( new DefaultComboBoxModel<>( servidoresIglesia.toArray()) );
+        
+        listaServidores.setListData(servidoresJunta.toArray());
+        
+        operacionesBD.eliminar.eliminarParticipa(new Participa(se.getRut(),reunion.getHoraInicio(),reunion.getFecha(),iglesia.getId(),
+                actividades.get(campoActividades.getSelectedIndex()).getTipo(),sectores.get(campoSectorSer.getSelectedIndex()).getId(),campoAccionServidor.getText()));
+    }//GEN-LAST:event_botonElimiinarSerActionPerformed
+
+    private void botonEliminarPasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarPasActionPerformed
+        ps=pastoresJunta.remove(listaPastores.getSelectedIndex());//pastor Escojido
+        
+        pastoresIglesia.add(ps);
+        
+        campoPastor.setModel( new DefaultComboBoxModel<>( pastoresIglesia.toArray()) );
+        
+        listaPastores.setListData(pastoresJunta.toArray());
+        
+        operacionesBD.eliminar.eliminarPastorPredica(new PastorPredica(reunion.getFecha(),reunion.getHoraInicio(),ps.getRut(),campoAccionPastor.getText(),reunion.getIglesia()));
+    }//GEN-LAST:event_botonEliminarPasActionPerformed
+
+    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+        operacionesBD.actualizar.actualizarDescripcion(txtDescripcion.getText(), reunion);
+    }//GEN-LAST:event_descripcionActionPerformed
 
     private void consultarDatos() 
     {
@@ -458,6 +501,11 @@ public class PlanificaReunion extends javax.swing.JDialog
         listaServidores.setListData(servidoresJunta.toArray()); 
         
         listaPastores.setListData(pastoresJunta.toArray());
+        
+        if(reunion.getDescripcion()!=null)
+        {
+            txtDescripcion.setText(reunion.getDescripcion());
+        }
     }
     
     
@@ -473,6 +521,7 @@ public class PlanificaReunion extends javax.swing.JDialog
     private javax.swing.JComboBox campoPastor;
     private javax.swing.JComboBox campoSectorSer;
     private javax.swing.JComboBox campoServidor;
+    private javax.swing.JButton descripcion;
     private javax.swing.JLabel etiquetaAccion;
     private javax.swing.JLabel etiquetaAccionPas;
     private javax.swing.JLabel etiquetaDescripcion;
@@ -482,7 +531,6 @@ public class PlanificaReunion extends javax.swing.JDialog
     private javax.swing.JLabel etiquetaSector;
     private javax.swing.JLabel etiquetaServidor;
     private javax.swing.JLabel etiquetaServidores;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
@@ -497,9 +545,9 @@ public class PlanificaReunion extends javax.swing.JDialog
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea listaActividades;
     private javax.swing.JList listaPastores;
     private javax.swing.JList listaServidores;
+    private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
 
 }

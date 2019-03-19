@@ -5,12 +5,15 @@ import java.util.Calendar;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Servidor;
 
 public class VerPerfil extends javax.swing.JDialog  
 {
-    public boolean FrameVerHistorial=false;
-    public VerPerfil() 
+    private Servidor s;
+    
+    public VerPerfil(Servidor s) 
     {
+        this.s=s;
         initComponents();
         setVisible(true);
         pack();
