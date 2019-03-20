@@ -55,17 +55,17 @@ public class Insertar
         boolean resultado=true;
         try
         {
-            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO servidor (rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia) VALUES(?,?,?,?,?,?,?);");   
+            PreparedStatement pstmt = cn.prepareStatement("INSERT INTO servidor (rut,nombre,apellido,genero,especialidad,fechaNacimiento,iglesia_id) VALUES(?,?,?,?,?,?,?);");   
             pstmt.setString(1, persona.getRut());
             pstmt.setString(2, persona.getNombre());
             pstmt.setString(3, persona.getApellido());
-            pstmt.setString(4,String.valueOf(persona.getGenero()));
+            pstmt.setInt(4,persona.getGenero());
             pstmt.setString(5,persona.getEspecialidad());
             pstmt.setDate(6,new java.sql.Date(persona.getFechaNacimiento().getTime()));
             pstmt.setInt(7,persona.getIglesia());
             pstmt.execute();
             pstmt.close(); 
-            pstmt = cn.prepareStatement("INSERT INTO telefono (RutPersona,numero) VALUES(?,?);");
+            /*pstmt = cn.prepareStatement("INSERT INTO telefono (RutPersona,numero) VALUES(?,?);");
             for(int i=0;i<persona.getTelefonos().size();i++)
             {
                 pstmt.setString(1, persona.getRut());
@@ -80,7 +80,7 @@ public class Insertar
                 pstmt.setString(2, persona.getTelefonos().get(i));
                 pstmt.execute();
             }
-            pstmt.close();
+            pstmt.close();*/
             
         }
         catch(Exception e)

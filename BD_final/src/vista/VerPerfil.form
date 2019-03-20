@@ -86,7 +86,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Perfil Cliente">
+            <TitledBorder title="Perfil">
               <Font PropertyName="font" name="Times New Roman" size="11" style="0"/>
             </TitledBorder>
           </Border>
@@ -102,42 +102,36 @@
                       <Component id="jSeparator1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="JLBrut" min="-2" max="-2" attributes="0"/>
-                                              <Component id="JLBnombreCompleto" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="JLBsexo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JLBfechaN" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="LblNumeroDeAtenciones" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="LblDeudaTotal" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="nombreTXT" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rutTXT" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="53" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="generoTXT" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="fechaTXT" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="especialidadTXT" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="58" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -155,29 +149,22 @@
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JLBnombreCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreTXT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JLBsexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="generoTXT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JLBfechaN" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fechaTXT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JLBrut" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rutTXT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="especialidadTXT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="5" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LblNumeroDeAtenciones" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LblDeudaTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="113" max="-2" attributes="0"/>
@@ -192,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="Nombre Completo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="JLBnombreCompleto">
+        <Component class="javax.swing.JLabel" name="nombreTXT">
           <Properties>
             <Property name="text" type="java.lang.String" value="nombreCompleto"/>
           </Properties>
@@ -202,7 +189,7 @@
             <Property name="text" type="java.lang.String" value="Rut:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="JLBrut">
+        <Component class="javax.swing.JLabel" name="rutTXT">
           <Properties>
             <Property name="text" type="java.lang.String" value="rut"/>
           </Properties>
@@ -212,19 +199,19 @@
             <Property name="text" type="java.lang.String" value="Fecha Nacimiento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="JLBfechaN">
+        <Component class="javax.swing.JLabel" name="fechaTXT">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="JLBsexo">
+        <Component class="javax.swing.JLabel" name="generoTXT">
           <Properties>
             <Property name="text" type="java.lang.String" value="genero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sexo:"/>
+            <Property name="text" type="java.lang.String" value="Genero:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -292,32 +279,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel11">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Microsoft Tai Le" size="11" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Datos "/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Numero De Atenciones:"/>
+            <Property name="text" type="java.lang.String" value="Especialidad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="LblNumeroDeAtenciones">
+        <Component class="javax.swing.JLabel" name="especialidadTXT">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel13"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Deuda Total:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LblDeudaTotal">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel15"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -325,7 +294,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="11" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ultimas Cuatro Atenciones"/>
+            <Property name="text" type="java.lang.String" value="Participaciones"/>
           </Properties>
         </Component>
       </SubComponents>

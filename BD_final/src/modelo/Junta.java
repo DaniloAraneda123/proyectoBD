@@ -7,7 +7,7 @@ public class Junta {
     private Date fecha;
     private String nombreReunion;
     private String horaInicio;
-    private String descripcion;
+    private String descripcion="";
     private int iglesia;
     
     public Junta(Date fecha, String reunion,String horaInicio , String descripcion , int iglesia) {

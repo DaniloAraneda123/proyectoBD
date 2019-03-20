@@ -18,6 +18,9 @@ public class MenuSectores extends javax.swing.JDialog {
         iniciar_ArraySectores();
         actualizar_ListaSectores();
         //DARLE UNA POSICION AL CUADRO DE DIALOGO
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
          
     }
 
@@ -124,10 +127,11 @@ public class MenuSectores extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(etiquetaTitulo)
                 .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaTipo)
-                    .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonAgregar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(etiquetaTipo)
+                        .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

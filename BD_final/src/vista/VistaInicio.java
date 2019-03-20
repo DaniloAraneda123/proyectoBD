@@ -1,7 +1,5 @@
 package vista;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.net.URL;
+
 import java.sql.SQLException;
 import modelo.Operaciones;
 import java.util.ArrayList;
@@ -30,10 +28,10 @@ public class VistaInicio extends javax.swing.JFrame
             setResizable(false);
             setVisible(true);
             
-           Toolkit mp =Toolkit.getDefaultToolkit();
+           /*Toolkit mp =Toolkit.getDefaultToolkit();
            URL ur = this.getClass().getResource("vista/imgs/icon.png");
            Image miicono = mp.getImage(ur);
-           setIconImage(miicono);
+           setIconImage(miicono);*/
         } 
         catch (SQLException|ClassNotFoundException ex) 
         {
@@ -358,10 +356,16 @@ public class VistaInicio extends javax.swing.JFrame
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         //comprobar que todos lo campos esten correctos
-        Iglesia nuevaIglesia = new Iglesia ( obtener_UltimoId(), getRegion() , getComuna() ,getCalle() , Integer.parseInt(getNumero()) ) ;
-        arrayIglesias.add(nuevaIglesia);
-        operacionesBD.insertar.insertarIglesia(nuevaIglesia);
-        actualizar_ListasIglesia();
+        try{
+            int numero=Integer.parseInt(getNumero()) ;
+            Iglesia nuevaIglesia = new Iglesia ( obtener_UltimoId(), getRegion() , getComuna() ,getCalle() , numero ) ;
+            arrayIglesias.add(nuevaIglesia);
+            operacionesBD.insertar.insertarIglesia(nuevaIglesia);
+            actualizar_ListasIglesia();
+        }catch(NumberFormatException ex)
+        {
+                    JOptionPane.showMessageDialog(null,"Numero no valido");
+        }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed

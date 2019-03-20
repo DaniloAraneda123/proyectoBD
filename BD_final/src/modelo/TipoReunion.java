@@ -33,7 +33,7 @@ public class TipoReunion
 
     @Override
     public String toString() {
-        return "Nombre= " + nombre + " Edad= " + edadMin + " - " + edadMax + " Género= " + genero;
+        return nombre;
     }
     
 }

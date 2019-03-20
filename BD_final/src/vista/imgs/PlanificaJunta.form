@@ -109,10 +109,7 @@
                                           <Component id="etiquetaHora" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="selectorFecha" max="32767" attributes="0"/>
-                                          <Component id="selectorTiempo" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="selectorTiempo" min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -137,7 +134,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectorFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -605,8 +601,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
-            </Component>
-            <Component class="org.netbeans.modules.form.InvalidComponent" name="selectorFecha">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>

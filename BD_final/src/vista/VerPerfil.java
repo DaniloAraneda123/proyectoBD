@@ -30,22 +30,19 @@ public class VerPerfil extends javax.swing.JDialog
         jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        JLBnombreCompleto = new javax.swing.JLabel();
+        nombreTXT = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JLBrut = new javax.swing.JLabel();
+        rutTXT = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        JLBfechaN = new javax.swing.JLabel();
-        JLBsexo = new javax.swing.JLabel();
+        fechaTXT = new javax.swing.JLabel();
+        generoTXT = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTabla = new javax.swing.JTable();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        LblNumeroDeAtenciones = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        LblDeudaTotal = new javax.swing.JLabel();
+        especialidadTXT = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -70,23 +67,23 @@ public class VerPerfil extends javax.swing.JDialog
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Perfil", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 11))); // NOI18N
 
         jLabel1.setText("Nombre Completo:");
 
-        JLBnombreCompleto.setText("nombreCompleto");
+        nombreTXT.setText("nombreCompleto");
 
         jLabel2.setText("Rut:");
 
-        JLBrut.setText("rut");
+        rutTXT.setText("rut");
 
         jLabel3.setText("Fecha Nacimiento:");
 
-        JLBfechaN.setText("Fecha");
+        fechaTXT.setText("Fecha");
 
-        JLBsexo.setText("genero");
+        generoTXT.setText("genero");
 
-        jLabel4.setText("Sexo:");
+        jLabel4.setText("Genero:");
 
         jLabel10.setFont(new java.awt.Font("Microsoft Tai Le", 0, 11)); // NOI18N
         jLabel10.setText("Datos Personales");
@@ -117,19 +114,12 @@ public class VerPerfil extends javax.swing.JDialog
             JTabla.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jLabel11.setFont(new java.awt.Font("Microsoft Tai Le", 0, 11)); // NOI18N
-        jLabel11.setText("Datos ");
+        jLabel12.setText("Especialidad:");
 
-        jLabel12.setText("Numero De Atenciones:");
-
-        LblNumeroDeAtenciones.setText("jLabel13");
-
-        jLabel14.setText("Deuda Total:");
-
-        LblDeudaTotal.setText("jLabel15");
+        especialidadTXT.setText("jLabel13");
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        jLabel8.setText("Ultimas Cuatro Atenciones");
+        jLabel8.setText("Participaciones");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,35 +131,29 @@ public class VerPerfil extends javax.swing.JDialog
                     .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel2))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(JLBrut)
-                                            .addComponent(JLBnombreCompleto))))
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel4)
-                                .addGap(29, 29, 29)
-                                .addComponent(JLBsexo)
-                                .addGap(50, 50, 50)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreTXT)
+                                    .addComponent(rutTXT))))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(generoTXT)
+                                .addGap(34, 34, 34)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JLBfechaN))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(18, 18, 18)
-                                .addComponent(LblNumeroDeAtenciones)
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(LblDeudaTotal)))
-                        .addContainerGap(53, Short.MAX_VALUE))
+                                .addComponent(fechaTXT))
+                            .addComponent(especialidadTXT))
+                        .addContainerGap(58, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -182,26 +166,20 @@ public class VerPerfil extends javax.swing.JDialog
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(JLBnombreCompleto)
+                    .addComponent(nombreTXT)
                     .addComponent(jLabel4)
-                    .addComponent(JLBsexo)
+                    .addComponent(generoTXT)
                     .addComponent(jLabel3)
-                    .addComponent(JLBfechaN))
+                    .addComponent(fechaTXT))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(JLBrut))
+                    .addComponent(rutTXT)
+                    .addComponent(jLabel12)
+                    .addComponent(especialidadTXT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(LblNumeroDeAtenciones)
-                    .addComponent(jLabel14)
-                    .addComponent(LblDeudaTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,18 +209,13 @@ public class VerPerfil extends javax.swing.JDialog
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLBfechaN;
-    private javax.swing.JLabel JLBnombreCompleto;
-    private javax.swing.JLabel JLBrut;
-    private javax.swing.JLabel JLBsexo;
     private javax.swing.JTable JTabla;
-    private javax.swing.JLabel LblDeudaTotal;
-    private javax.swing.JLabel LblNumeroDeAtenciones;
+    private javax.swing.JLabel especialidadTXT;
+    private javax.swing.JLabel fechaTXT;
+    private javax.swing.JLabel generoTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -256,6 +229,8 @@ public class VerPerfil extends javax.swing.JDialog
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel nombreTXT;
+    private javax.swing.JLabel rutTXT;
     // End of variables declaration//GEN-END:variables
 
 }

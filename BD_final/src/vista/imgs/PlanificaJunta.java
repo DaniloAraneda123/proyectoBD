@@ -1,4 +1,4 @@
-package vista;
+package vista.imgs;
 
 import modelo.Operaciones;
 import java.util.ArrayList;
@@ -73,7 +73,6 @@ public class PlanificaJunta extends javax.swing.JDialog {
         etiquetaHoraActual = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        selectorFecha = new org.netbeans.modules.form.InvalidComponent();
         jLabel1 = new javax.swing.JLabel();
         Date date = new Date();
         SpinnerDateModel sm=new SpinnerDateModel(date, null, null, Calendar.MINUTE);
@@ -338,9 +337,7 @@ public class PlanificaJunta extends javax.swing.JDialog {
                                     .addComponent(jLabel1)
                                     .addComponent(etiquetaHora))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(selectorFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(selectorTiempo))))))
+                                .addComponent(selectorTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -357,7 +354,6 @@ public class PlanificaJunta extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectorFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
@@ -607,7 +603,6 @@ public class PlanificaJunta extends javax.swing.JDialog {
     private javax.swing.JTextArea listaActividades;
     private javax.swing.JList listaPastores;
     private javax.swing.JList listaServidores;
-    private org.netbeans.modules.form.InvalidComponent selectorFecha;
     private javax.swing.JSpinner selectorTiempo;
     // End of variables declaration//GEN-END:variables
 

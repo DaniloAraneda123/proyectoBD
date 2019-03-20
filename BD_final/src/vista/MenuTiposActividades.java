@@ -14,6 +14,9 @@ public class MenuTiposActividades extends javax.swing.JDialog {
         setOperacionesBD (ope);
         iniciar_ArrayTiposActividades();
         actualizar_ListaTiposActividades();
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

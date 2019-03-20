@@ -38,7 +38,7 @@ public class ConsultasEsp {
         Servidor p;
         try{
 
-            PreparedStatement pstmt=cn.prepareStatement("SELECT DISTINCT rut,nombre,apellido FROM persona , participa " +
+            PreparedStatement pstmt=cn.prepareStatement("SELECT DISTINCT rut,nombre,apellido FROM servidor , participa " +
                     "WHERE rut = rut_servidor " +
                     "AND fecha >=  ? " +
                     "AND fecha <= ? " +
@@ -81,7 +81,7 @@ public class ConsultasEsp {
             rs=pstmt.executeQuery();
             while(rs.next())
             {
-                e=new Con2(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getString("nombreActividad"));
+                e=new Con2(rs.getString("rut"),rs.getString("nombre"),rs.getString("apellido"),rs.getString("tipo_tarea"));
                 lista.add(e);
             }
         }

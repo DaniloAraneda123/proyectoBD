@@ -15,7 +15,10 @@ public class MenuPastores extends javax.swing.JDialog {
         setOperacionesBD(ope);
         setIglesia(igle);
         iniciar_ArrayPastores();
-        actualizar_ListaPastores();       
+        actualizar_ListaPastores(); 
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

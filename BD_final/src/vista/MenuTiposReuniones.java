@@ -13,6 +13,9 @@ public class MenuTiposReuniones extends javax.swing.JDialog {
         setOperacionesBD(ope);
         iniciar_ArrayTiposReuniones();
         actualizar_ListaTiposReuniones();
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
 

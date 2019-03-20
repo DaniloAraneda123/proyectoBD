@@ -1,6 +1,8 @@
 
 package vista;
+import control.ValidarDatos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Iglesia;
 import modelo.Servidor;
 import modelo.Operaciones;
@@ -15,6 +17,9 @@ public class MenuServidores extends javax.swing.JDialog {
         setIglesia(iglesia);
         iniciar_ArrayServidores();
         actualizar_ListaServidores();
+        pack();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,7 +29,6 @@ public class MenuServidores extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         etiquetaTitulo = new javax.swing.JLabel();
         etiquetaMail = new javax.swing.JLabel();
-        campoGenero = new javax.swing.JTextField();
         campoTelefono = new javax.swing.JTextField();
         campoMail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,9 +52,10 @@ public class MenuServidores extends javax.swing.JDialog {
         etiquetaFechaNac = new javax.swing.JLabel();
         campoApellido = new javax.swing.JTextField();
         etiquetaEspecialidad = new javax.swing.JLabel();
-        etiquetaGenero = new javax.swing.JLabel();
         campoEspecialidad = new javax.swing.JTextField();
         etiquetaTelefono = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        etiquetaEspecialidad1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,11 +75,6 @@ public class MenuServidores extends javax.swing.JDialog {
             }
         });
 
-        listaTelefonos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaTelefonos);
 
         botonAgregarMail.setBackground(new java.awt.Color(52, 152, 219));
@@ -98,18 +98,8 @@ public class MenuServidores extends javax.swing.JDialog {
         botonEliminarMail.setFocusPainted(false);
         botonEliminarMail.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
 
-        listaMails.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(listaMails);
 
-        listaServidores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listaServidores);
 
         botonAgregarTele.setBackground(new java.awt.Color(52, 152, 219));
@@ -132,6 +122,11 @@ public class MenuServidores extends javax.swing.JDialog {
         botonEliminarTele.setBorderPainted(false);
         botonEliminarTele.setFocusPainted(false);
         botonEliminarTele.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/eliminar_1.png"))); // NOI18N
+        botonEliminarTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarTeleActionPerformed(evt);
+            }
+        });
 
         botonAgregarServidor.setBackground(new java.awt.Color(52, 152, 219));
         botonAgregarServidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imgs/agregar.png"))); // NOI18N
@@ -162,6 +157,12 @@ public class MenuServidores extends javax.swing.JDialog {
         etiquetaNombre.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaNombre.setText("Nombre :");
 
+        campoRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRutActionPerformed(evt);
+            }
+        });
+
         etiquetaApellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiquetaApellido.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaApellido.setText("Apellido :");
@@ -174,13 +175,15 @@ public class MenuServidores extends javax.swing.JDialog {
         etiquetaEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaEspecialidad.setText("Especialidad :");
 
-        etiquetaGenero.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        etiquetaGenero.setForeground(new java.awt.Color(255, 255, 255));
-        etiquetaGenero.setText("Género :");
-
         etiquetaTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         etiquetaTelefono.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaTelefono.setText("Teléfono :");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+
+        etiquetaEspecialidad1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        etiquetaEspecialidad1.setForeground(new java.awt.Color(255, 255, 255));
+        etiquetaEspecialidad1.setText("genero:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,13 +241,13 @@ public class MenuServidores extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(etiquetaEspecialidad)
-                                    .addComponent(etiquetaGenero))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(etiquetaEspecialidad)
+                                    .addComponent(etiquetaEspecialidad1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(campoEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -273,10 +276,10 @@ public class MenuServidores extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiquetaFechaNac)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(etiquetaFechaNac)
-                                .addComponent(etiquetaGenero)
-                                .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(etiquetaEspecialidad1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(etiquetaRut)
@@ -336,26 +339,48 @@ public class MenuServidores extends javax.swing.JDialog {
     }//GEN-LAST:event_campoMailActionPerformed
 
     private void botonAgregarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarServidorActionPerformed
-               //COMPROBAR CAMPOS
-        Servidor servidor = new Servidor();
-        actualizar_ArrayServidores(servidor);
-        actualizar_ListaServidores();
-        actualizarBD(servidor); 
+        if(ValidarDatos.validarRut(campoRut.getText()))
+        {
+            String rut=campoRut.getText();
+            rut =  rut.toUpperCase();
+            rut = rut.replace(" ", "");
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+            
+            Servidor servidor = new Servidor(rut,campoNombre.getText(),campoApellido.getText(),jComboBox1.getSelectedIndex(),campoFechaNac.getDate(),"nula",iglesia.getId());
+            servidor.setEspecialidad(campoEspecialidad.getText());
+            actualizar_ArrayServidores(servidor);
+            actualizar_ListaServidores();
+            actualizarBD(servidor); 
+        }
+        
+            else
+        {
+                JOptionPane.showMessageDialog(null,"rut Invalido");
+        }
     }//GEN-LAST:event_botonAgregarServidorActionPerformed
 
     private void botonAgregarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMailActionPerformed
-        comprobarCampoMail();
+      /*  comprobarCampoMail();
         String nuevoMail = getCampoMail();
         actualizar_ArrayMail(nuevoMail);
-        actualizar_ListaMails();
+        actualizar_ListaMails();*/
     }//GEN-LAST:event_botonAgregarMailActionPerformed
 
     private void botonAgregarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarTeleActionPerformed
-       comprobarCampoTelefono();
+/*
        String telefono = getCampoTelefono();
        actualizar_ArrayTelefono(telefono);
-       actualizar_ListaTelefonos();
+       actualizar_ListaTelefonos();*/
     }//GEN-LAST:event_botonAgregarTeleActionPerformed
+
+    private void campoRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRutActionPerformed
+
+    private void botonEliminarTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTeleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarTeleActionPerformed
 
     
     //Metodos
@@ -426,10 +451,6 @@ public class MenuServidores extends javax.swing.JDialog {
        //DEFINIR
        return true;
    }
-
-   public String getCampoGenero () {
-       return campoGenero.getText();
-   } 
 
    public ArrayList<String> getlListaTelefonos()  {
       return arrayTelefonos;
@@ -512,20 +533,20 @@ public class MenuServidores extends javax.swing.JDialog {
     private javax.swing.JTextField campoApellido;
     private javax.swing.JTextField campoEspecialidad;
     private com.toedter.calendar.JDateChooser campoFechaNac;
-    private javax.swing.JTextField campoGenero;
     private javax.swing.JTextField campoMail;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoRut;
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel etiquetaApellido;
     private javax.swing.JLabel etiquetaEspecialidad;
+    private javax.swing.JLabel etiquetaEspecialidad1;
     private javax.swing.JLabel etiquetaFechaNac;
-    private javax.swing.JLabel etiquetaGenero;
     private javax.swing.JLabel etiquetaMail;
     private javax.swing.JLabel etiquetaNombre;
     private javax.swing.JLabel etiquetaRut;
     private javax.swing.JLabel etiquetaTelefono;
     private javax.swing.JLabel etiquetaTitulo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -78,7 +78,6 @@ public class PlanificaReunion extends javax.swing.JDialog
         etiquetaDescripcion = new javax.swing.JLabel();
         etiquetaHoraActual = new javax.swing.JLabel();
         descripcion = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -316,8 +315,6 @@ public class PlanificaReunion extends javax.swing.JDialog
             }
         });
 
-        jLabel1.setText("Fecha");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -332,8 +329,6 @@ public class PlanificaReunion extends javax.swing.JDialog
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(etiquetaDescripcion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -352,13 +347,11 @@ public class PlanificaReunion extends javax.swing.JDialog
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(etiquetaDescripcion)
-                        .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(descripcion)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaDescripcion)
+                    .addComponent(etiquetaHoraActual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descripcion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -468,6 +461,7 @@ public class PlanificaReunion extends javax.swing.JDialog
 
     private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
         operacionesBD.actualizar.actualizarDescripcion(txtDescripcion.getText(), reunion);
+        reunion.setDescripcion(txtDescripcion.getText());
     }//GEN-LAST:event_descripcionActionPerformed
 
     private void consultarDatos() 
@@ -502,10 +496,7 @@ public class PlanificaReunion extends javax.swing.JDialog
         
         listaPastores.setListData(pastoresJunta.toArray());
         
-        if(reunion.getDescripcion()!=null)
-        {
-            txtDescripcion.setText(reunion.getDescripcion());
-        }
+        txtDescripcion.setText(reunion.getDescripcion());
     }
     
     
@@ -531,7 +522,6 @@ public class PlanificaReunion extends javax.swing.JDialog
     private javax.swing.JLabel etiquetaSector;
     private javax.swing.JLabel etiquetaServidor;
     private javax.swing.JLabel etiquetaServidores;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
